@@ -1,36 +1,70 @@
 // aqui exportaras las funciones que necesites
+import logo from '../img/logo.png'
+import { login, logout } from '../firebase/auth.js'
 
-export const login = () => {
+export const loginView = () => {
   const containerHome = document.createElement('section');
   containerHome.className = 'LoginContainer';
 
-  const title = document.createElement('h2');
-  title.textContent = 'Inicio de sesión';
-  containerHome.appendChild(title);
+  const imgLogo = document.createElement('img');
+  imgLogo.alt = "B-Music"
+  imgLogo.src = logo;
+  imgLogo.className = 'logo'
+  containerHome.appendChild(imgLogo)
 
-  const inputNickname = document.createElement('input');
-  inputNickname.setAttribute('placeholder', 'Nickname');
-  containerHome.appendChild(inputNickname);
+  const titleLogin = document.createElement('h2');
+  titleLogin.textContent = 'Inicio de sesión';
+  containerHome.appendChild(titleLogin);
 
   const inputMail = document.createElement('input');
-  inputMail.setAttribute('placeholder', 'Correo');
+  inputMail.setAttribute('placeholder', 'Alias o correo');
+  inputMail.id = 'inputMail'
   containerHome.appendChild(inputMail);
 
   const inputPassword = document.createElement('input');
   inputPassword.setAttribute('placeholder', 'Constraseña');
+  inputPassword.id = 'inputPassword'
   containerHome.appendChild(inputPassword);
 
   const submitInfoLogin = document.createElement('button');
   submitInfoLogin.setAttribute('type', 'button');
   submitInfoLogin.setAttribute('value', 'submitInfoLogin');
-  submitInfoLogin.innerText = 'Inicia sesión';
+  submitInfoLogin.innerText = 'Ingresar';
   containerHome.appendChild(submitInfoLogin);
 
-  const loginGoogle = document.createElement('button');
-  loginGoogle.setAttribute('type', 'button');
-  loginGoogle.setAttribute('value', 'submitInfoLogin');
-  loginGoogle.innerText = 'Inicia sesión con Google';
-  containerHome.appendChild(loginGoogle);
+  const buttonLoginGoogle = document.createElement('button');
+  buttonLoginGoogle.setAttribute('type', 'button');
+  buttonLoginGoogle.setAttribute('value', 'buttonLoginGoogle');
+  buttonLoginGoogle.innerText = 'Inicia sesión con Google';
+  containerHome.appendChild(buttonLoginGoogle);
+  let currentUser;
+  buttonLoginGoogle.addEventListener("click", ()=>{async(e)=>{
+    try{
+      currentUser = await login();
+    } catch (error) {}
+  }
+  console.log("Prueba");}
+  )
+
+  const buttonLogOut = document.createElement('button');
+  buttonLogOut.setAttribute('type', 'button');
+  buttonLogOut.setAttribute('value', 'buttonLogout');
+  buttonLogOut.innerText = 'Cerrar sesión';
+  containerHome.appendChild(buttonLogOut);
+  buttonLogOut.addEventListener("click",(e)=>{
+    logout()
+  })
+
+
+  const askAccount = document.createElement('p');
+  askAccount.textContent = '¿No tienes cuenta aún?';
+  containerHome.appendChild(askAccount);
+
+  const buttonNewAccount = document.createElement('button');
+  buttonNewAccount.setAttribute('type', 'button');
+  buttonNewAccount.setAttribute('value', 'buttonNewAccount');
+  buttonNewAccount.innerText = 'Crear cuanta';
+  containerHome.appendChild(buttonNewAccount);
 
   return containerHome;
 };
