@@ -1,20 +1,17 @@
 // Este es el punto de entrada de tu aplicacion
 
-//import {myFunction} from './lib/index.js';
-import {home} from './componentes/home.js';
-import {error} from './componentes/error.js';
-
-
-
+// import {myFunction} from './lib/index.js';
+import { login } from './componentes/login.js';
+import { error } from './componentes/error.js';
 
 const routes = [
-  //{ path: '/', component: myFunction2 },
-  { path: '/', component: home },
-  //{ path: '/lib/index', component: myFunction },
+  // { path: '/', component: myFunction2 },
+  { path: '/', component: login },
+  // { path: '/lib/index', component: myFunction },
   { path: '/lib/error', component: error },
 ];
 
-const defaultRoute = '/lib/home';
+const defaultRoute = '/lib/login';
 const root = document.getElementById('root');
 
 function navigateTo(hash) {
@@ -31,18 +28,16 @@ function navigateTo(hash) {
       root.removeChild(root.firstChild);
     }
     root.appendChild(route.component(navigateTo));
-    //myFunction();
-} else {
+    // myFunction();
+  } else {
     navigateTo('/lib/error');
   }
 }
 
 window.onpopstate = () => {
-    console.log('--------------');
-    navigateTo(window.location.pathname);
-  };
-  
-  console.log('--------------',window.location.pathname || defaultRoute);
-  navigateTo(window.location.pathname || defaultRoute);
+  console.log('--------------');
+  navigateTo(window.location.pathname);
+};
 
-  
+console.log('--------------', window.location.pathname || defaultRoute);
+navigateTo(window.location.pathname || defaultRoute);
