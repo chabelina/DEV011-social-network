@@ -1,0 +1,10 @@
+body{
+    background-color: antiquewhite;
+}
+.LoginContainer{
+   background-color: aquamarine;
+   display: flex;
+   flex-direction: column; 
+   width: 200px;
+   padding: 20px;
+}
