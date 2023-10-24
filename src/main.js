@@ -3,12 +3,12 @@
 // import {myFunction} from './lib/index.js';
 import { login } from './componentes/login.js';
 import { error } from './componentes/error.js';
+import { publications } from './componentes/publications.js';
 
 const routes = [
-  // { path: '/', component: myFunction2 },
   { path: '/', component: login },
-  // { path: '/lib/index', component: myFunction },
-  { path: '/lib/error', component: error },
+  { path: '/error', component: error },
+  { path: '/publications', component: publications },
 ];
 
 const defaultRoute = '/lib/login';
