@@ -1,0 +1,74 @@
+[33mcommit f4a3b48ef02e108272144ff8088540176454db99[m[33m ([m[1;36mHEAD -> [m[1;32mHito1[m[33m, [m[1;31morigin/Hito1[m[33m)[m
+Author: Karina_mr <gatica265@gmail.com>
+Date:   Sat Oct 21 22:40:47 2023 -0600
+
+    Primera version de SPA
+
+[33mcommit 4ad81e15f5112fea97d001a649fdf3ece1e4d267[m[33m ([m[1;31mupstream/main[m[33m, [m[1;32mmain[m[33m)[m
+Merge: 2a789cf 42d9f73
+Author: Elizabeth <123765828+chabelina@users.noreply.github.com>
+Date:   Thu Oct 19 11:20:56 2023 -0500
+
+    Merge pull request #4 from danielapadronf/main
+    
+    PR test #02
+
+[33mcommit 42d9f73a2ceb4f6c1e4520a9f03897a67af5acc4[m
+Merge: 9b88103 bd66193
+Author: danielapadronf <142611140+danielapadronf@users.noreply.github.com>
+Date:   Wed Oct 18 13:18:01 2023 -0500
+
+    Merge pull request #1 from danielapadronf/social
+    
+    Social
+
+[33mcommit bd66193a19d3dbf079b08688ec6ca6cce5db3901[m
+Author: “DanielaP” <“padronjodaniela@gmail.com”>
+Date:   Wed Oct 18 13:07:36 2023 -0500
+
+    se agrega daniela gg
+
+[33mcommit 2a789cf27bbb7317bd0aa2d5df749bb3e7faab2d[m
+Merge: 565236b 2c00024
+Author: Elizabeth <123765828+chabelina@users.noreply.github.com>
+Date:   Tue Oct 17 19:04:12 2023 -0500
+
+    Merge pull request #2 from chabelina/Hito2
+    
+    GitHub/PR follow-up test
+
+[33mcommit 2c000244ef531dfe7480a66632cbe503f23439a5[m[33m ([m[1;31mupstream/Hito2[m[33m)[m
+Author: Elizabeth <chabelina2003@gmail.com>
+Date:   Tue Oct 17 18:57:44 2023 -0500
+
+    GitHub/PR follow-up test
+
+[33mcommit 565236b3d0299586800c13eb76c579a006ccadb0[m
+Merge: 9b88103 b63cdb2
+Author: Elizabeth <123765828+chabelina@users.noreply.github.com>
+Date:   Tue Oct 17 17:12:53 2023 -0500
+
+    Merge pull request #1 from KarinaMirandaRuiz/main
+    
+    Commit inicial (first PR test)
+
+[33mcommit b63cdb2a64559853e2fdffbe779924bb6d034c83[m
+Merge: 9b88103 e97eea8
+Author: Karina_mr <108292343+KarinaMirandaRuiz@users.noreply.github.com>
+Date:   Tue Oct 17 14:41:22 2023 -0600
+
+    Merge pull request #1 from KarinaMirandaRuiz/Hito1
+    
+    commit inicial
+
+[33mcommit e97eea837913cdc6aa9610e6ae9faf1eaf2b8c20[m
+Author: Karina_mr <gatica265@gmail.com>
+Date:   Tue Oct 17 14:40:28 2023 -0600
+
+    commit inicial prueba
+
+[33mcommit 9b88103819695b9839a531e067f3a62493359d48[m[33m ([m[1;31morigin/main[m[33m, [m[1;31morigin/HEAD[m[33m)[m
+Author: AlexisJoselyn <pfernandez.alexis@gmail.com>
+Date:   Fri Sep 22 07:20:01 2023 -0500
+
+    chore(init): Adds project files from curriculum

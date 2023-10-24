@@ -7,8 +7,8 @@ auth.languageCode = 'es';
 
 export async function login() {
   try {
-    const response = await signInWithPopup(provider);
-    console.log(response);
+    const response = signInWithPopup(provider);
+    // console.log(response);
     return response.user;
   } catch (error) {
     throw new Error(error);
