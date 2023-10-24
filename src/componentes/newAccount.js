@@ -16,10 +16,10 @@ export const newAccount = () => {
   inputNickname.id ='inputNickname'
   containerHome.appendChild(inputNickname);
 
-  const inputMail = document.createElement('input');
-  inputMail.setAttribute('placeholder', 'Correo');
-  inputMail.id = 'inputMail'
-  containerHome.appendChild(inputMail);
+  const inputEmail = document.createElement('input');
+  inputEmail.setAttribute('placeholder', 'Correo');
+  inputEmail.id = 'inputEmail'
+  containerHome.appendChild(inputEmail);
 
   const inputPassword = document.createElement('input');
   inputPassword.setAttribute('placeholder', 'Constraseña');
