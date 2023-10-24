@@ -4,6 +4,7 @@
 import { loginView } from './componentes/login.js';
 import { newAccount } from './componentes/newAccount.js';
 import { error } from './componentes/error.js';
+import { publications } from './componentes/publications.js';
 
 const routes = [
   { 
@@ -17,6 +18,10 @@ const routes = [
   { 
     path: '/NewAccount', 
     component: newAccount 
+  },
+  { 
+    path: '/publications', 
+    component: publications 
   },
 ];
 
