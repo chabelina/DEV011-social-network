@@ -1,16 +1,16 @@
 // aqui exportaras las funciones que necesites
-import logo from '../img/logo.png'
-import { login, logout } from '../firebase/auth.js'
+import logo from '../img/logo.png';
+import { login, logout } from '../firebase/auth.js';
 
 export const loginView = () => {
   const containerHome = document.createElement('section');
   containerHome.className = 'LoginContainer';
 
   const imgLogo = document.createElement('img');
-  imgLogo.alt = "B-Music"
+  imgLogo.alt = 'B-Music';
   imgLogo.src = logo;
-  imgLogo.className = 'logo'
-  containerHome.appendChild(imgLogo)
+  imgLogo.className = 'logo';
+  containerHome.appendChild(imgLogo);
 
   const titleLogin = document.createElement('h2');
   titleLogin.textContent = 'Inicio de sesión';
@@ -18,12 +18,12 @@ export const loginView = () => {
 
   const inputMail = document.createElement('input');
   inputMail.setAttribute('placeholder', 'Alias o correo');
-  inputMail.id = 'inputMail'
+  inputMail.id = 'inputMail';
   containerHome.appendChild(inputMail);
 
   const inputPassword = document.createElement('input');
   inputPassword.setAttribute('placeholder', 'Constraseña');
-  inputPassword.id = 'inputPassword'
+  inputPassword.id = 'inputPassword';
   containerHome.appendChild(inputPassword);
 
   const submitInfoLogin = document.createElement('button');
@@ -37,24 +37,24 @@ export const loginView = () => {
   buttonLoginGoogle.setAttribute('value', 'buttonLoginGoogle');
   buttonLoginGoogle.innerText = 'Inicia sesión con Google';
   containerHome.appendChild(buttonLoginGoogle);
+
   let currentUser;
-  buttonLoginGoogle.addEventListener("click", ()=>{async(e)=>{
-    try{
+  buttonLoginGoogle.addEventListener('click', async (e) => {
+    try {
+      console.log(currentUser);
       currentUser = await login();
     } catch (error) {}
-  }
-  console.log("Prueba");}
-  )
+  });
+  console.log('Prueba');
 
   const buttonLogOut = document.createElement('button');
   buttonLogOut.setAttribute('type', 'button');
   buttonLogOut.setAttribute('value', 'buttonLogout');
   buttonLogOut.innerText = 'Cerrar sesión';
   containerHome.appendChild(buttonLogOut);
-  buttonLogOut.addEventListener("click",(e)=>{
-    logout()
-  })
-
+  buttonLogOut.addEventListener('click', (e) => {
+    logout();
+  });
 
   const askAccount = document.createElement('p');
   askAccount.textContent = '¿No tienes cuenta aún?';
