@@ -41,19 +41,21 @@ export const loginView = () => {
   let currentUser;
   buttonLoginGoogle.addEventListener('click', async (e) => {
     try {
-      console.log(currentUser);
-      currentUser = await login();
-    } catch (error) {}
+      //login().then( res =>console.log(res));
+      currentUser = await login()
+      console.log('++++',currentUser );
+    } catch (error) {console.log('---error')}
+    ;
   });
-  console.log('Prueba');
 
   const buttonLogOut = document.createElement('button');
   buttonLogOut.setAttribute('type', 'button');
   buttonLogOut.setAttribute('value', 'buttonLogout');
   buttonLogOut.innerText = 'Cerrar sesión';
   containerHome.appendChild(buttonLogOut);
-  buttonLogOut.addEventListener('click', (e) => {
-    logout();
+  buttonLogOut.addEventListener('click', async(e) => {
+    currentUser = await logout();
+    console.log('.....',currentUser );
   });
 
   const askAccount = document.createElement('p');
@@ -63,8 +65,11 @@ export const loginView = () => {
   const buttonNewAccount = document.createElement('button');
   buttonNewAccount.setAttribute('type', 'button');
   buttonNewAccount.setAttribute('value', 'buttonNewAccount');
-  buttonNewAccount.innerText = 'Crear cuanta';
+  buttonNewAccount.innerText = 'Crear cuenta';
   containerHome.appendChild(buttonNewAccount);
+  buttonNewAccount.addEventListener('click', ()=>{
+    console.log('.....',currentUser );
+  });
 
   return containerHome;
 };

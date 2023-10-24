@@ -1,4 +1,4 @@
-import { getAuth, GoogleAuthProvider, signInWithPopup } from 'firebase/auth';
+import { getAuth, GoogleAuthProvider, signInWithPopup, signOut } from 'firebase/auth';
 import { app } from './firebase-config.js';
 
 export const auth = getAuth(app);
@@ -7,14 +7,14 @@ auth.languageCode = 'es';
 
 export async function login() {
   try {
-    const response = signInWithPopup(provider);
-    // console.log(response);
+    const response = await signInWithPopup(auth,provider);
+    console.log('-+-+-+-',response);
     return response.user;
   } catch (error) {
-    throw new Error(error);
+    return new Error(error);
   }
 }
 
-export function logout() {
-  auth.signOut();
+export async function logout() {
+  await signOut(auth)
 }
