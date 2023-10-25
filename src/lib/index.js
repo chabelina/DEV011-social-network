@@ -9,3 +9,6 @@ export const myFunction = () => {
   title.textContent = 'Hola mundillo! Soy un test de index.js.';
   return title;
 };
+
+
+// Crear carpeta de validaciones 

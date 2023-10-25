@@ -1,6 +1,7 @@
 // aqui exportaras las funciones que necesites
 import logo from '../img/logo.png';
 import { loginEmail, loginGoogle, logout } from '../firebase/auth.js';
+import { emailFotmat } from '../validations/validLogin';
 
 // import fondo from '../img/fondo.png';
 export const loginView = (navigateTo) => {
@@ -32,6 +33,9 @@ export const loginView = (navigateTo) => {
   inputEmail.setAttribute('placeholder', 'Alias o correo');
   inputEmail.id = 'inputEmail';
   containerHome.appendChild(inputEmail);
+  inputEmail.addEventListener('keyup',(e)=>{
+    emailFotmat(e.target.value)    
+  })
 
   const inputPassword = document.createElement('input');
   inputPassword.setAttribute('placeholder', 'Constraseña');

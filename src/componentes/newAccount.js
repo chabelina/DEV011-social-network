@@ -1,15 +1,15 @@
 // aqui exportaras las funciones que necesites
 import logo from '../img/logo.png'
 import { loginEmail } from '../firebase/auth.js';
-//import { insertInfoNewUserDB } from '../firebase/firestore';
+// import { insertInfoNewUserDB } from '../firebase/firestore';
 
 export const newAccount = () => {
-
-    const containerAll = document.createElement('div');
-    containerAll.className = 'containerAll';
-    const containerHome = document.createElement('section');
-    containerHome.className = 'LoginContainer';
-    containerAll.appendChild(containerHome);
+  let currentUser; 
+  const containerAll = document.createElement('div');
+  containerAll.className = 'containerAll';
+  const containerHome = document.createElement('section');
+  containerHome.className = 'LoginContainer';
+  containerAll.appendChild(containerHome);
 
 
   const imgLogo = document.createElement('img');
