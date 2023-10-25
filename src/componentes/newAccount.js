@@ -4,10 +4,13 @@ import { loginEmail } from '../firebase/auth.js';
 //import { insertInfoNewUserDB } from '../firebase/firestore';
 
 export const newAccount = () => {
-  let currentUser;
 
-  const containerHome = document.createElement('section');
-  containerHome.className = 'LoginContainer';
+    const containerAll = document.createElement('div');
+    containerAll.className = 'containerAll';
+    const containerHome = document.createElement('section');
+    containerHome.className = 'LoginContainer';
+    containerAll.appendChild(containerHome);
+
 
   const imgLogo = document.createElement('img');
   imgLogo.alt = "B-Music"

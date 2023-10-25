@@ -2,17 +2,25 @@
 import logo from '../img/logo.png';
 import { loginEmail, loginGoogle, logout } from '../firebase/auth.js';
 
-export const loginView = (navigateTo) => {
-  let currentUser;
-
-  const containerHome = document.createElement('section');
-  containerHome.className = 'LoginContainer';
+// import fondo from '../img/fondo.png';
+export const loginView = () => {
+  const containerAll = document.createElement('div');
+    containerAll.className = 'containerAll';
+    const containerHome = document.createElement('section');
+    containerHome.className = 'LoginContainer';
+    containerAll.appendChild(containerHome);
 
   const imgLogo = document.createElement('img');
   imgLogo.alt = 'B-Music';
   imgLogo.src = logo;
   imgLogo.className = 'logo';
   containerHome.appendChild(imgLogo);
+
+  // const imgFondo = document.createElement('img');
+  // imgFondo.alt = 'Fondo';
+  // imgFondo.src = fondo;
+  // imgFondo.className = 'fondo';
+  // containerHome.appendChild(imgFondo);
 
   const titleLogin = document.createElement('h2');
   titleLogin.textContent = 'Inicio de sesión';
@@ -28,10 +36,12 @@ export const loginView = (navigateTo) => {
   inputPassword.id = 'inputPassword';
   containerHome.appendChild(inputPassword);
 
+
   const buttonInfoLogin = document.createElement('button');
   buttonInfoLogin.setAttribute('type', 'button');
   buttonInfoLogin.setAttribute('value', 'buttonInfoLogin');
   buttonInfoLogin.innerText = 'Ingresar';
+  buttonInfoLogin.classList.add('ingresar');
   containerHome.appendChild(buttonInfoLogin);
   buttonInfoLogin.addEventListener('click', async () => {
     try {
@@ -46,6 +56,7 @@ export const loginView = (navigateTo) => {
   buttonLoginGoogle.setAttribute('type', 'button');
   buttonLoginGoogle.setAttribute('value', 'buttonLoginGoogle');
   buttonLoginGoogle.innerText = 'Inicia sesión con Google';
+  buttonLoginGoogle.classList.add('google');
   containerHome.appendChild(buttonLoginGoogle);
 
   buttonLoginGoogle.addEventListener('click', async () => {
@@ -62,6 +73,7 @@ export const loginView = (navigateTo) => {
   buttonLogOut.setAttribute('type', 'button');
   buttonLogOut.setAttribute('value', 'buttonLogout');
   buttonLogOut.innerText = 'Cerrar sesión';
+  buttonLogOut.classList.add('cerrar');
   containerHome.appendChild(buttonLogOut);
   buttonLogOut.addEventListener('click', async () => {
     currentUser = await logout();
@@ -75,12 +87,14 @@ export const loginView = (navigateTo) => {
   const buttonNewAccount = document.createElement('button');
   buttonNewAccount.setAttribute('type', 'button');
   buttonNewAccount.setAttribute('value', 'buttonNewAccount');
-  buttonNewAccount.id = buttonNewAccount;
+
   buttonNewAccount.innerText = 'Crear cuenta';
+  buttonNewAccount.classList.add('crear');
+
   containerHome.appendChild(buttonNewAccount);
   buttonNewAccount.addEventListener('click', () => {
     navigateTo('/NewAccount');
   });
 
-  return containerHome;
+  return containerAll;
 };
