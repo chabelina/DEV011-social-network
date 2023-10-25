@@ -13,6 +13,7 @@ const provider = new GoogleAuthProvider();
 auth.languageCode = 'es';
 
 export async function loginGoogle() {
+  provider.setCustomParameters({ prompt: "select_account" });
   try {
     const response = await signInWithPopup(auth, provider);
     // console.log('-+-+-+-', response);
