@@ -7,21 +7,21 @@ import { error } from './componentes/error.js';
 import { publications } from './componentes/publications.js';
 
 const routes = [
-  { 
-    path: '/', 
-    component: loginView 
+  {
+    path: '/',
+    component: loginView,
   },
-  { 
-    path: '/error', 
-    component: error 
-  },  
-  { 
-    path: '/NewAccount', 
-    component: newAccount 
+  {
+    path: '/error',
+    component: error,
   },
-  { 
-    path: '/publications', 
-    component: publications 
+  {
+    path: '/NewAccount',
+    component: newAccount,
+  },
+  {
+    path: '/publications',
+    component: publications,
   },
 ];
 
@@ -30,14 +30,14 @@ const root = document.getElementById('root');
 
 function navigateTo(hash) {
   const route = routes.find((routeFound) => routeFound.path === hash);
-  //console.log(route);
+  // console.log(route);
   if (route && route.component) {
     window.history.pushState(
       {},
       route.path,
       window.location.origin + route.path,
     );
-    //console.log(root.firstChild);
+    // console.log(root.firstChild);
     if (root.firstChild != null) {
       root.removeChild(root.firstChild);
     }
@@ -49,13 +49,13 @@ function navigateTo(hash) {
 }
 
 window.onpopstate = () => {
-  //console.log('--------------');
-  document.addEventListener("DOMContentLoaded", function (){
+  // console.log('--------------');
+  document.addEventListener('DOMContentLoaded', () => {
     navigateTo(window.location.pathname);
   });
 };
 
-//console.log('--------------', window.location.pathname || defaultRoute);
-document.addEventListener("DOMContentLoaded", function (){
-  navigateTo(window.location.pathname || defaultRoute)
+// console.log('--------------', window.location.pathname || defaultRoute);
+document.addEventListener('DOMContentLoaded', () => {
+  navigateTo(window.location.pathname || defaultRoute);
 });

@@ -41,11 +41,12 @@ export const loginView = () => {
   let currentUser;
   buttonLoginGoogle.addEventListener('click', async (e) => {
     try {
-      console.log(currentUser);
       currentUser = await login();
-    } catch (error) {}
+      console.log(currentUser);
+    } catch (error) {
+      return new Error(error);
+    }
   });
-  console.log('Prueba');
 
   const buttonLogOut = document.createElement('button');
   buttonLogOut.setAttribute('type', 'button');
@@ -54,6 +55,7 @@ export const loginView = () => {
   containerHome.appendChild(buttonLogOut);
   buttonLogOut.addEventListener('click', (e) => {
     logout();
+    console.log('Se cerró la sesión de ' + currentUser)
   });
 
   const askAccount = document.createElement('p');

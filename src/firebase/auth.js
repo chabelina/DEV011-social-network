@@ -1,20 +1,24 @@
-import { getAuth, GoogleAuthProvider, signInWithPopup } from 'firebase/auth';
+import {
+  getAuth, GoogleAuthProvider, signInWithPopup, signOut,
+} from 'firebase/auth';
 import { app } from './firebase-config.js';
 
 export const auth = getAuth(app);
+console.log(auth);
 const provider = new GoogleAuthProvider();
 auth.languageCode = 'es';
 
 export async function login() {
   try {
-    const response = signInWithPopup(provider);
-    // console.log(response);
-    return response.user;
+    const response = await signInWithPopup(auth, provider);
+    const user = response.user;
+    console.log(response);
+    return user;
   } catch (error) {
     throw new Error(error);
   }
 }
 
-export function logout() {
-  auth.signOut();
+export async function logout() {
+  await signOut(auth);
 }
