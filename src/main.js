@@ -59,8 +59,3 @@ window.onpopstate = () => {
 document.addEventListener("DOMContentLoaded", function (){
   navigateTo(window.location.pathname || defaultRoute)
 });
-
-/* const buttonNewAccount = document.getElementById(buttonNewAccount)
-buttonNewAccount.addEventListener('click',() => {
-  navigateTo('/NewAccount')
-}) */
