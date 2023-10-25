@@ -2,8 +2,11 @@
 import logo from '../img/logo.png'
 
 export const newAccount = () => {
-  const containerHome = document.createElement('section');
-  containerHome.className = 'LoginContainer';
+    const containerAll = document.createElement('div');
+    containerAll.className = 'containerAll';
+    const containerHome = document.createElement('section');
+    containerHome.className = 'LoginContainer';
+    containerAll.appendChild(containerHome);
 
   const imgLogo = document.createElement('img');
   imgLogo.alt = "B-Music"
