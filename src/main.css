@@ -23,7 +23,7 @@ body{
    gap: 1rem;
    position: relative;
 }
-#inputMail, #inputPassword {
+#inputEmail, #inputPassword {
     border-radius: 2rem;
     border: 1px solid rgb(28, 28, 28);
     text-align: center;

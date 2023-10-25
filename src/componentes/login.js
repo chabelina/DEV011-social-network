@@ -3,12 +3,14 @@ import logo from '../img/logo.png';
 import { loginEmail, loginGoogle, logout } from '../firebase/auth.js';
 
 // import fondo from '../img/fondo.png';
-export const loginView = () => {
+export const loginView = (navigateTo) => {
+  let currentUser;
+
   const containerAll = document.createElement('div');
-    containerAll.className = 'containerAll';
-    const containerHome = document.createElement('section');
-    containerHome.className = 'LoginContainer';
-    containerAll.appendChild(containerHome);
+  containerAll.className = 'containerAll';
+  const containerHome = document.createElement('section');
+  containerHome.className = 'LoginContainer';
+  containerAll.appendChild(containerHome);
 
   const imgLogo = document.createElement('img');
   imgLogo.alt = 'B-Music';
@@ -36,14 +38,13 @@ export const loginView = () => {
   inputPassword.id = 'inputPassword';
   containerHome.appendChild(inputPassword);
 
-
   const buttonInfoLogin = document.createElement('button');
   buttonInfoLogin.setAttribute('type', 'button');
   buttonInfoLogin.setAttribute('value', 'buttonInfoLogin');
   buttonInfoLogin.innerText = 'Ingresar';
   buttonInfoLogin.classList.add('ingresar');
   containerHome.appendChild(buttonInfoLogin);
-  buttonInfoLogin.addEventListener('click', async () => {
+  buttonInfoLogin.addEventListener('click', async (e) => {
     try {
       currentUser = await loginEmail(inputEmail, inputPassword);
       console.log('%%%%%%%%%%%', currentUser);
@@ -59,7 +60,7 @@ export const loginView = () => {
   buttonLoginGoogle.classList.add('google');
   containerHome.appendChild(buttonLoginGoogle);
 
-  buttonLoginGoogle.addEventListener('click', async () => {
+  buttonLoginGoogle.addEventListener('click', async (e) => {
     try {
       // login().then( res =>console.log(res));
       currentUser = await loginGoogle();
@@ -75,7 +76,7 @@ export const loginView = () => {
   buttonLogOut.innerText = 'Cerrar sesión';
   buttonLogOut.classList.add('cerrar');
   containerHome.appendChild(buttonLogOut);
-  buttonLogOut.addEventListener('click', async () => {
+  buttonLogOut.addEventListener('click', async (e) => {
     currentUser = await logout();
     console.log('.....', currentUser);
   });
