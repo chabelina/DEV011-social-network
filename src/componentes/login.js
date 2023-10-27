@@ -5,9 +5,13 @@ import {
   loginGoogle, 
   logout
 } from '../firebase/auth.js';
-import { emailFotmat } from '../validations/validLogin';
-
+import { emailFormat } from '../validations/validLogin';  //passwordFormat
+//import { guardarPost } from '../firebase/firestore'
+import {allPosts, guardarPost} from '../firebase/firestore.js'
+import { async } from 'regenerator-runtime';
 // import fondo from '../img/fondo.png';
+
+
 export const loginView = (navigateTo) => {
   let currentUser;
 
@@ -61,13 +65,24 @@ export const loginView = (navigateTo) => {
     } else {
       inputPassword.type = "password";
     }
-  })
+  });
+
   const buttonLogin = document.createElement('button');
   buttonLogin.setAttribute('type', 'button');
   buttonLogin.setAttribute('value', 'buttonInfoLogin');
-  buttonLogin.innerText = 'Ingresar';
+  buttonLogin.innerText = 'Iniciar sesión';
   buttonLogin.classList.add('ingresar');
-  formInputLogin.appendChild(buttonLogin);
+  buttonLogin.addEventListener('click', async() => {
+    if (currentUser != undefined){
+      console.log('usuario logueado');
+    }else {
+    currentUser = await loginEmail(inputEmail.value, inputPassword.value)
+    console.log(currentUser);
+  }
+  })
+
+
+
 /*   buttonLogin.addEventListener('click', async (e) => {
     try {
       currentUser = await loginEmail(inputEmail, inputPassword);
@@ -77,14 +92,21 @@ export const loginView = (navigateTo) => {
     }
   }); */
   
-  buttonLogin.addEventListener('click',(e)=>{
-    if (inputEmail.value.match('@') && !emailFotmat(inputEmail.value)){
+/*   buttonLogin.addEventListener('click',(e)=>{
+/*     if (!passwordFormat(inputPassword.value)){
+      inputPassword.style.border ="3px solid red";
+    } else {
+      inputPassword.style.border ="1px solid rgb(28, 28, 28)";
+    console.log(inputPassword.value);
+    } 
+
+    if (inputEmail.value.match('@') && !emailFormat(inputEmail.value)){
       inputEmail.style.border ="3px solid red";
     } else {
       inputEmail.style.border ="1px solid rgb(28, 28, 28)";
     }
-    
-  })
+  })*/
+  formInputLogin.appendChild(buttonLogin); 
 
   const buttonLoginGoogle = document.createElement('button');
   buttonLoginGoogle.setAttribute('type', 'button');

@@ -1,8 +1,31 @@
 
-export function emailFotmat (input){
+export function emailFormat (input){
   const validRegex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
   return validRegex.test(input)
 }
+
+/* export function passwordFormat (input){
+  const hasSpace = /\s/.test(input)
+  const hasNumbers = input.match(/\d+/) >= 1
+  console.log('- :',hasSpace,'dig:',hasNumbers,'inp:',input.length>= 6);
+  try {
+    input.length >= 6 && !hasSpace && hasNumbers
+    return input.length >= 6 && !hasSpace && hasNumbers
+  }
+  if ( ){
+return true
+  }
+return false
+} */
+
+
+
+
+
+
+
+
+
 
 /* 
 

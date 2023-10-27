@@ -4,6 +4,14 @@ const description = "Lorem Ipsum es simplemente el texto de relleno de las impre
 const gender = "Indie Rock"
 const platform = "Youtube"
 
+
+/* buttonLogin.addEventListener('click', async() => {
+  await guardarPost(allPosts, inputEmail.value)
+}) */
+
+
+
+
 const customHtml = `
   <div class="publications">
     <div>

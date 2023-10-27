@@ -4,11 +4,12 @@ import {
   signInWithPopup,
   signOut,
   signInWithEmailAndPassword,
-} from 'firebase/auth'; // createUserWithEmailAndPassword
+  createUserWithEmailAndPassword
+} from 'firebase/auth'; // 
 import { app } from './firebase-config.js';
 
 export const auth = getAuth(app);
-console.log(auth);
+console.log('123.........',auth);
 const provider = new GoogleAuthProvider();
 auth.languageCode = 'es';
 
@@ -37,7 +38,7 @@ export async function loginEmail(email, password) {
   }
 }
 
-/* export async function createUser(email, password) {
+export async function createUser(email, password) {
   try{
     const response = await createUserWithEmailAndPassword(auth, email, password,);
     const user = response.user;
@@ -45,4 +46,4 @@ export async function loginEmail(email, password) {
   } catch (error){
     return new Error(error);
   }
-} */
+}
