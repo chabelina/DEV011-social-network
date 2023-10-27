@@ -81,6 +81,34 @@ export const newAccount = () => {
     
   }); */
 
+
+
+
+
+/*     if (!passwordFormat(inputPassword.value)){ // Primero valida si el formato del password es invalido...
+      inputPassword.style.border ='3px solid red'; // en ese caso pone la caja en rojo
+    } else { // en caso contrario...
+      inputPassword.style.border ='1px solid rgb(28, 28, 28)'; // la regresa a su formato original
+    //console.log(inputPassword.value);
+    }  */
+
+    if (!emailFormat(inputEmail.value)){ // Valida si el formato del correo es incorrecto...
+      inputEmail.style.border ='3px solid red'; // y pone el cuadro en rojo
+    } else { //en caso contrario lo regresa al formato original
+      inputEmail.style.border ='1px solid rgb(28, 28, 28)';
+    }
+
+/*     loginEmail(inputEmail.value, inputPassword.value).then((res)=>res).catch((e)=>console.log('123456',e.message.substring(
+      e.message.indexOf('/') + 1,e.message.lastIndexOf(')')),'---'))
+ */
+
+
+
+
+
+
+
+
   containerHome.appendChild(formInputCreateAccount)
 
 

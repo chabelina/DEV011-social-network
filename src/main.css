@@ -1,3 +1,4 @@
+
 body{
     background-color: antiquewhite;
     margin: 0%;
@@ -12,16 +13,20 @@ body{
     height: 100vh;
     align-items: center;
 }
-.LoginContainer{
+.formLogin{
    text-align: center;
-   background-color: #000000;
+   background:#000000 url("https://raw.githubusercontent.com/KarinaMirandaRuiz/DEV011-social-network/Desarrollo_HU1/src/img/fondo.png") bottom no-repeat;
    color: #ffffff;
    display: flex;
    flex-direction: column;
-   width: 200px;
+   width: 40%;
    padding: 30px;
    gap: 1rem;
    position: relative;
+   align-items: center;
+}
+.logo{
+    width: 300px;
 }
 #inputEmail, #inputPassword,#inputNickname {
     border-radius: 2rem;
