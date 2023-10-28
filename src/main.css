@@ -1,64 +1,10 @@
-
 body{
     background-color: antiquewhite;
-    margin: 0%;
-    justify-content: center;
 }
-.containerAll{
-    background-color: #000000;
-    color: #ffffff;
-    display: flex;
-    justify-content: center;
-    width: 100%;
-    height: 100vh;
-    align-items: center;
-}
-.formLogin{
-   text-align: center;
-   background:#000000 url("https://raw.githubusercontent.com/KarinaMirandaRuiz/DEV011-social-network/Desarrollo_HU1/src/img/fondo.png") bottom no-repeat;
-   color: #ffffff;
+.LoginContainer{
+   background-color: aquamarine;
    display: flex;
-   flex-direction: column;
-   width: 40%;
-   padding: 30px;
-   gap: 1rem;
-   position: relative;
-   align-items: center;
+   flex-direction: column; 
+   width: 200px;
+   padding: 20px;
 }
-.logo{
-    width: 300px;
-}
-#inputEmail, #inputPassword,#inputNickname {
-    border-radius: 2rem;
-    border: 1px solid rgb(28, 28, 28);
-    text-align: center;
-    padding: var(--element-rl-padding);
-    display: flex;
-    box-sizing: content-box;
-    width: 200px;
-    height: 30px;
-}
-.ingresar, .cerrar, .crear{
-    gap: 2rem;
-    border-radius: 2rem;
-    border: 1px solid rgb(28, 28, 28);
-    text-align: center;
-    padding: var(--element-rl-padding);
-    box-sizing: content-box;
-    width: 200px;
-    height: 30px;
-    background-color: #ffff00
-}
-.google{
-    margin-top: 2rem;
-    gap: 2rem;
-    border-radius: 2rem;
-    border: 1px solid rgb(28, 28, 28);
-    text-align: center;
-    padding: var(--element-rl-padding);
-    box-sizing: content-box;
-    width: 200px;
-    height: 30px;
-    background-color: #ffff00
-}
-
