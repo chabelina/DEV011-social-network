@@ -4,14 +4,15 @@ body{
     margin: 0%;
     justify-content: center;
 }
+
 .containerAll{
-    background-color: #000000;
     color: #ffffff;
     display: flex;
     justify-content: center;
     width: 100%;
     height: 100vh;
     align-items: center;
+    background:#000000 url("https://raw.githubusercontent.com/KarinaMirandaRuiz/DEV011-social-network/Desarrollo_HU1/src/img/fondo.png") bottom no-repeat;
 }
 
 .registryContainer {
@@ -36,7 +37,6 @@ body{
 
 .formLogin{
    text-align: center;
-   background:#000000 url("https://raw.githubusercontent.com/KarinaMirandaRuiz/DEV011-social-network/Desarrollo_HU1/src/img/fondo.png") bottom no-repeat;
    color: #ffffff;
    display: flex;
    flex-direction: column;
