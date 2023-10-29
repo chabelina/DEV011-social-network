@@ -13,6 +13,24 @@ body{
     height: 100vh;
     align-items: center;
 }
+
+.LoginContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#registerForm{
+    display: inherit;
+    flex-direction: inherit;
+    align-items: inherit;
+}
+
+#showPasswordContainer {
+    display: flex;
+    gap: 5px;
+}
+
 .formLogin{
    text-align: center;
    background:#000000 url("https://raw.githubusercontent.com/KarinaMirandaRuiz/DEV011-social-network/Desarrollo_HU1/src/img/fondo.png") bottom no-repeat;
