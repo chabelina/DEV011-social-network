@@ -10,7 +10,7 @@ export const newAccount = () => {
   const containerAll = document.createElement('div');
   containerAll.className = 'containerAll';
   const containerHome = document.createElement('section');
-  containerHome.className = 'LoginContainer';
+  containerHome.className = 'registryContainer';
   containerAll.appendChild(containerHome);
 
   const imgLogo = document.createElement('img');
