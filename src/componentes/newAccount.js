@@ -40,7 +40,7 @@ export const newAccount = () => {
   formInputCreateAccount.appendChild(inputPassword);
 
   const showPasswordContainer = document.createElement('div');
-  showPasswordContainer.id = "showPasswordContainer";
+  showPasswordContainer.id = 'showPasswordContainer';
   const showPassword = document.createElement('input');
   showPassword.type = 'checkbox';
   showPassword.id = 'showPassword';
