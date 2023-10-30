@@ -6,7 +6,7 @@ body{
 }
 
 .containerAll{ 
-    color: #ffffff;
+    color: #F4F4FC;
     display: flex;
     justify-content: center;
     width: 100%;
@@ -38,7 +38,7 @@ body{
 
 .formLogin{
    text-align: center;
-   color: #ffffff;
+   color: #F4F4FC;
    display: flex;
    flex-direction: column;
    width: 40%;
@@ -69,7 +69,7 @@ body{
     box-sizing: content-box;
     width: 200px;
     height: 30px;
-    background-color: #ffff00
+    background-color: #FDB803;
 }
 .google{
     border-radius: 2rem;
@@ -79,7 +79,7 @@ body{
     box-sizing: content-box;
     width: 200px;
     height: 30px;
-    background-color: #ffff00
+    background-color: #FDB803;
 }
 
 @media (min-width: 768px) {
