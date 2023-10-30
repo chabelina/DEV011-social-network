@@ -84,3 +84,13 @@ body{
     background-color: #ffff00
 }
 
+@media (min-width: 768px) {
+  .ingresar, #inputEmail, #inputPassword, #inputNickname {
+    width: 300px;
+  }
+
+  .logo {
+    width: 400px;
+  }
+}
+
