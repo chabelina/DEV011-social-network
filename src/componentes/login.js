@@ -1,13 +1,13 @@
 // aqui exportaras las funciones que necesites
 import logo from '../img/logo.png';
 import { loginEmail, loginGoogle, logout } from '../firebase/auth.js';
-import { emailFormat } from '../validations/validLogin'; //passwordFormat
-import { allPosts, guardarPost } from '../firebase/firestore.js';
-import { async } from 'regenerator-runtime';
+// import { emailFormat } from '../validations/validLogin'; //passwordFormat
+// import { allPosts, guardarPost } from '../firebase/firestore.js';
+// import { async } from 'regenerator-runtime';
 
+// Función que renderea la vista de inicio de sesión
 export const loginView = (navigateTo) => {
-  // Función que renderea la vista de inicio de sesión
-  let currentUser = {email : ''}; // inicializamos un usuario vacio
+  let currentUser; // inicializamos un usuario
 
   // Contenedor general
   const containerAll = document.createElement('div');
@@ -49,7 +49,7 @@ export const loginView = (navigateTo) => {
   const showPassword = document.createElement('input');
   showPassword.type = 'checkbox';
   showPassword.id = 'showPassword';
-  const showPasswordText = document.createElement('label'); //etiqueta asociada al check showPassword
+  const showPasswordText = document.createElement('label'); // etiqueta asociada al check showPassword
   showPasswordText.for = 'showPassword';
   showPasswordText.innerHTML = 'Mostrar contraseña';
   formInputLogin.append(showPassword, showPasswordText);
