@@ -68,7 +68,7 @@ export async function loginEmail(email, password) {
           ) == 'invalid-email'
         ) {
           mensajeErrorLogin = 'Correo incorrecto';
-          email.style.border = '3px solid red'; // y pone el cuadro de email en rojo
+          email.style.border = '3px solid #CE27FA'; // y pone el cuadro de email en rojo
         } else if (
           e.message.substring(
             e.message.indexOf('/') + 1,
@@ -76,8 +76,8 @@ export async function loginEmail(email, password) {
           ) == 'invalid-login-credentials'
         ) {
           mensajeErrorLogin = 'Datos incorrectos';
-          email.style.border = '3px solid red'; // y pone el cuadro de email en rojo
-          password.style.border = '3px solid red'; // y pone el cuadro de password en rojo
+          email.style.border = '3px solid #CE27FA'; // y pone el cuadro de email en rojo
+          password.style.border = '3px solid #CE27FA'; // y pone el cuadro de password en rojo
         } else if (
           e.message.substring(
             e.message.indexOf('/') + 1,
@@ -86,7 +86,7 @@ export async function loginEmail(email, password) {
         ) {
           mensajeErrorLogin = 'Ingrese contraseña';
           email.style.border = '1px solid rgb(28, 28, 28)'; // y pone el cuadro de email en rojo
-          password.style.border = '3px solid red'; // y pone el cuadro de password en rojo
+          password.style.border = '3px solid #CE27FA'; // y pone el cuadro de password en rojo
         }
         // Por último mandamos el error con nuestro msj personalizado, esto nos servirá para mostrarlo en la vista del usuario
         throw new Error(mensajeErrorLogin || e);

@@ -69,16 +69,17 @@ export const loginView = (navigateTo) => {
   buttonLogin.classList.add('ingresar');
   // Mensaje de error al ingresar con email
   const errorMessage = document.createElement('p');
-  errorMessage.id = 'errorMessage';
+  errorMessage.class = 'errorMessage';
   formInputLogin.append(buttonLogin, errorMessage);
   // Definimos la funcionalidad al hacer click con una función asincrona, porque usamos funciones asincronas adentro
   buttonLogin.addEventListener('click', async () => { 
     try {
       currentUser = await loginEmail(inputEmail, inputPassword); // inicia sesión con la función asincrona loginEmail
+      navigateTo('/publications');  // Se mueve a la vista de publicaciones
       // console.log(currentUser, '--------');
       return currentUser;
     } catch(e) {
-      errorMessage.innerText = e.message;  // si no logra inicar sesión muestra el msj de error en pantalla
+      errorMessage.innerText = e.message;  // si no logra iniciar sesión muestra el msj de error en pantalla
       // console.log(e.message,"....");
       return new Error(e.message);
     }
@@ -94,6 +95,7 @@ export const loginView = (navigateTo) => {
   buttonLoginGoogle.addEventListener('click', async (e) => { // se declara una funcion asincrona porque loginGoogle es promesa
     try {
       currentUser = await loginGoogle(); // intenta ingresar
+      navigateTo('/publications');
     } catch (error) {
       return new Error(error) // si no logra ingresar manda un error
     }

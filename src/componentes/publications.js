@@ -16,7 +16,7 @@ const customHtml = `
   <div class="publications">
     <div>
       <div>
-        <img src=${user_img} alt="profile img"/>
+        <img src=${user_img} alt="profile img" style="width:20%"/>
         <p>${user_name}<p/>
       </div>
 
