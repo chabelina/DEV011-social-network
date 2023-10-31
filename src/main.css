@@ -32,14 +32,18 @@ body{
     gap: 1rem;
 }
 
-#showPasswordContainer {
+/* #showPasswordContainer {
     display: flex;
-    gap: 5px;
+    /* gap: 5px; 
     margin-bottom: 15px;
-}
+    border: #ff0000;
+    background-color: #ff0000;
+} */
 
 #showPassword{
+    border-radius: 2rem;
     transition: transform 0.2s, box-shadow 0.2s;
+    border: 0px solid rgb(28, 28, 28);
 }
 
 #showPassword:active{
@@ -62,21 +66,41 @@ body{
     width: 300px;
 }
 
-.password-container{
+/* .password-container{
     display: flex;
-    width: 100%;
-}
-#inputEmail, #inputPassword,#inputNickname {
+    width: auto;
+} */
+
+#inputEmail,#inputNickname {
     border-radius: 2rem;
     border: 1px solid rgb(28, 28, 28);
     text-align: center;
     padding: var(--element-rl-padding);
     display: flex;
     box-sizing: content-box;
-    width: 100%;
+    width: 300px;
     height: 30px;
 }
 
+.inputs{
+    border-radius: 2rem;
+    border: 1px solid rgb(28, 28, 28);
+    text-align: center;
+    padding: var(--element-rl-padding);
+    display: flex;
+    box-sizing: content-box;
+    width: 300px;
+    height: 30px;
+    background-color: #F4F4FC;
+    display: grid;
+    grid-template-columns: 8fr 1fr;
+}
+.inputPassword{
+    border-radius: 2rem;
+    text-align: center;
+    border: 0px solid rgb(28, 28, 28);
+    background-color: #F4F4FC;
+}
 .ingresar, .cerrar, .crear {
     gap: 2rem;
     border-radius: 2rem;
