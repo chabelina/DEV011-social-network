@@ -6,45 +6,56 @@ import { createUser } from '../firebase/auth.js';
 import { emailFormat } from '../validations/validLogin';
 // import { insertInfoNewUserDB } from '../firebase/firestore';
 
+// Función que renderea la vista de inicio de sesión
 export const newAccount = () => {
-  let currentUser;
-
+  let currentUser; // inicializamos un usuario
+  
+  // Contenedor general
   const containerAll = document.createElement('div');
   containerAll.className = 'containerAll';
-  const containerHome = document.createElement('section');
-  containerHome.className = 'registryContainer';
-  containerAll.appendChild(containerHome);
 
-  const imgLogo = document.createElement('img');
-  imgLogo.alt = 'B-Music';
-  imgLogo.setAttribute('src', logo);
-  imgLogo.className = 'logo';
-  containerHome.appendChild(imgLogo);
-
-  const formInputCreateAccount = document.createElement('form');
-  formInputCreateAccount.id = 'registerForm';
+  // from que contiene los inputs y submits necesarios para crear una cuenta nueva
+  const formInputCreateAccount = document.createElement('form')
   formInputCreateAccount.method = 'get';
+  formInputCreateAccount.className = 'formLogin';
 
+  // Logo de B-Music
+  const imgLogo = document.createElement('img');
+  imgLogo.alt = "B-Music"
+  imgLogo.setAttribute('src',logo)
+  imgLogo.className = 'logo'
+  formInputCreateAccount.appendChild(imgLogo)
+
+  // Caja de ingreso de Alias
   const inputNickname = document.createElement('input');
   inputNickname.setAttribute('placeholder', 'Alias');
   inputNickname.id = 'inputNickname';
   formInputCreateAccount.appendChild(inputNickname);
 
+  // Caja de ingreso de correo
   const inputEmail = document.createElement('input');
   inputEmail.setAttribute('placeholder', 'Correo');
+
   inputEmail.id = 'inputEmail';
+  inputEmail.autocomplete = 'inputEmail';  
   formInputCreateAccount.appendChild(inputEmail);
 
   const passwordContainer = document.createElement('div');
   passwordContainer.classList.add('password-container'); // Agrega una clase para contener los elementos
   formInputCreateAccount.appendChild(passwordContainer);
-  
+
+  // Caja de ingreso de contraseña  
   const passwordInput = document.createElement('input');
   passwordInput.setAttribute('placeholder', 'Contraseña');
   passwordInput.type = 'password';
   passwordInput.id = 'inputPassword';
+  inputPassword.autocomplete = 'current-password';  
   passwordContainer.appendChild(passwordInput);
-  
+   // Mensaje de error al ingresar con email
+  const errorInvalidPassword = document.createElement('p');
+  errorInvalidPassword.id = 'errorMessage';
+  formInputCreateAccount.append(inputPassword, errorInvalidPassword); 
+
   const showPasswordContainer = document.createElement('div');
   showPasswordContainer.classList.add('show-password-container'); // Agrega una clase para contener los elementos
   passwordContainer.appendChild(showPasswordContainer);
@@ -78,23 +89,24 @@ export const newAccount = () => {
   });
   
 
+  // Botón para crear cuenta
   const buttonCreateNewAccount = document.createElement('button');
   buttonCreateNewAccount.setAttribute('type', 'button');
   buttonCreateNewAccount.setAttribute('value', 'buttonCreateNewAccount');
   buttonCreateNewAccount.innerText = 'Crear cuenta';
   buttonCreateNewAccount.classList.add('ingresar');
   formInputCreateAccount.appendChild(buttonCreateNewAccount);
-  buttonCreateNewAccount.addEventListener('click', async (e) => {
-    // if (inputEmail.value !== '' && passwordContainer.value !== ''){
-    currentUser = await createUser(inputEmail.value, inputPassword.value);
-    console.log(inputEmail.value, inputPassword.value, currentUser);
 
+
+    //if (inputPassword.value !== ''){
+      //currentUser = await createUser(inputEmail.value, inputPassword.value)
+      //console.log(inputEmail.value, inputPassword.value,currentUser);
     //  insertInfoNewUserDB(inputNickname.value, inputEmail.value, inputPassword.value).then(()=>console.log('Welcome'))
     // }else{
     //  const insertInfo = document.createElement('p');
     //  insertInfo.textContent = 'Inserte la información solicitada';
-    //  containerHome.appendChild(insertInfo);
-    // }
+    //  formInputCreateAccount.appendChild(insertInfo);
+    //}
   });
   /* buttonCreateNewAccount.addEventListener('click',(e)=>{
     if (!emailFotmat(inputEmail.value)){
@@ -124,7 +136,14 @@ export const newAccount = () => {
       e.message.indexOf('/') + 1,e.message.lastIndexOf(')')),'---'))
  */
 
-  containerHome.appendChild(formInputCreateAccount);
+
+
+
+
+
+
+
+      containerAll.appendChild(formInputCreateAccount); //Se guarda todo el form dentro del container general
 
   return containerAll;
 };
