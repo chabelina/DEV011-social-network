@@ -3,11 +3,12 @@ import logo from '../img/logo.png';
 import  mostrar  from '../img/mostrar.svg';
 import  noMostrar  from '../img/no-mostrar.svg';
 import { createUser } from '../firebase/auth.js';
-import { emailFormat } from '../validations/validLogin';
+import { inputsFormats } from '../validations/validLogin';
+//import { async } from 'regenerator-runtime';
 // import { insertInfoNewUserDB } from '../firebase/firestore';
 
 // Función que renderea la vista de inicio de sesión
-export const newAccount = () => {
+export const newAccount = (navigateTo) => {
   let currentUser; // inicializamos un usuario
   
   // Contenedor general
@@ -56,6 +57,7 @@ export const newAccount = () => {
   errorInvalidPassword.id = 'errorMessage';
   formInputCreateAccount.append(inputPassword, errorInvalidPassword); 
 
+  // Check para mostrar contraseña
   const showPasswordContainer = document.createElement('div');
   showPasswordContainer.classList.add('show-password-container'); // Agrega una clase para contener los elementos
   passwordContainer.appendChild(showPasswordContainer);
@@ -63,6 +65,7 @@ export const newAccount = () => {
   const showPassword = document.createElement('button'); // Cambiado de input a button para que no saliera un espacio en blanco
   showPassword.type = 'button'; // Cambiado de 'checkbox' a 'button'
   showPassword.id = 'showPassword';
+
   showPassword.classList.add('show-password-button'); // Agrega una clase para estilizar el botón
   passwordInput.appendChild(showPassword)
   showPasswordContainer.appendChild(showPassword);
@@ -97,53 +100,17 @@ export const newAccount = () => {
   buttonCreateNewAccount.classList.add('ingresar');
   formInputCreateAccount.appendChild(buttonCreateNewAccount);
 
-
-    //if (inputPassword.value !== ''){
-      //currentUser = await createUser(inputEmail.value, inputPassword.value)
-      //console.log(inputEmail.value, inputPassword.value,currentUser);
-    //  insertInfoNewUserDB(inputNickname.value, inputEmail.value, inputPassword.value).then(()=>console.log('Welcome'))
-    // }else{
-    //  const insertInfo = document.createElement('p');
-    //  insertInfo.textContent = 'Inserte la información solicitada';
-    //  formInputCreateAccount.appendChild(insertInfo);
-    //}
-  });
-  /* buttonCreateNewAccount.addEventListener('click',(e)=>{
-    if (!emailFotmat(inputEmail.value)){
-      inputEmail.style.border ='3px solid red';
-    } else {
-      inputEmail.style.border ='1px solid rgb(28, 28, 28)';
+  buttonCreateNewAccount.addEventListener('click', async(e) => {
+    try{  
+      inputsFormats(inputEmail, inputPassword); // valida que las entradas sean correctas...
+      currentUser = await createUser(inputEmail.value, inputPassword.value)  //Crea el usuario e ingresa
+      navigateTo('/publications'); // Se mueve a la vista de publicaciones
+    }catch(e){
+      errorInvalidInput.innerText = e.message;  // si las entradas son malas, muestra el msj de error en pantalla
     }
+  });
 
-  }); */
-
-  /*     if (!passwordFormat(inputPassword.value)){ // Primero valida si el formato del password es invalido...
-      inputPassword.style.border ='3px solid red'; // en ese caso pone la caja en rojo
-    } else { // en caso contrario...
-      inputPassword.style.border ='1px solid rgb(28, 28, 28)'; // la regresa a su formato original
-    //console.log(inputPassword.value);
-    }  */
-
-  if (!emailFormat(inputEmail.value)) {
-    // Valida si el formato del correo es incorrecto...
-    inputEmail.style.border = '3px solid red'; // y pone el cuadro en rojo
-  } else {
-    // en caso contrario lo regresa al formato original
-    inputEmail.style.border = '1px solid rgb(28, 28, 28)';
-  }
-
-  /*     loginEmail(inputEmail.value, inputPassword.value).then((res)=>res).catch((e)=>console.log('123456',e.message.substring(
-      e.message.indexOf('/') + 1,e.message.lastIndexOf(')')),'---'))
- */
-
-
-
-
-
-
-
-
-      containerAll.appendChild(formInputCreateAccount); //Se guarda todo el form dentro del container general
+  containerAll.appendChild(formInputCreateAccount); //Se guarda todo el form dentro del container general
 
   return containerAll;
 };

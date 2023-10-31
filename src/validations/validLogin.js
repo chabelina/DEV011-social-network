@@ -1,41 +1,60 @@
-
-export function emailFormat (input){
+// -------------------- Función validar el formato del Email --------------------//
+function emailFormat (input){
   const validRegex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
-  try {
-    validRegex.test(input) // test ejecuta una búsqueda con la expresión regular
+  if (validRegex.test(input)){
+    // test ejecuta una búsqueda con la expresión regular
     // si encontra una coincidencia entre una expresión regular y una cadena especificada. 
     // Devuelve verdadero si hay una coincidencia; falso en caso contrario
     return validRegex.test(input);
-  }catch (e){
-    throw new Error ('Email con formato incorrecto');
+  } else {
+    return 'Email invalido';
   }
 }
 
-export function passwordFormat (input){
+// -------------------- Función validar el formato del Password --------------------//
+function passwordFormat (input){
+  let msjError = '\nLa contraseña:';
   const hasSpace = /\s/.test(input); // true o false: tiene espacios?
   const hasNumbers = input.match(/\d+/) >= 1; //true o false: tiene números?
   const hasAtLeastSixDigits = input.length >= 6; //true o false: tiene a menos 6 dígitos?
-  if (hasAtLeastSixDigits && !hasSpace && hasNumbers){
+  if (hasAtLeastSixDigits && !hasSpace && hasNumbers){  // Si cumple con los requisitos,
     return true;
-  }else if(hasSpace){
-    throw new Error('La contraseña no debe contener espacios');
-  }else if(hasNumbers){
-    throw new Error('La contraseña debe contener al menos un número');
-  }else if(hasAtLeastSixDigits){
-    throw new Error('La contraseña debe tener al menos 6 dígitos');
+  }else {  // si no cumple alguno, incorpora el msj correspondiente
+    if(hasSpace){
+    msjError += '\n-no debe contener espacios' 
+    }
+    if(!hasNumbers){
+      msjError += '\n-debe contener al menos un número';
+    }
+    if(!hasAtLeastSixDigits){
+      msjError += '\n-debe tener al menos 6 dígitos';
+    }
+    return msjError;
   }
 }
 
-/* 
-
-bonos de renta fija, gubernamentales, privados, etc
-
-standar and  (10% anual)
-fondo indexado de más de 500 empresas incluyendo amazon 
-
-*/
-
-
+// -------------------- Función que se exporta para validar Email y Password --------------------//
+export function inputsFormats (email, password){  
+  let msjError = '';
+  // Valida que todo esté Ok
+  if (emailFormat(email.value) === true && passwordFormat(password.value) === true){
+    return true;
+  } else {
+    if(emailFormat(email.value) === true){  // El correo está bien?...
+      email.style.border = '1px solid rgb(28, 28, 28)';
+    } else { // incorpora el msj y cambia el formato
+      email.style.border = '3px solid #CE27FA';
+      msjError = msjError + emailFormat(email.value);
+    }
+    if(passwordFormat(password.value) === true){  // La contraseña está bien?...
+      password.style.border = '1px solid rgb(28, 28, 28)';
+    } else { // incorpora el msj y cambia el formato
+      password.style.border = '3px solid #CE27FA';
+      msjError = msjError + passwordFormat(password.value);
+    }
+    throw new Error (msjError)
+  }
+}
 
 
 /*
