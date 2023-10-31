@@ -1,5 +1,7 @@
 // aqui exportaras las funciones que necesites
 import logo from '../img/logo.png';
+import  mostrar  from '../img/mostrar.svg';
+import  noMostrar  from '../img/no-mostrar.svg';
 import { createUser } from '../firebase/auth.js';
 import { emailFormat } from '../validations/validLogin';
 // import { insertInfoNewUserDB } from '../firebase/firestore';
@@ -33,30 +35,48 @@ export const newAccount = () => {
   inputEmail.id = 'inputEmail';
   formInputCreateAccount.appendChild(inputEmail);
 
-  const inputPassword = document.createElement('input');
-  inputPassword.setAttribute('placeholder', 'Constraseña');
-  inputPassword.type = 'password';
-  inputPassword.id = 'inputPassword';
-  formInputCreateAccount.appendChild(inputPassword);
-
+  const passwordContainer = document.createElement('div');
+  passwordContainer.classList.add('password-container'); // Agrega una clase para contener los elementos
+  formInputCreateAccount.appendChild(passwordContainer);
+  
+  const passwordInput = document.createElement('input');
+  passwordInput.setAttribute('placeholder', 'Contraseña');
+  passwordInput.type = 'password';
+  passwordInput.id = 'inputPassword';
+  passwordContainer.appendChild(passwordInput);
+  
   const showPasswordContainer = document.createElement('div');
-  showPasswordContainer.id = 'showPasswordContainer';
-  const showPassword = document.createElement('input');
-  showPassword.type = 'checkbox';
+  showPasswordContainer.classList.add('show-password-container'); // Agrega una clase para contener los elementos
+  passwordContainer.appendChild(showPasswordContainer);
+  
+  const showPassword = document.createElement('button'); // Cambiado de input a button para que no saliera un espacio en blanco
+  showPassword.type = 'button'; // Cambiado de 'checkbox' a 'button'
   showPassword.id = 'showPassword';
-  const showPasswordText = document.createElement('label');
-  showPasswordText.for = 'showPassword';
-  showPasswordText.innerHTML = 'Mostrar contraseña';
+  showPassword.classList.add('show-password-button'); // Agrega una clase para estilizar el botón
+  passwordInput.appendChild(showPassword)
   showPasswordContainer.appendChild(showPassword);
-  showPasswordContainer.appendChild(showPasswordText);
-  formInputCreateAccount.appendChild(showPasswordContainer);
+  
+  const hidePasswordIcon = document.createElement('img');
+  hidePasswordIcon.src = noMostrar; // Reemplaza 'ruta_de_icono_no_mostrar' con la ruta real del icono de "no mostrar"
+  hidePasswordIcon.alt = 'Ocultar contrase;a'
+  hidePasswordIcon.classList.add('hide-password-icon'); // Agrega una clase para estilizar el icono
+  hidePasswordIcon.style.display = 'none'
+  showPassword.appendChild(hidePasswordIcon);
+  
+  const showPasswordIcon = document.createElement('img');
+  showPasswordIcon.src = mostrar; // Reemplaza 'ruta_de_icono_mostrar' con la ruta real del icono de "mostrar"
+  showPasswordIcon.alt = 'Mostrar contrase;a'
+  showPasswordIcon.classList.add('show-password-icon'); // Agrega una clase para estilizar el icono
+  showPassword.appendChild(showPasswordIcon);
+  
   showPassword.addEventListener('click', () => {
-    if (inputPassword.type === 'password') {
-      inputPassword.type = 'text';
-    } else {
-      inputPassword.type = 'password';
-    }
+    const isPasswordVisible = passwordInput.type === 'text';
+    
+    passwordInput.type = isPasswordVisible ? 'password' : 'text';
+    hidePasswordIcon.style.display = isPasswordVisible ? 'none' : 'flex';
+    showPasswordIcon.style.display = isPasswordVisible ? 'flex' : 'none'
   });
+  
 
   const buttonCreateNewAccount = document.createElement('button');
   buttonCreateNewAccount.setAttribute('type', 'button');
@@ -65,7 +85,7 @@ export const newAccount = () => {
   buttonCreateNewAccount.classList.add('ingresar');
   formInputCreateAccount.appendChild(buttonCreateNewAccount);
   buttonCreateNewAccount.addEventListener('click', async (e) => {
-    // if (inputEmail.value !== '' && inputPassword.value !== ''){
+    // if (inputEmail.value !== '' && passwordContainer.value !== ''){
     currentUser = await createUser(inputEmail.value, inputPassword.value);
     console.log(inputEmail.value, inputPassword.value, currentUser);
 
