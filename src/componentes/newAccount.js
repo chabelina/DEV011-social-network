@@ -1,11 +1,12 @@
 // aqui exportaras las funciones que necesites
 import logo from '../img/logo.png';
 import { createUser } from '../firebase/auth.js';
-import { emailFormat } from '../validations/validLogin';
+import { inputsFormats } from '../validations/validLogin';
+//import { async } from 'regenerator-runtime';
 // import { insertInfoNewUserDB } from '../firebase/firestore';
 
 // Función que renderea la vista de inicio de sesión
-export const newAccount = () => {
+export const newAccount = (navigateTo) => {
   let currentUser; // inicializamos un usuario
   
   // Contenedor general
@@ -35,10 +36,7 @@ export const newAccount = () => {
   inputEmail.setAttribute('placeholder', 'Correo');
   inputEmail.id = 'inputEmail'
   inputEmail.autocomplete = 'inputEmail';
-  // Mensaje de error al ingresar con email
-  const errorInvalidEmail = document.createElement('p');
-  errorInvalidEmail.id = 'errorMessage';
-  formInputCreateAccount.append(inputEmail, errorInvalidEmail);
+  formInputCreateAccount.appendChild(inputEmail);
 
   // Caja de ingreso de contraseña
   const inputPassword = document.createElement('input');
@@ -47,27 +45,28 @@ export const newAccount = () => {
   inputPassword.id = 'inputPassword'
   inputPassword.autocomplete = 'current-password';
   formInputCreateAccount.appendChild(inputPassword);
-  // Mensaje de error al ingresar con email
-  const errorInvalidPassword = document.createElement('p');
-  errorInvalidPassword.id = 'errorMessage';
-  formInputCreateAccount.append(inputPassword, errorInvalidPassword);
+  // Mensaje de error al ingresar datos incorrectos
+  const errorInvalidInput = document.createElement('p');
+  errorInvalidInput.class = 'errorMessage';
+  formInputCreateAccount.append(inputPassword, errorInvalidInput);
 
+  // Check para mostrar contraseña
   const showPasswordContainer = document.createElement('div');
   showPasswordContainer.id = 'showPasswordContainer';
   const showPassword = document.createElement('input');
   showPassword.type = 'checkbox';
   showPassword.id = 'showPassword';
-  const showPasswordText = document.createElement('label');
+  const showPasswordText = document.createElement('label'); // etiqueta asociada al check showPassword
   showPasswordText.for = 'showPassword';
   showPasswordText.innerHTML = 'Mostrar contraseña';
   showPasswordContainer.appendChild(showPassword);
   showPasswordContainer.appendChild(showPasswordText);
   formInputCreateAccount.appendChild(showPasswordContainer);
-  showPassword.addEventListener('click', () => {
+  showPassword.addEventListener('click', () => { // cuando da click cambia su tipo a text para que se muestre
     if (inputPassword.type === 'password') {
       inputPassword.type = 'text';
     } else {
-      inputPassword.type = 'password';
+      inputPassword.type = 'password'; // En caso de que su tipo sea text, lo regresa a password
     }
   });
 
@@ -79,59 +78,16 @@ export const newAccount = () => {
   buttonCreateNewAccount.classList.add('ingresar');
   formInputCreateAccount.appendChild(buttonCreateNewAccount);
   buttonCreateNewAccount.addEventListener('click', async(e) => {
-    try{
-      emailFormat(inputEmail.value)
-      console.log(emailFormat(inputEmail.value));
-    }catch(error){
-console.log(emailFormat(inputEmail.value));
+    try{  
+      inputsFormats(inputEmail, inputPassword); // valida que las entradas sean correctas...
+      currentUser = await createUser(inputEmail.value, inputPassword.value)  //Crea el usuario e ingresa
+      navigateTo('/publications'); // Se mueve a la vista de publicaciones
+    }catch(e){
+      errorInvalidInput.innerText = e.message;  // si las entradas son malas, muestra el msj de error en pantalla
     }
-
-    //if (inputPassword.value !== ''){
-      //currentUser = await createUser(inputEmail.value, inputPassword.value)
-      //console.log(inputEmail.value, inputPassword.value,currentUser);
-    //  insertInfoNewUserDB(inputNickname.value, inputEmail.value, inputPassword.value).then(()=>console.log('Welcome'))
-    // }else{
-    //  const insertInfo = document.createElement('p');
-    //  insertInfo.textContent = 'Inserte la información solicitada';
-    //  formInputCreateAccount.appendChild(insertInfo);
-    //}
   });
-  /* buttonCreateNewAccount.addEventListener('click',(e)=>{
-    if (!emailFotmat(inputEmail.value)){
-      inputEmail.style.border ='3px solid red';
-    } else {
-      inputEmail.style.border ='1px solid rgb(28, 28, 28)';
-    }
 
-  }); */
-
-  /*     if (!passwordFormat(inputPassword.value)){ // Primero valida si el formato del password es invalido...
-      inputPassword.style.border ='3px solid red'; // en ese caso pone la caja en rojo
-    } else { // en caso contrario...
-      inputPassword.style.border ='1px solid rgb(28, 28, 28)'; // la regresa a su formato original
-    //console.log(inputPassword.value);
-    }  */
-
-  if (!emailFormat(inputEmail.value)) {
-    // Valida si el formato del correo es incorrecto...
-    inputEmail.style.border = '3px solid red'; // y pone el cuadro en rojo
-  } else {
-    // en caso contrario lo regresa al formato original
-    inputEmail.style.border = '1px solid rgb(28, 28, 28)';
-  }
-
-  /*     loginEmail(inputEmail.value, inputPassword.value).then((res)=>res).catch((e)=>console.log('123456',e.message.substring(
-      e.message.indexOf('/') + 1,e.message.lastIndexOf(')')),'---'))
- */
-
-
-
-
-
-
-
-
-      containerAll.appendChild(formInputCreateAccount); //Se guarda todo el form dentro del container general
+  containerAll.appendChild(formInputCreateAccount); //Se guarda todo el form dentro del container general
 
   return containerAll;
 };
