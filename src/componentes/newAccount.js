@@ -42,33 +42,34 @@ export const newAccount = (navigateTo) => {
   formInputCreateAccount.appendChild(inputEmail);
 
   const passwordContainer = document.createElement('div');
-  passwordContainer.classList.add('password-container'); // Agrega una clase para contener los elementos
+  //passwordContainer.id = 'inputPasswordContainer'; // Agrega una clase para contener los elementos
+  passwordContainer.classList.add('inputs');
   formInputCreateAccount.appendChild(passwordContainer);
 
   // Caja de ingreso de contraseña
   const inputPassword = document.createElement('input');
   inputPassword.setAttribute('placeholder', 'Contraseña');
   inputPassword.type = 'password';
-  inputPassword.id = 'inputPassword';
+  inputPassword.classList.add('inputPassword');
   inputPassword.autocomplete = 'current-password';
   passwordContainer.appendChild(inputPassword);
   // Mensaje de error al ingresar con email
   const errorInvalidPassword = document.createElement('p');
   errorInvalidPassword.id = 'errorMessage';
-  formInputCreateAccount.append(inputPassword, errorInvalidPassword);
+  formInputCreateAccount.append(errorInvalidPassword);
 
   // Check para mostrar contraseña
-  const showPasswordContainer = document.createElement('div');
-  showPasswordContainer.classList.add('show-password-container'); // Agrega una clase para contener los elementos
-  passwordContainer.appendChild(showPasswordContainer);
+  /* const showPasswordContainer = document.createElement('div');
+  showPasswordContainer.id = 'showPasswordContainer'; // Agrega una clase para contener los elementos
+  passwordContainer.appendChild(showPasswordContainer); */
 
   const showPassword = document.createElement('button'); // Cambiado de input a button para que no saliera un espacio en blanco
   showPassword.type = 'button'; // Cambiado de 'checkbox' a 'button'
   showPassword.id = 'showPassword';
 
   showPassword.classList.add('show-password-button'); // Agrega una clase para estilizar el botón
-  inputPassword.appendChild(showPassword);
-  showPasswordContainer.appendChild(showPassword);
+  //inputPassword.append( showPassword);
+  passwordContainer.append(inputPassword,showPassword);
 
   const hidePasswordIcon = document.createElement('img');
   hidePasswordIcon.src = noMostrar; // Reemplaza 'ruta_de_icono_no_mostrar' con la ruta real del icono de 'no mostrar'
