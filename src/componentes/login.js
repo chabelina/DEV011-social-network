@@ -71,11 +71,13 @@ export const loginView = (navigateTo) => {
   const errorMessage = document.createElement('p');
   errorMessage.class = 'errorMessage';
   formInputLogin.append(buttonLogin, errorMessage);
-  // Definimos la funcionalidad al hacer click con una función asincrona, porque usamos funciones asincronas adentro
-  buttonLogin.addEventListener('click', async () => { 
+  // Definimos la funcionalidad al hacer click con una función
+  // asincrona, porque usamos funciones asincronas adentro
+  buttonLogin.addEventListener('click', async () => {
     try {
-      currentUser = await loginEmail(inputEmail, inputPassword); // inicia sesión con la función asincrona loginEmail
-      navigateTo('/publications');  // Se mueve a la vista de publicaciones
+      currentUser = await loginEmail(inputEmail, inputPassword);
+      // inicia sesión con la función asincrona loginEmail
+      navigateTo('/publications'); // Se mueve a la vista de publicaciones
       // console.log(currentUser, '--------');
       return currentUser;
     } catch(e) {
