@@ -37,7 +37,7 @@ function navigateTo(hash) {
       route.path,
       window.location.origin + route.path,
     );
-    // console.log(root.firstChild);
+    console.log(window.history);
     if (root.firstChild != null) {
       root.removeChild(root.firstChild);
     }
