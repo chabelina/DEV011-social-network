@@ -42,7 +42,8 @@ export const newAccount = (navigateTo) => {
   formInputCreateAccount.appendChild(inputEmail);
 
   const passwordContainer = document.createElement('div');
-  //passwordContainer.id = 'inputPasswordContainer'; // Agrega una clase para contener los elementos
+  // passwordContainer.id = 'inputPasswordContainer';
+  // Agrega una clase para contener los elementos
   passwordContainer.classList.add('inputs');
   formInputCreateAccount.appendChild(passwordContainer);
 
@@ -60,7 +61,8 @@ export const newAccount = (navigateTo) => {
 
   // Check para mostrar contraseña
   /* const showPasswordContainer = document.createElement('div');
-  showPasswordContainer.id = 'showPasswordContainer'; // Agrega una clase para contener los elementos
+  showPasswordContainer.id = 'showPasswordContainer';
+  // Agrega una clase para contener los elementos
   passwordContainer.appendChild(showPasswordContainer); */
 
   const showPassword = document.createElement('button'); // Cambiado de input a button para que no saliera un espacio en blanco
@@ -68,18 +70,20 @@ export const newAccount = (navigateTo) => {
   showPassword.id = 'showPassword';
 
   showPassword.classList.add('show-password-button'); // Agrega una clase para estilizar el botón
-  //inputPassword.append( showPassword);
-  passwordContainer.append(inputPassword,showPassword);
+  // inputPassword.append( showPassword);
+  passwordContainer.append(inputPassword, showPassword);
 
   const hidePasswordIcon = document.createElement('img');
-  hidePasswordIcon.src = noMostrar; // Reemplaza 'ruta_de_icono_no_mostrar' con la ruta real del icono de 'no mostrar'
+  hidePasswordIcon.src = noMostrar;
+  // Reemplaza 'ruta_de_icono_no_mostrar' con la ruta real del icono de 'no mostrar'
   hidePasswordIcon.alt = 'Ocultar contraseña';
   hidePasswordIcon.classList.add('hide-password-icon'); // Agrega una clase para estilizar el icono
   hidePasswordIcon.style.display = 'none';
   showPassword.appendChild(hidePasswordIcon);
 
   const showPasswordIcon = document.createElement('img');
-  showPasswordIcon.src = mostrar; // Reemplaza 'ruta_de_icono_mostrar' con la ruta real del icono de 'mostrar'
+  showPasswordIcon.src = mostrar;
+  // Reemplaza 'ruta_de_icono_mostrar' con la ruta real del icono de 'mostrar'
   showPasswordIcon.alt = 'Mostrar contrase;a';
   showPasswordIcon.classList.add('show-password-icon'); // Agrega una clase para estilizar el icono
   showPassword.appendChild(showPasswordIcon);
@@ -100,18 +104,22 @@ export const newAccount = (navigateTo) => {
   buttonCreateNewAccount.classList.add('ingresar');
   formInputCreateAccount.appendChild(buttonCreateNewAccount);
 
-  buttonCreateNewAccount.addEventListener('click', async (e) => {
+  buttonCreateNewAccount.addEventListener('click', async () => {
     try {
       inputsFormats(inputEmail, inputPassword); // valida que las entradas sean correctas...
-      currentUser = await createUser(inputEmail.value, inputPassword.value); //Crea el usuario e ingresa
+      currentUser = await createUser(inputEmail.value, inputPassword.value);
+      // Crea el usuario e ingresa
       navigateTo('/publications'); // Se mueve a la vista de publicaciones
+      return currentUser;
     } catch (e) {
       errorInvalidPassword.innerText = e.message;
+      return errorInvalidPassword;
       // si las entradas son malas, muestra el msj de error en pantalla
     }
   });
 
-  containerAll.appendChild(formInputCreateAccount); // Se guarda todo el form dentro del container general
+  containerAll.appendChild(formInputCreateAccount);
+  // Se guarda todo el form dentro del container general
 
   return containerAll;
 };
