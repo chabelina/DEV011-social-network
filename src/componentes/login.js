@@ -32,7 +32,7 @@ export const loginView = (navigateTo) => {
 
   // Caja de ingreso de correo
   const inputEmail = document.createElement('input');
-  inputEmail.setAttribute('placeholder', 'Correo');// Texto que se muestra en la caja para indicar qué deben ingresar
+  inputEmail.setAttribute('placeholder', 'Correo'); // Texto que se muestra en la caja para indicar qué deben ingresar
   inputEmail.id = 'inputEmail';
   inputEmail.autocomplete = 'inputEmail';
   formInputLogin.appendChild(inputEmail);
@@ -53,7 +53,8 @@ export const loginView = (navigateTo) => {
   showPasswordText.for = 'showPassword';
   showPasswordText.innerHTML = 'Mostrar contraseña';
   formInputLogin.append(showPassword, showPasswordText);
-  showPassword.addEventListener('click', () => { // cuando da click cambia su tipo a text para que se muestre
+  showPassword.addEventListener('click', () => {
+    // cuando da click cambia su tipo a text para que se muestre
     if (inputPassword.type === 'password') {
       inputPassword.type = 'text';
     } else {
@@ -71,16 +72,19 @@ export const loginView = (navigateTo) => {
   const errorMessage = document.createElement('p');
   errorMessage.class = 'errorMessage';
   formInputLogin.append(buttonLogin, errorMessage);
-  // Definimos la funcionalidad al hacer click con una función asincrona, porque usamos funciones asincronas adentro
-  buttonLogin.addEventListener('click', async () => { 
+  // Definimos la funcionalidad al hacer click con una función asincrona
+  // porque usamos funciones asincronas adentro
+  buttonLogin.addEventListener('click', async () => {
     try {
-      currentUser = await loginEmail(inputEmail, inputPassword); // inicia sesión con la función asincrona loginEmail
-      navigateTo('/publications');  // Se mueve a la vista de publicaciones
+      currentUser = await loginEmail(inputEmail, inputPassword);
+      // inicia sesión con la función asincrona loginEmail
+      navigateTo('/publications'); // Se mueve a la vista de publicaciones
       // console.log(currentUser, '--------');
       return currentUser;
-    } catch(e) {
-      errorMessage.innerText = e.message;  // si no logra iniciar sesión muestra el msj de error en pantalla
-      // console.log(e.message,"....");
+    } catch (e) {
+      errorMessage.innerText = e.message;
+      // si no logra iniciar sesión muestra el msj de error en pantalla
+      // console.log(e.message,'....');
       return new Error(e.message);
     }
   });
@@ -92,12 +96,14 @@ export const loginView = (navigateTo) => {
   buttonLoginGoogle.innerText = 'Inicia sesión con Google';
   buttonLoginGoogle.classList.add('google');
   formInputLogin.appendChild(buttonLoginGoogle);
-  buttonLoginGoogle.addEventListener('click', async (e) => { // se declara una funcion asincrona porque loginGoogle es promesa
+  buttonLoginGoogle.addEventListener('click', async () => {
+    // se declara una funcion asincrona porque loginGoogle es promesa
     try {
       currentUser = await loginGoogle(); // intenta ingresar
       navigateTo('/publications');
+      return currentUser;
     } catch (error) {
-      return new Error(error) // si no logra ingresar manda un error
+      return new Error(error); // si no logra ingresar manda un error
     }
   });
 
@@ -108,7 +114,7 @@ export const loginView = (navigateTo) => {
   buttonLogOut.innerText = 'Cerrar sesión';
   buttonLogOut.classList.add('cerrar');
   formInputLogin.appendChild(buttonLogOut);
-  buttonLogOut.addEventListener('click', async (e) => {
+  buttonLogOut.addEventListener('click', async () => {
     currentUser = await logout();
     console.log('.....', currentUser);
   });
@@ -125,11 +131,12 @@ export const loginView = (navigateTo) => {
   buttonNewAccount.innerText = 'Crear cuenta';
   buttonNewAccount.classList.add('crear');
   formInputLogin.appendChild(buttonNewAccount);
-  buttonNewAccount.addEventListener('click', () => { // al hacer click se renderea la vista del archivo NewAccount
+  buttonNewAccount.addEventListener('click', () => {
+    // al hacer click se renderea la vista del archivo NewAccount
     navigateTo('/NewAccount');
   });
 
-  containerAll.appendChild(formInputLogin); //Se guarda todo el form dentro del container general
+  containerAll.appendChild(formInputLogin); // Se guarda todo el form dentro del container general
 
   return containerAll;
 };
