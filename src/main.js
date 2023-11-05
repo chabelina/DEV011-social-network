@@ -5,6 +5,7 @@ import { loginView } from './componentes/login.js';
 import { newAccount } from './componentes/newAccount.js';
 import { error } from './componentes/error.js';
 import { publications } from './componentes/publications.js';
+import { newPost } from './componentes/post.js';
 
 const routes = [
   {
@@ -23,12 +24,16 @@ const routes = [
     path: '/publications',
     component: publications,
   },
+  {
+    path: '/post',
+    component: newPost,
+  },
 ];
 
 const defaultRoute = '/';
 const root = document.getElementById('root');
 
-function navigateTo(hash) {
+export function navigateTo(hash) {
   const route = routes.find((routeFound) => routeFound.path === hash);
   // console.log(route);
   if (route && route.component) {
@@ -37,7 +42,7 @@ function navigateTo(hash) {
       route.path,
       window.location.origin + route.path,
     );
-    console.log(window.history);
+    // console.log(window.history);
     if (root.firstChild != null) {
       root.removeChild(root.firstChild);
     }
