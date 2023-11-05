@@ -94,7 +94,7 @@ export const publications = () => {
   const unfilledLikeImg = document.createElement('img');
   unfilledLikeImg.src = '../img/unfillStart.svg';
   unfilledLikeImg.style.display = 'flex';
-
+  
   likeButton.append(filledLikeImg, unfilledLikeImg);
   footerPost.appendChild(likeButton);
   likeButton.style = 'border:0px; background-color:#FFFFFF; align-self: flex-end; margin-left: 740px';
@@ -104,8 +104,9 @@ export const publications = () => {
     filledLikeImg.style.display = isLiked ? 'flex' : 'none';
   });
   // ----- style
-  filledLikeImg.style = 'width: 30px;';
-  unfilledLikeImg.style = 'width: 30px;';
+  filledLikeImg.style.width = '30px';
+  unfilledLikeImg.style.width = '30px';
+  console.log(filledLikeImg.style.display);
 
   post.append(headPost, bodyPost, footerPost);
   return post;
