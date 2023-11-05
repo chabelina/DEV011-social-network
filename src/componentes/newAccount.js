@@ -44,7 +44,7 @@ export const newAccount = (navigateTo) => {
   const passwordContainer = document.createElement('div');
   // passwordContainer.id = 'inputPasswordContainer';
   // Agrega una clase para contener los elementos
-  passwordContainer.classList.add('inputs');
+  passwordContainer.classList.add('passwordContainer');
   formInputCreateAccount.appendChild(passwordContainer);
 
   // Caja de ingreso de contraseña
@@ -69,7 +69,6 @@ export const newAccount = (navigateTo) => {
   showPassword.type = 'button'; // Cambiado de 'checkbox' a 'button'
   showPassword.id = 'showPassword';
 
-  showPassword.classList.add('show-password-button'); // Agrega una clase para estilizar el botón
   // inputPassword.append( showPassword);
   passwordContainer.append(inputPassword, showPassword);
 

@@ -1,5 +1,7 @@
 // aqui exportaras las funciones que necesites
 import logo from '../img/logo.png';
+import mostrar from '../img/mostrar.svg';
+import noMostrar from '../img/no-mostrar.svg';
 import { loginEmail, loginGoogle, logout } from '../firebase/auth.js';
 // import { emailFormat } from '../validations/validLogin'; //passwordFormat
 // import { allPosts, guardarPost } from '../firebase/firestore.js';
@@ -38,28 +40,52 @@ export const loginView = (navigateTo) => {
   formInputLogin.appendChild(inputEmail);
 
   // Caja de ingreso de contraseña
+
+  const passwordContainer = document.createElement('div');
+  passwordContainer.classList.add('passwordContainer');
+  formInputLogin.appendChild(passwordContainer);
+
   const inputPassword = document.createElement('input');
   inputPassword.setAttribute('placeholder', 'Constraseña'); // Texto que se muestra en la caja para indicar qué deben ingresar
   inputPassword.type = 'password'; // con este tipo oculta en automático el contenido de la caja
-  inputPassword.id = 'inputPassword';
+  inputPassword.className = 'inputPassword';
   inputPassword.autocomplete = 'current-password';
-  formInputLogin.appendChild(inputPassword);
 
-  // Check para mostrar contraseña
-  const showPassword = document.createElement('input');
-  showPassword.type = 'checkbox';
+  const showPassword = document.createElement('button');
+  showPassword.type = 'button';
   showPassword.id = 'showPassword';
-  const showPasswordText = document.createElement('label'); // etiqueta asociada al check showPassword
-  showPasswordText.for = 'showPassword';
-  showPasswordText.innerHTML = 'Mostrar contraseña';
-  formInputLogin.append(showPassword, showPasswordText);
-  showPassword.addEventListener('click', () => {
+
+  passwordContainer.append(inputPassword, showPassword);
+
+  /* showPassword.addEventListener('click', () => {
     // cuando da click cambia su tipo a text para que se muestre
     if (inputPassword.type === 'password') {
       inputPassword.type = 'text';
     } else {
       inputPassword.type = 'password'; // En caso de que su tipo sea text, lo regresa a password
     }
+  }); */
+
+  const hidePasswordIcon = document.createElement('img');
+  hidePasswordIcon.src = noMostrar;
+  // Reemplaza 'ruta_de_icono_no_mostrar' con la ruta real del icono de 'no mostrar'
+  hidePasswordIcon.alt = 'Ocultar contraseña';
+  hidePasswordIcon.classList.add('hide-password-icon'); // Agrega una clase para estilizar el icono
+  hidePasswordIcon.style.display = 'none';
+  showPassword.appendChild(hidePasswordIcon);
+
+  const showPasswordIcon = document.createElement('img');
+  showPasswordIcon.src = mostrar;
+  // Reemplaza 'ruta_de_icono_mostrar' con la ruta real del icono de 'mostrar'
+  showPasswordIcon.alt = 'Mostrar contrase;a';
+  showPasswordIcon.classList.add('show-password-icon'); // Agrega una clase para estilizar el icono
+  showPassword.appendChild(showPasswordIcon);
+
+  showPassword.addEventListener('click', () => {
+    const isPasswordVisible = inputPassword.type === 'text';
+    inputPassword.type = isPasswordVisible ? 'password' : 'text';
+    hidePasswordIcon.style.display = isPasswordVisible ? 'none' : 'flex';
+    showPasswordIcon.style.display = isPasswordVisible ? 'flex' : 'none';
   });
 
   // Botón de inicio de sesión con Email
