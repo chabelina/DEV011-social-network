@@ -1,6 +1,7 @@
 *{
     box-sizing: border-box;
 }
+
 body{
     background-color: antiquewhite;
     margin: 0%;
@@ -18,19 +19,19 @@ body{
     background-size: cover;
 }
 
-.registryContainer {
+/* .registryContainer {
     display: flex;
     flex-direction: column;
     align-items: center;
     gap: 3rem;
-}
+} */
 
-#registerForm{
+/* #registerForm{
     display: inherit;
     flex-direction: inherit;
     align-items: inherit;
     gap: 1rem;
-}
+} */
 
 /* #showPasswordContainer {
     display: flex;
@@ -62,6 +63,7 @@ body{
    position: relative;
    align-items: center;
 }
+
 .logo{
     width: 300px;
 }
@@ -147,19 +149,18 @@ body{
 
 /* --------- Formatos del muro --------- */
 
-#bodyPublications{
+/* #bodyPublications{
     border: 3px solid blue;
     width: 100vh;
-    height: 100vh;    /* height: 600px; */
+    height: 100vh; 
     display: grid;
-    /* flex-direction:column; */
     justify-content:space-between; 
     align-items:center;
     justify-self: center;
     background:#000000 url('./img/fondoVector.svg') no-repeat;
     background-size: cover;
     padding: 0vh 0vh 0vh 0vh;
-}
+} */
 
 #postArticle{
     display: flex;

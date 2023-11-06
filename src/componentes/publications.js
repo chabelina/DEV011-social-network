@@ -164,10 +164,10 @@ function newPost() {
 
 export const publications = (navigateTo) => {
   // Contenedor de todas las publicaciones
-  const bodyPublications = document.createElement('article');
-  bodyPublications.id = 'bodyPublications';
+  const containerAll = document.createElement('div');
+  containerAll.className = 'containerAll';
   // ----- style
-  //bodyPublications.style = 'border: 3px solid blue; height: 600px;display: flex;flex-direction:column;justify-content:space-between; align-items:center';
+  //containerAll.style = 'border: 3px solid blue; height: 600px;display: flex;flex-direction:column;justify-content:space-between; align-items:center';
 
   // Pie de página para los botones de crar post y cerrar sesión
   const footerPublications = document.createElement('footer');
@@ -180,7 +180,7 @@ export const publications = (navigateTo) => {
   newPostIcon.src = '../img/newPost.svg';
   newPostIcon.addEventListener('click', async () => {
     // console.log('.....', currentUser);
-    bodyPublications.appendChild(newPost());
+    containerAll.appendChild(newPost());
   });
   // ----- style
   newPostIcon.style = 'width: 40px';
@@ -199,8 +199,8 @@ export const publications = (navigateTo) => {
 
   footerPublications.append(newPostIcon, logoutIcon);
 
-  bodyPublications.append(renderPost(), renderPost());
-  bodyPublications.appendChild(footerPublications);
+  containerAll.append(renderPost(), renderPost());
+  containerAll.appendChild(footerPublications);
 
-  return bodyPublications;
+  return containerAll;
 };
