@@ -134,7 +134,7 @@ export const loginView = (navigateTo) => {
     }
   });
 
-  // Boton de cerrar sesión: SE TIENE QUE MOVER A LA VISTA CORRESPONDIENTE CUANDO SE TENGA!!!
+  /* // Boton de cerrar sesión: SE TIENE QUE MOVER A LA VISTA CORRESPONDIENTE CUANDO SE TENGA!!!
   const buttonLogOut = document.createElement('button');
   buttonLogOut.setAttribute('type', 'button');
   buttonLogOut.setAttribute('value', 'buttonLogout');
@@ -144,7 +144,7 @@ export const loginView = (navigateTo) => {
   buttonLogOut.addEventListener('click', async () => {
     currentUser = await logout();
     console.log('.....', currentUser);
-  });
+  }); */
 
   // Pregunta sobre si tiene una cuenta
   const askAccount = document.createElement('p');

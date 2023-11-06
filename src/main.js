@@ -5,7 +5,6 @@ import { loginView } from './componentes/login.js';
 import { newAccount } from './componentes/newAccount.js';
 import { error } from './componentes/error.js';
 import { publications } from './componentes/publications.js';
-import { newPost } from './componentes/post.js';
 
 const routes = [
   {
@@ -23,10 +22,6 @@ const routes = [
   {
     path: '/publications',
     component: publications,
-  },
-  {
-    path: '/post',
-    component: newPost,
   },
 ];
 
