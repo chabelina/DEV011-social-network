@@ -85,6 +85,7 @@ export const newAccount = (navigateTo) => {
   // Reemplaza 'ruta_de_icono_mostrar' con la ruta real del icono de 'mostrar'
   showPasswordIcon.alt = 'Mostrar contrase;a';
   showPasswordIcon.classList.add('show-password-icon'); // Agrega una clase para estilizar el icono
+  showPasswordIcon.style.display = 'flex';
   showPassword.appendChild(showPasswordIcon);
 
   showPassword.addEventListener('click', () => {
