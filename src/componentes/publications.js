@@ -1,8 +1,10 @@
 /* buttonLogin.addEventListener('click', async() => {
   await guardarPost(allPosts, inputEmail.value)
 }) */
+import { logout } from '../firebase/auth';
 
-export const publications = () => {
+// función que crea un articulo para cada post
+function renderPost() {
   // Sección donde se guardaran las publicaciones
   const post = document.createElement('article');
   post.id = 'postArticle';
@@ -94,7 +96,7 @@ export const publications = () => {
   const unfilledLikeImg = document.createElement('img');
   unfilledLikeImg.src = '../img/unfillStart.svg';
   unfilledLikeImg.style.display = 'flex';
-  
+
   likeButton.append(filledLikeImg, unfilledLikeImg);
   footerPost.appendChild(likeButton);
   likeButton.style = 'border:0px; background-color:#FFFFFF; align-self: flex-end; margin-left: 740px';
@@ -106,8 +108,89 @@ export const publications = () => {
   // ----- style
   filledLikeImg.style.width = '30px';
   unfilledLikeImg.style.width = '30px';
-  console.log(filledLikeImg.style.display);
+  // console.log(filledLikeImg.style.display);
 
   post.append(headPost, bodyPost, footerPost);
   return post;
+}
+
+function newPost() {
+  // console.log(currentUser);
+  // Sección donde se guardaran las publicaciones
+  const modalNewPost = document.createElement('article');
+  modalNewPost.id = 'postArticle';
+  // ----- style
+  modalNewPost.style.border = '3px solid violet';
+  modalNewPost.style.backgroundColor = '#FFFFFF';
+  modalNewPost.style.width = '800px';
+
+  // ----- Cuerpo de la publicación ----- //
+  const bodyPost = document.createElement('section');
+  bodyPost.innerText = 'Recomendación:';
+  const inputTextPost = document.createElement('textarea');
+  inputTextPost.id = 'textNewPost';
+  bodyPost.appendChild(inputTextPost);
+  // ----- style
+  bodyPost.style.border = '3px solid orange';
+  inputTextPost.style.backgroundColor = '#F4F4FC';
+
+  // ----- Pie de la publicación ----- //
+  const footerPost = document.createElement('footer');
+  // ----- style
+  footerPost.style = 'border:3px solid black; height:100px';
+
+  // Elementos del pie de página del post
+
+  // Enviar post
+  const buttonSaveNewPost = document.createElement('button');
+  buttonSaveNewPost.innerText = 'Recomentar';
+  footerPost.appendChild(buttonSaveNewPost);
+  // console.log(inputTextPost.value);
+  /* buttonSaveNewPost.addEventListener('click', async() => {
+      await guardarPost(inputTextPost.value,allPosts)
+  }) */
+
+  modalNewPost.append(bodyPost, footerPost);
+  return modalNewPost;
+}
+
+export const publications = (navigateTo) => {
+  // Contenedor de todas las publicaciones
+  const bodyPublications = document.createElement('article');
+  // ----- style
+  bodyPublications.style = 'border: 3px solid blue; height: 600px;display: flex;flex-direction:column;justify-content:space-between; align-items:center';
+
+  // Pie de página para los botones de crar post y cerrar sesión
+  const footerPublications = document.createElement('footer');
+  // ----- style
+  footerPublications.style = 'width:800px; border: 3px solid darkred; display: flex; justify-content :space-around';
+
+  // Botón para crear nuevo post
+  const newPostIcon = document.createElement('img');
+  newPostIcon.src = '../img/newPost.svg';
+  newPostIcon.addEventListener('click', async () => {
+    // console.log('.....', currentUser);
+    bodyPublications.appendChild(newPost());
+  });
+  // ----- style
+  newPostIcon.style = 'width: 40px';
+
+  // Boton de cerrar sesión  const buttonLogOut = document.createElement('button');
+  const logoutIcon = document.createElement('img');
+  logoutIcon.src = '../img/logout.svg';
+  logoutIcon.addEventListener('click', async () => {
+    const currentUser = await logout();
+    // console.log('.....', currentUser);
+    navigateTo('/');
+    return currentUser;
+  });
+  // ----- style
+  logoutIcon.style = 'width: 20px';
+
+  footerPublications.append(newPostIcon, logoutIcon);
+
+  bodyPublications.append(renderPost(), renderPost());
+  bodyPublications.appendChild(footerPublications);
+
+  return bodyPublications;
 };
