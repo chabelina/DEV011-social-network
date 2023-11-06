@@ -7,10 +7,10 @@ export const db = getFirestore(app);
 export const allPosts = collection(db, 'posts');
 
 
-export async function guardarPost (allPosts = allPosts, inputLogin){  //función que garda el post
+export async function guardarPost (inputLogin, allPosts = allPosts){  //función que garda el post
     await addDoc(allPosts, {
-        usuario: "Dani",
-        post: "Holi!",
+        usuario: "Dani1",
+        post: "Holi!1",
         input: inputLogin 
     })
 }
