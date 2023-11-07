@@ -1,25 +1,19 @@
-import { getFirestore,collection } from 'firebase/firestore';
+import { getFirestore, collection, addDoc } from 'firebase/firestore';
+// import { getFirestore, collection, addDoc, doc, setDoc } from 'firebase/firestore';
 import { app } from './firebase-config.js';
-import { addDoc, doc, setDoc } from "firebase/firestore";
 
 export const db = getFirestore(app);
 
-export const allPosts = collection(db, 'posts');
+export const allPostsFromDb = collection(db, 'posts');
 
-
-export async function guardarPost (inputLogin, allPosts = allPosts){  //función que garda el post
-    await addDoc(allPosts, {
-        usuario: "Dani1",
-        post: "Holi!1",
-        input: inputLogin 
-    })
+export async function guardarPost(inputLogin, allPosts = allPostsFromDb) {
+  // función que garda el post
+  await addDoc(allPosts, {
+    usuario: 'Dani1',
+    post: 'Holi!1',
+    input: inputLogin,
+  });
 }
-
-
-
-
-
-
 
 // Agregar un nuevo documento a la colección
 /* const postsElements = await addDoc(allPosts, { /* datos del documento  });
@@ -33,33 +27,6 @@ await setDoc(doc(db, "posts", "LA"), {
   const cityRef = doc(db, 'cities', 'BJ');
   setDoc(cityRef, { capital: true }, { merge: true });
    */
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 /* async function insertDB(item){
     try{
@@ -80,4 +47,4 @@ export async function insertInfoNewUserDB (alias, email, password){
         return response = await insertDB(newUser)
     }catch(error){}
 }
- */
+*/
