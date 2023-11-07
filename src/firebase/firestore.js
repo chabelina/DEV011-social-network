@@ -1,19 +1,22 @@
-import { getFirestore,collection } from 'firebase/firestore';
+import { getFirestore, collection, addDoc } from 'firebase/firestore';
 import { app } from './firebase-config.js';
-import { addDoc, doc, setDoc } from "firebase/firestore";
+//import { addDoc, doc, setDoc } from "firebase/firestore";
 
 export const db = getFirestore(app);
 
 export const allPosts = collection(db, 'posts');
 
 
-export async function guardarPost (inputLogin, allPosts = allPosts){  //función que garda el post
+export async function guardarPost (userID, inputLogin, datePost, allPosts = allPosts){  //función que garda el post
     await addDoc(allPosts, {
-        usuario: "Dani1",
-        post: "Holi!1",
-        input: inputLogin 
+        user: userID,
+        textPost: inputLogin,
+        likes:[],
+        date: datePost
     })
 }
+
+//export const querySnapshot = getDocs(allPosts);
 
 
 
