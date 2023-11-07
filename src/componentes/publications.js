@@ -1,10 +1,13 @@
-/* buttonLogin.addEventListener('click', async() => {
-  await guardarPost(allPosts, inputEmail.value)
-}) */
 import { logout, auth } from '../firebase/auth';
+import { onAuthStateChanged } from "firebase/auth";
+import { insertPostDB, allPosts, querySnapshot, queryNameUsers } from '../firebase/firestore';
+
+/* queryNameUsers.then((users)=>{
+  users.
+}) */
 
 // función que crea un articulo para cada post
-function renderPost() {
+function renderPost(userNameDB, textPostDB, likeNumDB) {
   // Sección donde se guardaran las publicaciones
   const post = document.createElement('article');
   post.id = 'postArticle';
@@ -36,7 +39,7 @@ function renderPost() {
   // Nombre del Usuario
   const nameUser = document.createElement('p');
   nameUser.id = 'nameUser';
-  nameUser.innerText = 'Pepita';
+  nameUser.innerText = userNameDB;
   headPost.appendChild(nameUser);
   // ----- style
   //nameUser.style.height = '35px';
@@ -64,7 +67,7 @@ function renderPost() {
   const bodyPost = document.createElement('section');
   bodyPost.id = 'bodyPost'
   const textPost = document.createElement('p');
-  textPost.innerText = 'Lorem Ipsum es simplemente el texto de relleno de las imprentas y archivos de texto.';
+  textPost.innerText = textPostDB;
   bodyPost.appendChild(textPost);
   // ----- style
   //bodyPost.style.border = '3px solid orange';
@@ -113,6 +116,7 @@ function renderPost() {
     unfilledLikeImg.style.display = isLiked ? 'none' : 'flex';
     filledLikeImg.style.display = isLiked ? 'flex' : 'none';
   });
+  //console.log(likeNumDB);
   // ----- style
   //filledLikeImg.style.width = '30px';
   //unfilledLikeImg.style.width = '30px';
@@ -122,25 +126,29 @@ function renderPost() {
   return post;
 }
 
-function newPost() {
+// función para crear un nevo post
+function newPost(userID) {
   // console.log(currentUser);
-  // Sección donde se guardaran las publicaciones
-  const modalNewPost = document.createElement('article');
-  modalNewPost.id = 'postArticle';
+
+  // Ventana que se sobrepone a la vista de publications
+  const modalNewPost = document.createElement('div');
+  modalNewPost.style = 'position: fixed;  width: 100%;  height: 100%;  background-color: rgba(0, 0, 0, 0.5)';
+
+  // Alert donde se guardaran las publicaciones
+  const alertNewPost = document.createElement('article');
+  alertNewPost.id = 'alertNewPost';
   // ----- style
-  modalNewPost.style.border = '3px solid violet';
-  modalNewPost.style.backgroundColor = '#FFFFFF';
-  modalNewPost.style.width = '800px';
+  alertNewPost.style = 'width: 80%;align-items: center;border-radius: 1rem;position: absolute;  top: 50%;  left: 50%;  transform: translate(-50%, -50%);  background-color: #F4F4FC;  padding: 20px;  z-index: 2;';
 
   // ----- Cuerpo de la publicación ----- //
   const bodyPost = document.createElement('section');
-  bodyPost.innerText = 'Recomendación:';
+  bodyPost.innerText = 'Recomendación:\n';
   const inputTextPost = document.createElement('textarea');
   inputTextPost.id = 'textNewPost';
   bodyPost.appendChild(inputTextPost);
   // ----- style
-  bodyPost.style.border = '3px solid orange';
-  inputTextPost.style.backgroundColor = '#F4F4FC';
+  bodyPost.style = 'border:3px solid orange; backgroundColor:#ffffff; width 95%';
+  inputTextPost.style = 'border:3px solid orange; backgroundColor:#ffffff; width: 95%;';
 
   // ----- Pie de la publicación ----- //
   const footerPost = document.createElement('footer');
@@ -154,15 +162,39 @@ function newPost() {
   buttonSaveNewPost.innerText = 'Recomentar';
   footerPost.appendChild(buttonSaveNewPost);
   // console.log(inputTextPost.value);
-  /* buttonSaveNewPost.addEventListener('click', async() => {
-      await guardarPost(inputTextPost.value,allPosts)
-  }) */
+  buttonSaveNewPost.addEventListener('click', async() => {
+    //console.log(userID, inputTextPost.value, new Date(), allPosts);  
+    //console.log('444444444444',userID);
+    await insertPostDB(userID, inputTextPost.value, new Date(), allPosts);
+    modalNewPost.style.display = 'none';
+  });
 
-  modalNewPost.append(bodyPost, footerPost);
+  alertNewPost.append(bodyPost, footerPost);
+
+  modalNewPost.appendChild(alertNewPost)
+
   return modalNewPost;
 }
 
+// función que renderea el muro
 export const publications = (navigateTo) => {
+  
+  onAuthStateChanged(auth, (user)=>{
+    if (user) {
+      // El usuario está autenticado
+      //console.log('1111111111111111',user);
+      //console.log('2222222222222222',user.uid);
+      //localStorage.setItem ('userID', user.uid)
+      return 'userID return';
+    } else {
+      // El usuario no está autenticado
+      return navigateTo('/');
+    }
+  });
+
+  // ID del usuario
+  const userID = localStorage.getItem('userID');
+  console.log('3333333', userID);
   // Contenedor de todas las publicaciones
   const containerAll = document.createElement('div');
   containerAll.className = 'containerAll';
@@ -180,7 +212,7 @@ export const publications = (navigateTo) => {
   newPostIcon.src = '../img/newPost.svg';
   newPostIcon.addEventListener('click', async () => {
     // console.log('.....', currentUser);
-    containerAll.appendChild(newPost());
+    containerAll.appendChild(newPost(userID));
   });
   // ----- style
   newPostIcon.style = 'width: 40px';
@@ -190,7 +222,6 @@ export const publications = (navigateTo) => {
   logoutIcon.src = '../img/logout.svg';
   logoutIcon.addEventListener('click', async () => {
     const currentUser = await logout();
-    // console.log('.....', currentUser);
     navigateTo('/');
     return currentUser;
   });
@@ -198,8 +229,13 @@ export const publications = (navigateTo) => {
   logoutIcon.style = 'width: 20px';
 
   footerPublications.append(newPostIcon, logoutIcon);
-
-  containerAll.append(renderPost(), renderPost());
+  //console.log('maya')
+  querySnapshot.then((docs)=>{
+    docs.forEach((doc)=>{
+      containerAll.append(renderPost(doc.data().user,doc.data().textPost, doc.data().likes.length));
+    });
+  });
+  
   containerAll.appendChild(footerPublications);
 
   return containerAll;

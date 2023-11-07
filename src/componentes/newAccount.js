@@ -4,8 +4,8 @@ import mostrar from '../img/mostrar.svg';
 import noMostrar from '../img/no-mostrar.svg';
 import { createUser } from '../firebase/auth.js';
 import { inputsFormats } from '../validations/validLogin';
+import { allUsers, insertNewUserDB } from '../firebase/firestore';
 // import { async } from 'regenerator-runtime';
-// import { insertInfoNewUserDB } from '../firebase/firestore';
 
 // Función que renderea la vista de inicio de sesión
 export const newAccount = (navigateTo) => {
@@ -108,8 +108,10 @@ export const newAccount = (navigateTo) => {
     try {
       inputsFormats(inputEmail, inputPassword); // valida que las entradas sean correctas...
       currentUser = await createUser(inputEmail.value, inputPassword.value);
+      console.log(currentUser);
+      await insertNewUserDB(inputNickname.value, currentUser.uid, allUsers);
       // Crea el usuario e ingresa
-      navigateTo('/publications'); // Se mueve a la vista de publicaciones
+      //navigateTo('/publications'); // Se mueve a la vista de publicaciones
       return currentUser;
     } catch (e) {
       errorInvalidPassword.innerText = e.message;
