@@ -1,19 +1,35 @@
-import { getFirestore, collection, addDoc } from 'firebase/firestore';
-// import { getFirestore, collection, addDoc, doc, setDoc } from 'firebase/firestore';
+import { getFirestore, collection, addDoc, getDocs } from 'firebase/firestore';
 import { app } from './firebase-config.js';
+//import { addDoc, doc, setDoc } from "firebase/firestore";
 
 export const db = getFirestore(app);
 
-export const allPostsFromDb = collection(db, 'posts');
+// Información de los post
+export const allPosts = collection(db, 'posts');
 
-export async function guardarPost(inputLogin, allPosts = allPostsFromDb) {
-  // función que garda el post
-  await addDoc(allPosts, {
-    usuario: 'Dani1',
-    post: 'Holi!1',
-    input: inputLogin,
-  });
+export async function insertPostDB (userID, inputLogin, datePost, allPosts){  //función que garda el post
+    await addDoc(allPosts, {
+        user: userID,
+        textPost: inputLogin,
+        likes:[],
+        date: datePost
+    })
 }
+
+export const querySnapshot = getDocs(collection(db, 'posts'));
+
+// Información de los usuarios
+export const allUsers = collection(db, 'users');
+
+export async function insertNewUserDB (nickname, uid, allUsers){
+    await addDoc(allUsers, {
+        name: nickname,
+        id: uid,
+    })
+}
+
+export const queryNameUsers = getDocs(collection(db, 'users'));
+
 
 // Agregar un nuevo documento a la colección
 /* const postsElements = await addDoc(allPosts, { /* datos del documento  });
