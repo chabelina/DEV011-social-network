@@ -223,14 +223,15 @@ body{
     width: 100%;
     display: flex;
     justify-content: left;
-    border:3px solid black;
+    /* border:3px solid black; */
 }
 
 ul{
     padding: 0%;
     margin: 0%;
     border:3px solid red;
-
+    display: inherit;
+    flex-wrap: wrap;
 }
 
 li {
@@ -247,8 +248,8 @@ li {
 #likeButton{
     /* border:0px; 
     background-color:#FFFFFF; */ 
-    align-self: flex-end; 
-    margin-left: 50%;
+    align-self: center; 
+    /* margin-left: 50%; */
 }
 
 #likeButton .likeImg{
