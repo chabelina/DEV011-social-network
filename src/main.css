@@ -11,12 +11,16 @@ body{
 .containerAll{ 
     color: #F4F4FC;
     display: flex;
+    flex-direction: column;
+    gap: 3rem;
     justify-content: center;
+    align-items: center;
     width: 100%;
     height: 100vh;
-    align-items: center;
+    min-height: 100vh;
     background:#000000 url('./img/fondoVector.svg') no-repeat;
     background-size: cover;
+    position: relative; 
 }
 
 /* .registryContainer {
@@ -165,25 +169,24 @@ body{
 #postArticle{
     display: flex;
     flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 80%;
+    max-width: 800px;
     background-color: #ffffff;
     color: #11035A;
-    /* display: flex; */
-    justify-content: center;
-    width: 97vh;
-    align-items: center;
     border-radius: 1rem;
     /* border: 3px solid rgb(135, 238, 130); */
     padding: 5px;
-    grid-auto-rows: minmax(100px, auto);
 }
 
 #postHeader{
-    height: 40px;
     display: grid;
+    width: 100%;
+    height: 40px;
     grid-template-columns: 1fr 14fr 1fr 1fr;
     /* align-items: center;
     justify-content: center; */
-    width: 97vh;
     /* border: 3px solid red; */
 }
 
@@ -253,8 +256,10 @@ li {
 }
 
 #footerPublications {
-    width:100vh;
+    width:100%;
     border: 3px solid darkred;
     display: flex;
     justify-content :space-around;
+    position: fixed;
+    bottom: 0;
 }
