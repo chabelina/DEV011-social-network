@@ -4,7 +4,7 @@ import { app } from './firebase-config.js';
 
 export const db = getFirestore(app);
 
-export const allPosts = collection(db, 'posts');
+export const allPostsFromDb = collection(db, 'posts');
 
 
 export async function guardarPost (userID, inputLogin, datePost, allPosts = allPosts){  //función que garda el post
@@ -37,33 +37,6 @@ await setDoc(doc(db, "posts", "LA"), {
   setDoc(cityRef, { capital: true }, { merge: true });
    */
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 /* async function insertDB(item){
     try{
         const response = await db.collection('Users').add(item);
@@ -83,4 +56,4 @@ export async function insertInfoNewUserDB (alias, email, password){
         return response = await insertDB(newUser)
     }catch(error){}
 }
- */
+*/

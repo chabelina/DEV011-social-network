@@ -2,7 +2,7 @@
 import logo from '../img/logo.png';
 import mostrar from '../img/mostrar.svg';
 import noMostrar from '../img/no-mostrar.svg';
-import { loginEmail, loginGoogle, logout } from '../firebase/auth.js';
+import { loginEmail, loginGoogle } from '../firebase/auth.js';
 // import { emailFormat } from '../validations/validLogin'; //passwordFormat
 // import { allPosts, guardarPost } from '../firebase/firestore.js';
 // import { async } from 'regenerator-runtime';
@@ -40,7 +40,6 @@ export const loginView = (navigateTo) => {
   formInputLogin.appendChild(inputEmail);
 
   // Caja de ingreso de contraseña
-
   const passwordContainer = document.createElement('div');
   passwordContainer.classList.add('passwordContainer');
   formInputLogin.appendChild(passwordContainer);

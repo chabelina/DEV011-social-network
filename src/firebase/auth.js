@@ -40,7 +40,9 @@ export async function loginEmail(email, password) {
     const user = auth.currentUser; // revisamos si existe una sesión abierta
     if (user) {
       // En caso de que esté abierta...
-      throw new Error('Tiene una sesión abierta: ' + user.uid);
+      throw new Error(`Tiene una sesión abierta: ${user.uid}`);
+      // se elimina el signo de + y se coloca backtips
+      //  para que sea de manera dinamica y mas simplificada
       // Lanza un error en consola indicando el uid de usuario en sesión
     } else {
       // Si no hay sesión abierta,
@@ -51,23 +53,25 @@ export async function loginEmail(email, password) {
           email.value,
           password.value,
         );
-        const user = response.user; // si logra ingresar, guarda el user
+        const newUser = response.user;
+        // si logra ingresar, guarda el user
         email.style.border = '1px solid rgb(28, 28, 28)'; // y regresa al diseño original del los inputs
         password.style.border = '1px solid rgb(28, 28, 28)';
-        return user;
+        return newUser;
       } catch (e) {
         // Si no logra ingresar, usamos el error 'e' de signInWithEmailAndPassword...
         let mensajeErrorLogin; // declaramos un msj de error undefined para editarlo personalmente
         // Extraemos el msj del error con e.message y
 
-        // luego sacamos de ese string el tipo del error contenido entre / y ), por ejemplo:(auth/invalid-email)
-        // y por último editamos nuestro msj personalizado 'mensajeErrorLogin' dependiendo del tipo de error
-        // tambien cambiamos a rojo el borde del input correspondiente para enmarcar de donde proviene el error
+        // luego sacamos de ese string el tipo del error
+        // contenido entre / y ), por ejemplo:(auth/invalid-email)
+        // y por último editamos nuestro msj personalizado
+        // 'mensajeErrorLogin' dependiendo del tipo de error (preguntar sobre esta linea)
         if (
           e.message.substring(
             e.message.indexOf('/') + 1,
             e.message.lastIndexOf(')'),
-          ) == 'invalid-email'
+          ) === 'invalid-email'
         ) {
           mensajeErrorLogin = 'Correo incorrecto';
           email.style.border = '3px solid #CE27FA'; // y pone el cuadro de email en rojo
@@ -75,7 +79,7 @@ export async function loginEmail(email, password) {
           e.message.substring(
             e.message.indexOf('/') + 1,
             e.message.lastIndexOf(')'),
-          ) == 'invalid-login-credentials'
+          ) === 'invalid-login-credentials'
         ) {
           mensajeErrorLogin = 'Datos incorrectos';
           email.style.border = '3px solid #CE27FA'; // y pone el cuadro de email en rojo
@@ -84,13 +88,14 @@ export async function loginEmail(email, password) {
           e.message.substring(
             e.message.indexOf('/') + 1,
             e.message.lastIndexOf(')'),
-          ) == 'missing-password'
+          ) === 'missing-password'
         ) {
           mensajeErrorLogin = 'Ingrese contraseña';
           email.style.border = '1px solid rgb(28, 28, 28)'; // y pone el cuadro de email en rojo
           password.style.border = '3px solid #CE27FA'; // y pone el cuadro de password en rojo
         }
-        // Por último mandamos el error con nuestro msj personalizado, esto nos servirá para mostrarlo en la vista del usuario
+        // Por último mandamos el error con nuestro msj personalizado,
+        // esto nos servirá para mostrarlo en la vista del usuario
         throw new Error(mensajeErrorLogin || e);
         // se agrega 'e' en caso de que mande un error diferente a los definidos
       }

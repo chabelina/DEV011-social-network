@@ -1,6 +1,7 @@
 *{
     box-sizing: border-box;
 }
+
 body{
     background-color: antiquewhite;
     margin: 0%;
@@ -10,27 +11,31 @@ body{
 .containerAll{ 
     color: #F4F4FC;
     display: flex;
+    flex-direction: column;
+    gap: 3rem;
     justify-content: center;
+    align-items: center;
     width: 100%;
     height: 100vh;
-    align-items: center;
+    min-height: 100vh;
     background:#000000 url('./img/fondoVector.svg') no-repeat;
     background-size: cover;
+    position: relative; 
 }
 
-.registryContainer {
+/* .registryContainer {
     display: flex;
     flex-direction: column;
     align-items: center;
     gap: 3rem;
-}
+} */
 
-#registerForm{
+/* #registerForm{
     display: inherit;
     flex-direction: inherit;
     align-items: inherit;
     gap: 1rem;
-}
+} */
 
 /* #showPasswordContainer {
     display: flex;
@@ -62,6 +67,7 @@ body{
    position: relative;
    align-items: center;
 }
+
 .logo{
     width: 300px;
 }
@@ -147,42 +153,40 @@ body{
 
 /* --------- Formatos del muro --------- */
 
-#bodyPublications{
+/* #bodyPublications{
     border: 3px solid blue;
     width: 100vh;
-    height: 100vh;    /* height: 600px; */
+    height: 100vh; 
     display: grid;
-    /* flex-direction:column; */
     justify-content:space-between; 
     align-items:center;
     justify-self: center;
     background:#000000 url('./img/fondoVector.svg') no-repeat;
     background-size: cover;
     padding: 0vh 0vh 0vh 0vh;
-}
+} */
 
 #postArticle{
     display: flex;
     flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 80%;
+    max-width: 800px;
     background-color: #ffffff;
     color: #11035A;
-    /* display: flex; */
-    justify-content: center;
-    width: 97vh;
-    align-items: center;
     border-radius: 1rem;
     /* border: 3px solid rgb(135, 238, 130); */
     padding: 5px;
-    grid-auto-rows: minmax(100px, auto);
 }
 
 #postHeader{
-    height: 40px;
     display: grid;
+    width: 100%;
+    height: 40px;
     grid-template-columns: 1fr 14fr 1fr 1fr;
     /* align-items: center;
     justify-content: center; */
-    width: 97vh;
     /* border: 3px solid red; */
 }
 
@@ -252,8 +256,10 @@ li {
 }
 
 #footerPublications {
-    width:100vh;
+    width:100%;
     border: 3px solid darkred;
     display: flex;
     justify-content :space-around;
+    position: fixed;
+    bottom: 0;
 }
