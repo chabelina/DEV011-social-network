@@ -1,9 +1,13 @@
 import { logout, auth } from '../firebase/auth';
 import { onAuthStateChanged } from "firebase/auth";
-import { guardarPost, allPosts } from '../firebase/firestore';
+import { insertPostDB, allPosts, querySnapshot, queryNameUsers } from '../firebase/firestore';
+
+/* queryNameUsers.then((users)=>{
+  users.
+}) */
 
 // función que crea un articulo para cada post
-function renderPost(/* user, post, like */) {
+function renderPost(userNameDB, textPostDB, likeNumDB) {
   // Sección donde se guardaran las publicaciones
   const post = document.createElement('article');
   post.id = 'postArticle';
@@ -35,7 +39,7 @@ function renderPost(/* user, post, like */) {
   // Nombre del Usuario
   const nameUser = document.createElement('p');
   nameUser.id = 'nameUser';
-  nameUser.innerText = 'Pepita';
+  nameUser.innerText = userNameDB;
   headPost.appendChild(nameUser);
   // ----- style
   //nameUser.style.height = '35px';
@@ -63,7 +67,7 @@ function renderPost(/* user, post, like */) {
   const bodyPost = document.createElement('section');
   bodyPost.id = 'bodyPost'
   const textPost = document.createElement('p');
-  textPost.innerText = 'Lorem Ipsum es simplemente el texto de relleno de las imprentas y archivos de texto.';
+  textPost.innerText = textPostDB;
   bodyPost.appendChild(textPost);
   // ----- style
   //bodyPost.style.border = '3px solid orange';
@@ -112,6 +116,7 @@ function renderPost(/* user, post, like */) {
     unfilledLikeImg.style.display = isLiked ? 'none' : 'flex';
     filledLikeImg.style.display = isLiked ? 'flex' : 'none';
   });
+  //console.log(likeNumDB);
   // ----- style
   //filledLikeImg.style.width = '30px';
   //unfilledLikeImg.style.width = '30px';
@@ -158,10 +163,11 @@ function newPost(userID) {
   footerPost.appendChild(buttonSaveNewPost);
   // console.log(inputTextPost.value);
   buttonSaveNewPost.addEventListener('click', async() => {
-    console.log(userID, inputTextPost.value, new Date(), allPosts);  
-    await guardarPost(userID, inputTextPost.value, new Date(), allPosts);
+    //console.log(userID, inputTextPost.value, new Date(), allPosts);  
+    //console.log('444444444444',userID);
+    await insertPostDB(userID, inputTextPost.value, new Date(), allPosts);
     modalNewPost.style.display = 'none';
-  })
+  });
 
   alertNewPost.append(bodyPost, footerPost);
 
@@ -176,7 +182,9 @@ export const publications = (navigateTo) => {
   onAuthStateChanged(auth, (user)=>{
     if (user) {
       // El usuario está autenticado
-      localStorage.setItem ('userID', user.uid)
+      //console.log('1111111111111111',user);
+      //console.log('2222222222222222',user.uid);
+      //localStorage.setItem ('userID', user.uid)
       return 'userID return';
     } else {
       // El usuario no está autenticado
@@ -186,7 +194,7 @@ export const publications = (navigateTo) => {
 
   // ID del usuario
   const userID = localStorage.getItem('userID');
-
+  console.log('3333333', userID);
   // Contenedor de todas las publicaciones
   const containerAll = document.createElement('div');
   containerAll.className = 'containerAll';
@@ -204,7 +212,7 @@ export const publications = (navigateTo) => {
   newPostIcon.src = '../img/newPost.svg';
   newPostIcon.addEventListener('click', async () => {
     // console.log('.....', currentUser);
-    bodyPublications.appendChild(newPost());
+    containerAll.appendChild(newPost(userID));
   });
   // ----- style
   newPostIcon.style = 'width: 40px';
@@ -222,13 +230,13 @@ export const publications = (navigateTo) => {
 
   footerPublications.append(newPostIcon, logoutIcon);
   //console.log('maya')
-  containerAll.append(renderPost(), renderPost());
-  containerAll.appendChild(footerPublications);
-/*   querySnapshot.then((docs)=>{
+  querySnapshot.then((docs)=>{
     docs.forEach((doc)=>{
-    console.log(`${doc.id} => ${doc.data()}`);
-});
-  }) */
+      containerAll.append(renderPost(doc.data().user,doc.data().textPost, doc.data().likes.length));
+    });
+  });
+  
+  containerAll.appendChild(footerPublications);
 
   return containerAll;
 };
