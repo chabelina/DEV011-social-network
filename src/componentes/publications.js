@@ -197,7 +197,7 @@ export const publications = (navigateTo) => {
   console.log('3333333', userID);
   // Contenedor de todas las publicaciones
   const containerAll = document.createElement('div');
-  containerAll.className = 'containerAll';
+  containerAll.className = "containerAllPublications";
   // ----- style
   //containerAll.style = 'border: 3px solid blue; height: 600px;display: flex;flex-direction:column;justify-content:space-between; align-items:center';
 
