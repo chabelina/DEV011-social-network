@@ -132,6 +132,7 @@ function newPost(userID) {
 
   // Ventana que se sobrepone a la vista de publications
   const modalNewPost = document.createElement('div');
+  modalNewPost.className = 'newPostPopup';
   modalNewPost.style = 'position: fixed;  width: 100%;  height: 100%;  background-color: rgba(0, 0, 0, 0.5)';
 
   // Alert donde se guardaran las publicaciones
@@ -148,7 +149,7 @@ function newPost(userID) {
   bodyPost.appendChild(inputTextPost);
   // ----- style
   bodyPost.style = 'border:3px solid orange; backgroundColor:#ffffff; width 95%';
-  inputTextPost.style = 'border:3px solid orange; backgroundColor:#ffffff; width: 95%;';
+  inputTextPost.style = 'Color:#ffffff; width: 95%;';
 
   // ----- Pie de la publicación ----- //
   const footerPost = document.createElement('footer');

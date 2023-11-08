@@ -29,16 +29,31 @@ body{
     display: flex;
     flex-direction: column;
     padding: 3rem;
+    padding-bottom: 3.5rem;
     gap: 3rem;
     justify-content: center;
     align-items: center;
     width: 100%;
-    height: 100%;
+    height: 100vh;
     min-height: 100%;
     background:#000000 url('./img/fondoVector.svg') no-repeat;
     background-size: cover;
     position: relative;
 }
+
+#textNewPost{
+    display: flex;
+    justify-content: center;
+}
+
+.newPostPopup {
+    color: #11035A;
+    position: absolute;
+}
+
+/* .alertNewPost{ 
+    
+} */
 
 /* .registryContainer {
     display: flex;
@@ -274,10 +289,11 @@ li {
 }
 
 #footerPublications {
-    width:100%;
-    border: 3px solid darkred;
+    background: rgb(28, 28, 28);
     display: flex;
     justify-content :space-around;
+    width:100%;
+    padding: 1rem;
     position: fixed;
     bottom: 0;
 }
