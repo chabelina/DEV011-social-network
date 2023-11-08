@@ -1,6 +1,11 @@
 import { logout, auth } from '../firebase/auth';
-import { onAuthStateChanged } from "firebase/auth";
-import { insertPostDB, allPosts, querySnapshot, queryNameUsers } from '../firebase/firestore';
+import { onAuthStateChanged } from 'firebase/auth';
+import {
+  insertPostDB,
+  allPosts,
+  querySnapshot,
+  queryNameUsers,
+} from '../firebase/firestore';
 
 /* queryNameUsers.then((users)=>{
   users.
@@ -12,15 +17,15 @@ function renderPost(userNameDB, textPostDB, likeNumDB) {
   const post = document.createElement('article');
   post.id = 'postArticle';
   // ----- style
-  //post.style.border = '3px solid violet';
-  //post.style.backgroundColor = '#FFFFFF';
-  //post.style.width = '800px';
+  // post.style.border = '3px solid violet';
+  // post.style.backgroundColor = '#FFFFFF';
+  // post.style.width = '800px';
 
   // ----- Contenedor del header ----- //
   const headPost = document.createElement('header');
   headPost.id = 'postHeader';
   // ----- style
-/*   headPost.style.height = '60px';
+  /* headPost.style.height = '60px';
   headPost.style.border = '3px solid red';
   headPost.style.display = 'grid';
   headPost.style.gridTemplateColumns = '1fr 8fr 1fr 1fr'; */
@@ -33,7 +38,7 @@ function renderPost(userNameDB, textPostDB, likeNumDB) {
   profilePicture.id = 'profilePicture';
   headPost.appendChild(profilePicture);
   // ----- style
-/*   profilePicture.style.height = '35px';
+  /* profilePicture.style.height = '35px';
   profilePicture.style.border = '3px solid green'; */
 
   // Nombre del Usuario
@@ -42,8 +47,8 @@ function renderPost(userNameDB, textPostDB, likeNumDB) {
   nameUser.innerText = userNameDB;
   headPost.appendChild(nameUser);
   // ----- style
-  //nameUser.style.height = '35px';
-  //nameUser.style.border = '3px solid pink';
+  // nameUser.style.height = '35px';
+  // nameUser.style.border = '3px solid pink';
 
   // Boton editar
   const penIcon = document.createElement('img');
@@ -51,8 +56,8 @@ function renderPost(userNameDB, textPostDB, likeNumDB) {
   penIcon.className = 'editor';
   headPost.appendChild(penIcon);
   // ----- style
-  //penIcon.style.height = '35px';
-  //penIcon.style.border = '3px solid blue';
+  // penIcon.style.height = '35px';
+  // penIcon.style.border = '3px solid blue';
 
   // Boton eliminar
   const trashIcon = document.createElement('img');
@@ -60,24 +65,24 @@ function renderPost(userNameDB, textPostDB, likeNumDB) {
   trashIcon.className = 'editor';
   headPost.appendChild(trashIcon);
   // ----- style
-  //trashIcon.style.height = '35px';
-  //trashIcon.style.border = '3px solid yellow';
+  // trashIcon.style.height = '35px';
+  // trashIcon.style.border = '3px solid yellow';
 
   // ----- Cuerpo de la publicación ----- //
   const bodyPost = document.createElement('section');
-  bodyPost.id = 'bodyPost'
+  bodyPost.id = 'bodyPost';
   const textPost = document.createElement('p');
   textPost.innerText = textPostDB;
   bodyPost.appendChild(textPost);
   // ----- style
-  //bodyPost.style.border = '3px solid orange';
-  //bodyPost.style.backgroundColor = '#F4F4FC';
+  // bodyPost.style.border = '3px solid orange';
+  // bodyPost.style.backgroundColor = '#F4F4FC';
 
   // ----- Pie de la publicación ----- //
   const footerPost = document.createElement('footer');
   footerPost.id = 'footerPost';
   // ----- style
-  //footerPost.style = 'border:3px solid black; height:100px';
+  // footerPost.style = 'border:3px solid black; height:100px';
 
   // Elementos del pie de página del post
 
@@ -90,7 +95,8 @@ function renderPost(userNameDB, textPostDB, likeNumDB) {
     elementGenre.class = 'typeGenre';
     listGenre.appendChild(elementGenre);
     // ----- style
-    //elementGenre.style = 'display: flexbox; list-style-type: none; background-color: #BDB5FD;border-radius: 6px;color:#11035A; display: inline-block;';
+    // elementGenre.style = 'display: flexbox; list-style-type:
+    // none; background-color: #BDB5FD;border-radius: 6px;color:#11035A; display: inline-block;';
   });
   footerPost.appendChild(listGenre);
 
@@ -110,16 +116,17 @@ function renderPost(userNameDB, textPostDB, likeNumDB) {
 
   likeButton.append(filledLikeImg, unfilledLikeImg);
   footerPost.appendChild(likeButton);
-  //likeButton.style = 'border:0px; background-color:#FFFFFF; align-self: flex-end; margin-left: 740px';
+  // likeButton.style = 'border:0px; background-color:#FFFFFF;
+  // align-self: flex-end; margin-left: 740px';
   likeButton.addEventListener('click', () => {
     const isLiked = filledLikeImg.style.display === 'none';
     unfilledLikeImg.style.display = isLiked ? 'none' : 'flex';
     filledLikeImg.style.display = isLiked ? 'flex' : 'none';
   });
-  //console.log(likeNumDB);
+  // console.log(likeNumDB);
   // ----- style
-  //filledLikeImg.style.width = '30px';
-  //unfilledLikeImg.style.width = '30px';
+  // filledLikeImg.style.width = '30px';
+  // unfilledLikeImg.style.width = '30px';
   // console.log(filledLikeImg.style.display);
 
   post.append(headPost, bodyPost, footerPost);
@@ -163,31 +170,30 @@ function newPost(userID) {
   buttonSaveNewPost.innerText = 'Recomentar';
   footerPost.appendChild(buttonSaveNewPost);
   // console.log(inputTextPost.value);
-  buttonSaveNewPost.addEventListener('click', async() => {
-    //console.log(userID, inputTextPost.value, new Date(), allPosts);  
-    //console.log('444444444444',userID);
+  buttonSaveNewPost.addEventListener('click', async () => {
+    // console.log(userID, inputTextPost.value, new Date(), allPosts);
+    // console.log('444444444444',userID);
     await insertPostDB(userID, inputTextPost.value, new Date(), allPosts);
     modalNewPost.style.display = 'none';
   });
 
   alertNewPost.append(bodyPost, footerPost);
 
-  modalNewPost.appendChild(alertNewPost)
+  modalNewPost.appendChild(alertNewPost);
 
   return modalNewPost;
 }
 
 // función que renderea el muro
 export const publications = (navigateTo) => {
-  
-  onAuthStateChanged(auth, (user)=>{
+  onAuthStateChanged(auth, (user) => {
     if (user) {
       // El usuario está autenticado
-      //console.log('1111111111111111',user);
-      //console.log('2222222222222222',user.uid);
-      //localStorage.setItem ('userID', user.uid)
-      return 'userID return';
+      // console.log('1111111111111111',user);
+      // console.log('2222222222222222',user.uid);
+      // localStorage.setItem ('userID', user.uid)
     } else {
+      return 'userID return';
       // El usuario no está autenticado
       return navigateTo('/');
     }
@@ -200,13 +206,15 @@ export const publications = (navigateTo) => {
   const containerAll = document.createElement('div');
   containerAll.className = "containerAllPublications";
   // ----- style
-  //containerAll.style = 'border: 3px solid blue; height: 600px;display: flex;flex-direction:column;justify-content:space-between; align-items:center';
+  // containerAll.style = 'border: 3px solid blue; height: 600px;display:
+  // flex;flex-direction:column;justify-content:space-between; align-items:center';
 
   // Pie de página para los botones de crar post y cerrar sesión
   const footerPublications = document.createElement('footer');
   footerPublications.id = 'footerPublications';
   // ----- style
-  //footerPublications.style = 'width:800px; border: 3px solid darkred; display: flex; justify-content :space-around';
+  // footerPublications.style = 'width:800px; border: 3px solid darkred;
+  // display: flex; justify-content :space-around';
 
   // Botón para crear nuevo post
   const newPostIcon = document.createElement('img');
@@ -230,13 +238,12 @@ export const publications = (navigateTo) => {
   logoutIcon.style = 'width: 20px';
 
   footerPublications.append(newPostIcon, logoutIcon);
-  //console.log('maya')
-  querySnapshot.then((docs)=>{
-    docs.forEach((doc)=>{
-      containerAll.append(renderPost(doc.data().user,doc.data().textPost, doc.data().likes.length));
+  // console.log('maya')
+  querySnapshot.then((docs) => {
+    docs.forEach((doc) => {
+      containerAll.append(renderPost(doc.data().user, doc.data().textPost, doc.data().likes.length));
     });
   });
-  
   containerAll.appendChild(footerPublications);
 
   return containerAll;

@@ -37,7 +37,8 @@ export async function logout() {
 // -------------------- Función para inicio de sesión con Email --------------------//
 export async function loginEmail(email, password) {
   try {
-    const user = auth.currentUser; // revisamos si existe una sesión abierta
+    const user = auth.currentUser;
+    // revisamos si existe una sesión abierta
     if (user) {
       // En caso de que esté abierta...
       throw new Error(`Tiene una sesión abierta: ${user.uid}`);
