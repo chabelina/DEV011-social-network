@@ -11,7 +11,7 @@ import { app } from './firebase-config.js';
 // Inicializamos la autenticación
 export const auth = getAuth(app);
 
-export const user = auth.currentUser;
+export const user1 = auth.currentUser;
 
 // Declaramos el nuevo proveedor de Google
 const provider = new GoogleAuthProvider();
