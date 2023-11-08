@@ -12,9 +12,9 @@ export const db = getFirestore(app);
 // Información de los post
 export const allPosts = collection(db, 'posts');
 
-export async function insertPostDB(userID, inputLogin, datePost, allPosts) {
+export async function insertPostDB(userID, inputLogin, datePost, allPostsDB = allPosts) {
   // función que garda el post
-  await addDoc(allPosts, {
+  await addDoc(allPostsDB, {
     user: userID,
     textPost: inputLogin,
     likes: [],
@@ -27,8 +27,8 @@ export const querySnapshot = getDocs(collection(db, 'posts'));
 // Información de los usuarios
 export const allUsers = collection(db, 'users');
 
-export async function insertNewUserDB(nickname, uid, allUsers) {
-  await addDoc(allUsers, {
+export async function insertNewUserDB(nickname, uid, allUsersDB = allUsers) {
+  await addDoc(allUsersDB, {
     name: nickname,
     id: uid,
   });
