@@ -1,5 +1,5 @@
 import { logout, auth } from '../firebase/auth';
-import { onAuthStateChanged } from '..firebase/auth';
+import { onAuthStateChanged } from 'firebase/auth';
 import {
   insertPostDB,
   allPosts,
