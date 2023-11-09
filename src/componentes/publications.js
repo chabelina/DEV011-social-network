@@ -1,6 +1,6 @@
 import { onAuthStateChanged } from 'firebase/auth';
 import { logout, auth } from '../firebase/auth';
-import { querySnapshot } from '../firebase/firestore';
+import { queryOnRealTime, queryNameUsers } from '../firebase/firestore';
 import { newPost } from './newPost';
 /* queryNameUsers.then((users)=>{
   users.
@@ -104,6 +104,9 @@ function renderPost(isLoggedUser, userNameDB, textPostDB, likesDB) { // likeNumD
 
 // función que renderea el muro
 export const publications = (navigateTo) => {
+  // Extracción de la información del usuario
+
+  // ------ ID
   onAuthStateChanged(auth, (user) => {
     if (user) {
       // El usuario está autenticado
@@ -114,8 +117,22 @@ export const publications = (navigateTo) => {
     return navigateTo('/');
   });
 
-  // ID del usuario
+  // ID del usuario:
   const userID = localStorage.getItem('userID');
+
+  // ------ Name
+  queryNameUsers.then((docs) => {
+    docs.forEach((us) => {
+      if (us.data().id === userID) {
+        localStorage.setItem('nameUser', us.data().name);
+        return 'nameUser return';
+      }
+      return 'not user';
+    });
+  });
+
+  // Nombre del usuario:
+  const nameUser = localStorage.getItem('nameUser');
 
   // Contenedor de todas las publicaciones
   const containerAll = document.createElement('div');
@@ -130,7 +147,7 @@ export const publications = (navigateTo) => {
   newPostIcon.src = '../img/newPost.svg';
   newPostIcon.addEventListener('click', async () => {
     // console.log('.....', currentUser);
-    containerAll.appendChild(newPost(userID));
+    containerAll.appendChild(newPost(userID, nameUser));
   });
   newPostIcon.style = 'width: 40px';
 
@@ -147,18 +164,18 @@ export const publications = (navigateTo) => {
 
   footerPublications.append(newPostIcon, logoutIcon);
 
-  querySnapshot.then((docs) => {
-    docs.forEach((doc) => {
+  queryOnRealTime((posts) => {
+    containerAll.innerHTML = '';
+    containerAll.appendChild(footerPublications);
+    posts.forEach((doc) => {
       containerAll.append(renderPost(
         userID === doc.data().user,
-        doc.data().user,
+        doc.data().name,
         doc.data().textPost,
         doc.data().likes.length,
       ));
     });
   });
-
-  containerAll.appendChild(footerPublications);
 
   return containerAll;
 };

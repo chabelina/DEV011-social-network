@@ -3,6 +3,9 @@ import {
   collection,
   addDoc,
   getDocs,
+  onSnapshot,
+  query,
+  orderBy,
 } from 'firebase/firestore';
 import { app } from './firebase-config.js';
 // import { addDoc, doc, setDoc } from "firebase/firestore";
@@ -12,17 +15,22 @@ export const db = getFirestore(app);
 // Información de los post
 export const allPosts = collection(db, 'posts');
 
-export async function insertPostDB(userID, inputLogin, datePost, allPostsDB = allPosts) {
-  // función que garda el post
+// función que garda el post
+export async function insertPostDB(userID, nameUser, inputLogin, datePost, allPostsDB = allPosts) {
   await addDoc(allPostsDB, {
     user: userID,
+    name: nameUser,
     textPost: inputLogin,
     likes: [],
     date: datePost,
   });
 }
 
-export const querySnapshot = getDocs(collection(db, 'posts'));
+// export const querySnapshot = getDocs(collection(db, 'posts'));
+const q = query(allPosts, orderBy('date', 'desc'));
+export function queryOnRealTime(render) {
+  onSnapshot(q, render);
+}
 
 // Información de los usuarios
 export const allUsers = collection(db, 'users');

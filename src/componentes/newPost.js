@@ -5,7 +5,7 @@ import {
 } from '../firebase/firestore';
 
 // función para crear un nevo post
-export function newPost(userID) {
+export function newPost(userID, nameUser) {
   // console.log(currentUser);
 
   // Ventana que se sobrepone a la vista de publications
@@ -19,11 +19,20 @@ export function newPost(userID) {
   // ----- style
   alertNewPost.style = 'width: 50%;align-items: center;border-radius: 1rem;position: absolute;  top: 50%;  left: 50%;  transform: translate(-50%, -50%);  background-color: #F4F4FC;  padding: 20px;  z-index: 2;';
 
+  // Eventos para el control de la viusalizacion o cierre del popup
+  modalNewPost.addEventListener('click', () => {
+    modalNewPost.style.display = 'none';
+  });
+  alertNewPost.addEventListener('click', (e) => {
+    e.stopPropagation();
+  });
+
   // ----- Cuerpo de la publicación ----- //
   const bodyPost = document.createElement('section');
   bodyPost.innerText = 'Recomendación:\n';
   const inputTextPost = document.createElement('textarea');
   inputTextPost.id = 'textNewPost';
+  inputTextPost.placeholder = 'Ingresa tu increible recomendación aquí!';
   bodyPost.appendChild(inputTextPost);
   // ----- style
   bodyPost.style = 'border:3px solid orange; backgroundColor:#ffffff; width 95%';
@@ -39,13 +48,17 @@ export function newPost(userID) {
   // Enviar post
   const buttonSaveNewPost = document.createElement('button');
   buttonSaveNewPost.innerText = 'Recomentar';
-  footerPost.appendChild(buttonSaveNewPost);
+  const msjEmptyPost = document.createElement('p');
+  footerPost.append(buttonSaveNewPost, msjEmptyPost);
   // console.log(inputTextPost.value);
   buttonSaveNewPost.addEventListener('click', async () => {
-    // console.log(userID, inputTextPost.value, new Date(), allPosts);
-    // console.log('444444444444',userID);
-    await insertPostDB(userID, inputTextPost.value, new Date(), allPosts);
-    modalNewPost.style.display = 'none';
+    if (inputTextPost.value.replace(' ', '').length > 2) {
+      msjEmptyPost.innerText = '';
+      await insertPostDB(userID, nameUser, inputTextPost.value, new Date(), allPosts);
+      modalNewPost.style.display = 'none';
+    } else {
+      msjEmptyPost.innerText = 'Necesitas insertar texto en tu recomendación';
+    }
   });
 
   alertNewPost.append(bodyPost, footerPost);

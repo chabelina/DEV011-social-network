@@ -30,6 +30,7 @@ export const newAccount = (navigateTo) => {
   // Caja de ingreso de Alias
   const inputNickname = document.createElement('input');
   inputNickname.setAttribute('placeholder', 'Alias');
+  inputNickname.maxLength = 15;
   inputNickname.id = 'inputNickname';
   formInputCreateAccount.appendChild(inputNickname);
 
