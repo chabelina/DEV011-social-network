@@ -2,17 +2,19 @@ import { onAuthStateChanged } from 'firebase/auth';
 import { logout, auth } from '../firebase/auth';
 import { queryOnRealTime, queryNameUsers } from '../firebase/firestore';
 import { newPost } from './newPost';
+import { pupUpDelete } from './deletePost.js';
 
-const pupUpDelete = document.getElementById('popUp');
-const deleteButton = document.getElementById('deleteButton');
+// const pupUpDelete = document.getElementById('popUp');
+// const deleteButton = document.getElementById('deleteButton');
 
 /* queryNameUsers.then((users)=>{
   users.
 }) */
 
 // función que crea un articulo para cada post
-function renderPost(isLoggedUser, userNameDB, textPostDB, likesDB) { // likeNumDB
+function renderPost(idPostDb, isLoggedUser, userNameDB, textPostDB, likesDB) { // likeNumDB
   // Sección donde se guardaran las publicaciones
+  const idPost = idPostDb;
   const post = document.createElement('article');
   post.id = 'postArticle';
 
@@ -40,8 +42,10 @@ function renderPost(isLoggedUser, userNameDB, textPostDB, likesDB) { // likeNumD
     trashIcon.src = '../img/litter.svg';
     trashIcon.className = 'delete';
     headPost.appendChild(trashIcon);
+    const deleteContainer = pupUpDelete();
+    document.body.appendChild(deleteContainer);
     trashIcon.addEventListener('click', () => {
-      pupUpDelete.style.display = 'flex';
+      deleteContainer.style.display = 'flex';
     });
 
     // Boton editar
@@ -95,6 +99,7 @@ function renderPost(isLoggedUser, userNameDB, textPostDB, likesDB) { // likeNumD
   likeButton.append(filledLikeImg, unfilledLikeImg);
   footerPost.appendChild(likeButton);
   likeButton.addEventListener('click', () => {
+    console.log('id del post: ', idPost);
     const isLiked = filledLikeImg.style.display === 'none';
     unfilledLikeImg.style.display = isLiked ? 'none' : 'flex';
     filledLikeImg.style.display = isLiked ? 'flex' : 'none';
@@ -176,17 +181,15 @@ export const publications = (navigateTo) => {
     containerAll.innerHTML = '';
     containerAll.appendChild(footerPublications);
     posts.forEach((doc) => {
+      console.log(doc.id);
       containerAll.append(renderPost(
+        doc.id,
         userID === doc.data().user,
         doc.data().name,
         doc.data().textPost,
         doc.data().likes.length,
       ));
     });
-  });
-
-  deleteButton.addEventListener('click', () => {
-    pupUpDelete.style.display = 'none';
   });
 
   return containerAll;
