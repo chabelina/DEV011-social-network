@@ -6,14 +6,36 @@ import {
   onSnapshot,
   query,
   orderBy,
+  doc,
+  updateDoc,
 } from 'firebase/firestore';
 import { app } from './firebase-config.js';
 // import { addDoc, doc, setDoc } from "firebase/firestore";
 
 export const db = getFirestore(app);
 
-// Información de los post
+// ------ Información de los post
 export const allPosts = collection(db, 'posts');
+
+// export const querySnapshot = getDocs(collection(db, 'posts'));
+const allPostsSorted = query(allPosts, orderBy('date', 'desc'));
+
+export function queryOnRealTime(render) {
+  // console.log(allPostsSorted);
+  onSnapshot(allPostsSorted, render);
+}
+
+// ------ Información de los usuarios
+export const allUsers = collection(db, 'users');
+
+export async function insertNewUserDB(nickname, uid, allUsersDB = allUsers) {
+  await addDoc(allUsersDB, {
+    name: nickname,
+    id: uid,
+  });
+}
+
+export const queryNameUsers = getDocs(collection(db, 'users'));
 
 // función que garda el post
 export async function insertPostDB(userID, nameUser, inputLogin, datePost, allPostsDB = allPosts) {
@@ -26,23 +48,11 @@ export async function insertPostDB(userID, nameUser, inputLogin, datePost, allPo
   });
 }
 
-// export const querySnapshot = getDocs(collection(db, 'posts'));
-const q = query(allPosts, orderBy('date', 'desc'));
-export function queryOnRealTime(render) {
-  onSnapshot(q, render);
+// funcion para actualizar los likes
+export async function updateLikes(updatedLikes, idPost) {
+  const docRef = doc(db, 'posts', idPost);
+  await updateDoc(docRef, { likes: [...updatedLikes] });
 }
-
-// Información de los usuarios
-export const allUsers = collection(db, 'users');
-
-export async function insertNewUserDB(nickname, uid, allUsersDB = allUsers) {
-  await addDoc(allUsersDB, {
-    name: nickname,
-    id: uid,
-  });
-}
-
-export const queryNameUsers = getDocs(collection(db, 'users'));
 
 // Agregar un nuevo documento a la colección
 /* const postsElements = await addDoc(allPosts, { /* datos del documento  });
