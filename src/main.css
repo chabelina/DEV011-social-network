@@ -35,8 +35,8 @@ body{
     justify-content: center;
     align-items: center;
     width: 100%;
-    min-height: 100%;
-    background:#000000 url('./img/fondoVector.svg') no-repeat;
+    height: 100%;
+    background:#000000 url('./img/fondoVector.svg') no-repeat center center fixed;
     background-size: cover;
     position: relative;
 }
