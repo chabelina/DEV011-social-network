@@ -1,6 +1,6 @@
 import { onAuthStateChanged } from 'firebase/auth';
 import { logout, auth } from '../firebase/auth';
-import { queryOnRealTime, queryNameUsers } from '../firebase/firestore';
+import { queryOnRealTime, queryNameUsers, updateLikes } from '../firebase/firestore';
 import { newPost } from './newPost';
 import { pupUpDelete } from './deletePost.js';
 
@@ -12,9 +12,11 @@ import { pupUpDelete } from './deletePost.js';
 }) */
 
 // función que crea un articulo para cada post
-function renderPost(idPostDb, isLoggedUser, userNameDB, textPostDB, likesDB) { // likeNumDB
-  // Sección donde se guardaran las publicaciones
-  const idPost = idPostDb;
+
+function renderPost(userID, idPostDB, isLoggedUser, userNameDB, textPostDB, likesDB) { // likeNumDB
+  // Id del post
+  const idPost = idPostDB;
+
   const post = document.createElement('article');
   post.id = 'postArticle';
 
@@ -88,26 +90,42 @@ function renderPost(idPostDb, isLoggedUser, userNameDB, textPostDB, likesDB) { /
   // Imagen del like rellena
   const filledLikeImg = document.createElement('img');
   filledLikeImg.className = 'likeImg';
-  filledLikeImg.style.display = 'none';
   filledLikeImg.src = '../img/fillStart.svg';
   // Imagen del like sin rellenar
   const unfilledLikeImg = document.createElement('img');
   unfilledLikeImg.className = 'likeImg';
   unfilledLikeImg.src = '../img/unfillStart.svg';
-  unfilledLikeImg.style.display = 'flex';
+
+  if (likesDB.includes(userID)) {
+    filledLikeImg.style.display = 'flex';
+    unfilledLikeImg.style.display = 'none';
+  } else {
+    filledLikeImg.style.display = 'none';
+    unfilledLikeImg.style.display = 'flex';
+  }
 
   likeButton.append(filledLikeImg, unfilledLikeImg);
   footerPost.appendChild(likeButton);
-  likeButton.addEventListener('click', () => {
-    console.log('id del post: ', idPost);
-    const isLiked = filledLikeImg.style.display === 'none';
-    unfilledLikeImg.style.display = isLiked ? 'none' : 'flex';
-    filledLikeImg.style.display = isLiked ? 'flex' : 'none';
+
+  let likes = [...likesDB];
+  likeButton.addEventListener('click', async () => {
+    const isLiked = filledLikeImg.style.display === 'flex';
+    if (!isLiked && !likes.includes(userID)) {
+      likes.push(userID);
+      unfilledLikeImg.style.display = 'none';
+      filledLikeImg.style.display = 'flex';
+    } else {
+      likes = likes.filter((user) => user !== userID);
+      unfilledLikeImg.style.display = 'flex';
+      filledLikeImg.style.display = 'none';
+    }
+    await updateLikes(likes, idPost);
+
   });
 
   // Número de likes
   const likesNumber = document.createElement('p');
-  likesNumber.innerHTML = likesDB;
+  likesNumber.innerHTML = likesDB.length;
   likesNumber.id = 'likesCounter';
   footerPost.appendChild(likesNumber);
 
@@ -181,12 +199,13 @@ export const publications = (navigateTo) => {
     containerAll.innerHTML = '';
     containerAll.appendChild(footerPublications);
     posts.forEach((doc) => {
-      console.log(doc.id);
       containerAll.append(renderPost(
+        userID,
+        doc.id,
         userID === doc.data().user,
         doc.data().name,
         doc.data().textPost,
-        doc.data().likes.length,
+        doc.data().likes,
       ));
     });
   });
