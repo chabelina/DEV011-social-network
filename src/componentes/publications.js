@@ -183,7 +183,6 @@ export const publications = (navigateTo) => {
     posts.forEach((doc) => {
       console.log(doc.id);
       containerAll.append(renderPost(
-        doc.id,
         userID === doc.data().user,
         doc.data().name,
         doc.data().textPost,
