@@ -2,6 +2,10 @@ import { onAuthStateChanged } from 'firebase/auth';
 import { logout, auth } from '../firebase/auth';
 import { queryOnRealTime, queryNameUsers } from '../firebase/firestore';
 import { newPost } from './newPost';
+
+const pupUpDelete = document.getElementById('popUp');
+const deleteButton = document.getElementById('deleteButton');
+
 /* queryNameUsers.then((users)=>{
   users.
 }) */
@@ -34,8 +38,11 @@ function renderPost(isLoggedUser, userNameDB, textPostDB, likesDB) { // likeNumD
     // Boton eliminar
     const trashIcon = document.createElement('img');
     trashIcon.src = '../img/litter.svg';
-    trashIcon.className = 'editor';
+    trashIcon.className = 'delete';
     headPost.appendChild(trashIcon);
+    trashIcon.addEventListener('click', () => {
+      pupUpDelete.style.display = 'flex';
+    });
 
     // Boton editar
     const penIcon = document.createElement('img');
@@ -138,7 +145,7 @@ export const publications = (navigateTo) => {
   const containerAll = document.createElement('div');
   containerAll.className = 'containerAllPublications';
 
-  // Pie de página para los botones de crar post y cerrar sesión
+  // Pie de página para los botones de crear post y cerrar sesión
   const footerPublications = document.createElement('footer');
   footerPublications.id = 'footerPublications';
 
@@ -175,6 +182,10 @@ export const publications = (navigateTo) => {
         doc.data().likes.length,
       ));
     });
+  });
+
+  deleteButton.addEventListener('click', () => {
+    pupUpDelete.style.display = 'none';
   });
 
   return containerAll;
