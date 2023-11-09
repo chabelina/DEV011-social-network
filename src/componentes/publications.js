@@ -96,6 +96,7 @@ function renderPost(isLoggedUser, userNameDB, textPostDB, likesDB) { // likeNumD
   // Número de likes
   const likesNumber = document.createElement('p');
   likesNumber.innerHTML = likesDB;
+  likesNumber.id = 'likesCounter';
   footerPost.appendChild(likesNumber);
 
   post.append(headPost, bodyPost, footerPost);

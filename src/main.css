@@ -298,6 +298,7 @@ body{
     height: 35px;
    /*  border: 3px solid pink; */
 }
+
 .editor{
     height: 30px;
     margin: 1px 4px 1px 4px;
@@ -315,7 +316,7 @@ body{
 #footerPost{
     width: 100%;
     display: flex;
-    justify-content: left;
+    justify-content: right;
     /* border:3px solid black; */
 }
 
@@ -347,6 +348,11 @@ li {
 
 #likeButton .likeImg{
     width: 30px;
+}
+
+#likesCounter{
+    padding: 0 10px 0;
+    margin-right: 5px;
 }
 
 #footerPublications {
