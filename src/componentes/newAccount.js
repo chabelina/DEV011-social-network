@@ -57,7 +57,7 @@ export const newAccount = (navigateTo) => {
   passwordContainer.appendChild(inputPassword);
   // Mensaje de error al ingresar con email
   const errorInvalidPassword = document.createElement('p');
-  errorInvalidPassword.id = 'errorMessage';
+  errorInvalidPassword.className = 'errorMessage';
   formInputCreateAccount.append(errorInvalidPassword);
 
   // Check para mostrar contraseña

@@ -6,6 +6,7 @@ body{
     background-color: antiquewhite;
     margin: 0%;
     justify-content: center;
+    color: #11035A;
 }
 
 .containerAll{ 
@@ -29,31 +30,87 @@ body{
     display: flex;
     flex-direction: column;
     padding: 3rem;
-    padding-bottom: 3.5rem;
+    padding-bottom: 6rem;
     gap: 3rem;
     justify-content: center;
     align-items: center;
     width: 100%;
-    height: 100vh;
     min-height: 100%;
     background:#000000 url('./img/fondoVector.svg') no-repeat;
     background-size: cover;
     position: relative;
 }
 
-#textNewPost{
-    display: flex;
-    justify-content: center;
-}
-
 .newPostPopup {
     color: #11035A;
     position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+
 }
 
-/* .alertNewPost{ 
-    
-} */
+#alertNewPost { 
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+    max-width: 40%;
+    width: 50%;
+    border-radius: 1rem;
+    position: absolute;  
+    top: 50%;  
+    left: 50%;  
+    transform: translate(-50%, -50%);  background-color: #F4F4FC;  padding: 20px;  z-index: 2;
+
+}
+
+#alertMainSection{
+    display: inherit;
+    flex-direction: column;
+    justify-content: center;
+    gap: 0.5rem;
+    width: 100%;
+}
+
+#alertInputLabel{
+    display: inherit;
+}
+
+#alertInput{
+    width: 100%;
+    height: 100%;
+    min-height: 75px;
+    height: auto;
+    resize: none;
+    border: none;
+}
+
+#alertInput::placeholder {
+  color: rgba(206, 39, 250, 0.5); /* Change the color to your desired color */
+}
+
+#alertFooter{
+    display: inherit; 
+    flex-direction: column; 
+    align-items: center;
+    width: 100%; 
+}
+
+#alertFooterSaveButton{
+    padding: 5px; 
+    color: #11035A ;
+    font-size: medium;
+    background: #FDB803; 
+    border: none; 
+    border-radius: 8px; 
+    width: 100%;
+    max-width: 50%;
+    display: flex;
+    justify-content: center;
+}
 
 /* .registryContainer {
     display: flex;
@@ -171,6 +228,10 @@ body{
     width: 200px;
     height: 30px;
     background-color: #FDB803;
+}
+
+.errorMessage{
+    color: red;
 }
 
 @media (min-width: 768px) {
