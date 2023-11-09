@@ -149,7 +149,7 @@ export const publications = (navigateTo) => {
     // console.log('.....', currentUser);
     containerAll.appendChild(newPost(userID, nameUser));
   });
-  newPostIcon.style = 'width: 40px';
+  newPostIcon.style = 'display: flex; position: relative; width: 40px; grid-column: 2; left: 40%;';
 
   // Boton de cerrar sesión  const buttonLogOut = document.createElement('button');
   const logoutIcon = document.createElement('img');
@@ -162,7 +162,7 @@ export const publications = (navigateTo) => {
   // ----- style
   logoutIcon.style = 'width: 20px';
 
-  footerPublications.append(newPostIcon, logoutIcon);
+  footerPublications.append(logoutIcon, newPostIcon);
 
   queryOnRealTime((posts) => {
     containerAll.innerHTML = '';

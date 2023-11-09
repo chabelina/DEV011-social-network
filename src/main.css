@@ -351,7 +351,9 @@ li {
 
 #footerPublications {
     background: rgb(28, 28, 28);
-    display: flex;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: 10px;
     justify-content :space-around;
     width:100%;
     padding: 1rem;
