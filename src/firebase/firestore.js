@@ -17,6 +17,27 @@ export const db = getFirestore(app);
 // ------ Información de los post
 export const allPosts = collection(db, 'posts');
 
+// función que guarda el post
+export async function insertPostDB(userID, nameUser, inputLogin, datePost, allPostsDB = allPosts) {
+  await addDoc(allPostsDB, {
+    user: userID,
+    name: nameUser,
+    textPost: inputLogin,
+    likes: [],
+    date: datePost,
+  });
+}
+
+export async function editPostDB(postId, editedContent) {
+  // Almacenamos la referencia de datos del post en cuestion
+  const postRef = collection('posts').doc(postId);
+
+  // Actualizamos el documento con el contenido editado (editedContent)
+  await postRef.update({
+    textPost: editedContent,
+  });
+}
+
 // export const querySnapshot = getDocs(collection(db, 'posts'));
 const allPostsSorted = query(allPosts, orderBy('date', 'desc'));
 
@@ -37,7 +58,7 @@ export async function insertNewUserDB(nickname, uid, allUsersDB = allUsers) {
 
 export const queryNameUsers = getDocs(collection(db, 'users'));
 
-// función que garda el post
+/* // función que garda el post
 export async function insertPostDB(userID, nameUser, inputLogin, datePost, allPostsDB = allPosts) {
   await addDoc(allPostsDB, {
     user: userID,
@@ -46,7 +67,7 @@ export async function insertPostDB(userID, nameUser, inputLogin, datePost, allPo
     likes: [],
     date: datePost,
   });
-}
+} */
 
 // funcion para actualizar los likes
 export async function updateLikes(updatedLikes, idPost) {
