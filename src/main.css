@@ -229,6 +229,41 @@ body{
     height: 30px;
     background-color: #FDB803;
 }
+.pupUp{
+    background-color: #000000ce;
+    height: 100%;
+    width: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 999;
+    display: none;
+    justify-content: center;
+    align-items:center;
+
+}
+.delete-popUp{
+    background-color:#F4F4FC;
+    border-radius: 2rem;
+    height: 200px;
+    width: 300px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 2rem;
+}
+.delete-button{
+    background-color: #FDB803;
+    border-radius: 1rem;
+    padding: 0.5rem 2rem;
+    border:none;
+    box-shadow: -2px 9px 16px -2px rgba(0,0,0,0.42);
+}
+/* 
+.delete-text{
+
+} */
 
 .errorMessage{
     color: red;
@@ -303,7 +338,10 @@ body{
     height: 30px;
     margin: 1px 4px 1px 4px;
 }
-
+.delete{
+    height: 30px;
+    margin: 1px 4px 1px 4px;
+}
 #bodyPost{
     background-color: #F4F4FC;
     border-radius: 1rem;
