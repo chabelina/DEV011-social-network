@@ -3,6 +3,7 @@ import { logout, auth } from '../firebase/auth';
 import { queryOnRealTime, queryNameUsers, updateLikes } from '../firebase/firestore';
 import { newPost } from './newPost';
 import { pupUpDelete } from './deletePost.js';
+import { editPost } from './editPost.js';
 
 // const pupUpDelete = document.getElementById('popUp');
 // const deleteButton = document.getElementById('deleteButton');
@@ -55,6 +56,11 @@ function renderPost(userID, idPostDB, isLoggedUser, userNameDB, textPostDB, like
     penIcon.src = '../img/pen.svg';
     penIcon.className = 'editor';
     headPost.appendChild(penIcon);
+    const editContainer = editPost();
+    penIcon.addEventListener('click', () => {
+      document.body.appendChild(editContainer);
+      editContainer.style.display = 'flex';
+    });
   }
 
   // ----- Cuerpo de la publicación ----- //
@@ -120,7 +126,6 @@ function renderPost(userID, idPostDB, isLoggedUser, userNameDB, textPostDB, like
       filledLikeImg.style.display = 'none';
     }
     await updateLikes(likes, idPost);
-
   });
 
   // Número de likes

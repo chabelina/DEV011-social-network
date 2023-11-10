@@ -1,3 +1,5 @@
+import { editPostDB } from '../firebase/firestore';
+
 export const editPost = () => {
   // Ventana que se sobrepone a la vista de publications
   const modalEditPost = document.createElement('div');
@@ -44,6 +46,7 @@ export const editPost = () => {
   const buttonSaveEditedPost = document.createElement('button');
   buttonSaveEditedPost.innerText = 'Actualizar';
   buttonSaveEditedPost.id = 'alertFooterSaveButton';
+  buttonSaveEditedPost.addEventListener('click', editPostDB());
 
   const msjEmptyPost = document.createElement('p');
   msjEmptyPost.className = 'errorMessage';
