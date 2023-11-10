@@ -37,7 +37,9 @@ function passwordFormat(input) {
 export function inputsFormats(email, password) {
   let msjError = '';
   // Valida que todo esté Ok
-  if (emailFormat(email.value) === true && passwordFormat(password.value) === true) {
+  if (
+    emailFormat(email.value) === true
+    && passwordFormat(password.firstElementChild.value) === true) {
     return true;
   }
   if (emailFormat(email.value) === true) {
@@ -48,13 +50,13 @@ export function inputsFormats(email, password) {
     email.style.border = '3px solid #CE27FA';
     msjError += emailFormat(email.value);
   }
-  if (passwordFormat(password.value) === true) {
+  if (passwordFormat(password.firstElementChild.value) === true) {
     // La contraseña está bien?...
     password.style.border = '1px solid rgb(28, 28, 28)';
   } else {
     // incorpora el msj y cambia el formato
     password.style.border = '3px solid #CE27FA';
-    msjError += passwordFormat(password.value);
+    msjError += passwordFormat(password.firstElementChild.value);
   }
   throw new Error(msjError);
 }

@@ -31,6 +31,7 @@ export async function loginGoogle() {
 
 // -------------------- Función para cerrar sesión --------------------//
 export async function logout() {
+  // localStorage.removeItem('nameUser');
   await signOut(auth);
 }
 
@@ -41,7 +42,7 @@ export async function loginEmail(email, password) {
     // revisamos si existe una sesión abierta
     if (user) {
       // En caso de que esté abierta...
-      throw new Error(`Tiene una sesión abierta: ${user.uid}`);
+      throw new Error(`Tiene una sesión abierta: ${user.email}`);
       // se elimina el signo de + y se coloca backtips
       //  para que sea de manera dinamica y mas simplificada
       // Lanza un error en consola indicando el uid de usuario en sesión

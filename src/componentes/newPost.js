@@ -10,12 +10,11 @@ export function newPost(userID, nameUser) {
 
   // Ventana que se sobrepone a la vista de publications
   const modalNewPost = document.createElement('div');
-  modalNewPost.className = 'newPostPopup';
-  modalNewPost.style = 'position: fixed;  width: 100%;  height: 100%;  background-color: rgba(0, 0, 0, 0.7);  z-index: 1;';
+  modalNewPost.className = 'pupUp';
 
   // Alert donde se guardaran las publicaciones
   const alertNewPost = document.createElement('article');
-  alertNewPost.id = 'alertNewPost';
+  alertNewPost.className = 'alertPopUp';
   // ----- style
 
   // Eventos para el control de la viusalizacion o cierre del popup
@@ -28,12 +27,12 @@ export function newPost(userID, nameUser) {
 
   // ----- Cuerpo de la publicación ----- //
   const bodyPost = document.createElement('section');
-  bodyPost.id = 'alertMainSection';
+  bodyPost.className = 'alertMainSection';
 
   const inputTextLabel = document.createElement('label');
   inputTextLabel.setAttribute('for', 'textNewPost');
   inputTextLabel.textContent = 'Recomendacion';
-  inputTextLabel.id = 'alertInputLabel';
+  inputTextLabel.className = 'alertInputLabel';
 
   const inputTextPost = document.createElement('textarea');
   inputTextPost.id = 'alertInput';
@@ -46,14 +45,14 @@ export function newPost(userID, nameUser) {
   // ----- Pie de la publicación ----- //
   const footerPost = document.createElement('footer');
   // ----- style
-  footerPost.id = 'alertFooter';
+  footerPost.className = 'alertFooter';
 
   // Elementos del pie de página del post
 
   // Enviar post
   const buttonSaveNewPost = document.createElement('button');
   buttonSaveNewPost.innerText = 'Publicar';
-  buttonSaveNewPost.id = 'alertFooterSaveButton';
+  buttonSaveNewPost.className = 'standarButton';
 
   const msjEmptyPost = document.createElement('p');
   msjEmptyPost.className = 'errorMessage';

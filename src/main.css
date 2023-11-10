@@ -1,6 +1,12 @@
+:root{
+    --padding-button: 0.3rem 1rem;
+}
+
 *{
     box-sizing: border-box;
 }
+
+/* --------- Formatos generales (algunos reusados) --------- */
 
 body{
     background-color: antiquewhite;
@@ -41,17 +47,145 @@ body{
     position: relative;
 }
 
-.newPostPopup {
+/* icono para mostrar password */
+#showPassword{
+    border-radius: 2rem;
+    transition: transform 0.2s, box-shadow 0.2s;
+    border: 0px solid rgb(28, 28, 28);
+}
+
+#showPassword:active{
+    transform: scale(1.1); 
+      box-shadow: 0 6px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* form para ingresar o crear cuenta */
+.formLogin{
+   text-align: center;
+   color: #F4F4FC;
+   display: flex;
+   flex-direction: column;
+   width: 100%;
+   padding: 30px;
+   gap: 1rem;
+   position: relative;
+   align-items: center;
+}
+
+.logo{
+    width: 300px;
+}
+
+/* .password-container{
+    display: flex;
+    width: auto;
+} */
+
+
+#inputEmail,#inputNickname {
+    border-radius: 2rem;
+    border: 1px solid rgb(28, 28, 28);
+    text-align: center;
+    padding: var(--padding-button);
+    display: flex;
+    box-sizing: content-box;
+    width: 300px;
+    height: 30px;
+}
+
+.passwordContainer {
+    border-radius: 2rem;
+    border: 1px solid rgb(28, 28, 28);
+    text-align: center;
+    padding: var(--padding-button);
+    box-sizing: content-box;
+    width: 300px;
+    height: 30px;
+    background-color: #F4F4FC;
+    display: grid;
+    grid-template-columns: 8fr 1fr;
+}
+
+.inputPassword {
+    border-radius: 2rem;
+    text-align: center;
+    border: 0px solid rgb(28, 28, 28);
+    background-color: #F4F4FC;
+}
+
+#errorMessage{
+    color: #CE27FA;
+}
+
+/* formato general para todos los botones */
+/* .google{
+    border-radius: 2rem;
+    border: 1px solid rgb(28, 28, 28);
+    background-color: #FDB803;
+} */
+
+.standarButton{
+    background-color: #FDB803;
+    border:none;
+    text-align: center;
+    border-radius: 2rem;
+    box-sizing: content-box;
+    box-shadow: -2px 9px 16px -2px rgba(0,0,0,0.42);
+    padding: var(--padding-button);
+    width: 100%;
+    height: 30px;
+    max-width: 200px;
+}
+.standarButton {
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+.standarButton:hover {
+    transform: scale(1.1); /* Increase the size on hover */
+    box-shadow: 0 6px 8px rgba(0, 0, 0, 0.2); /* Change the shadow on hover */
+}
+
+/* .ingresar, .cerrar, .crear {
+    gap: 2rem;
+    border-radius: 2rem;
+    border: 1px solid rgb(28, 28, 28);
+    text-align: center;
+    padding: var(--padding-button);
+    box-sizing: content-box;
+    width: 200px;
+    height: 30px;
+    background-color: #FDB803;
+} */
+
+/* .ingresar, .cerrar, .crear, .google {
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.ingresar:hover, .cerrar:hover, .crear:hover, .google:hover {
+      transform: scale(1.1); /* Increase the size on hover 
+      box-shadow: 0 6px 8px rgba(0, 0, 0, 0.2); /* Change the shadow on hover 
+    } */
+
+
+
+
+
+/* --------- Formatos de los modales --------- */
+
+/* div que cubre el fondo */
+.pupUp {
+    background-color: rgba(0, 0, 0, 0.7);  
+    z-index: 1;
     color: #11035A;
-    position: absolute;
+    position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-
+    display: none;
 }
 
-#alertNewPost { 
+/* Recuadro que contiene todos los elementos de post nuevo */
+.alertPopUp {
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -64,10 +198,10 @@ body{
     top: 50%;  
     left: 50%;  
     transform: translate(-50%, -50%);  background-color: #F4F4FC;  padding: 20px;  z-index: 2;
-
 }
 
-#alertMainSection{
+/* Cuerpo de la publicación */
+.alertMainSection{
     display: inherit;
     flex-direction: column;
     justify-content: center;
@@ -75,11 +209,13 @@ body{
     width: 100%;
 }
 
-#alertInputLabel{
+/* Formato del texto 'Recomendación' */
+.alertInputLabel{
     display: inherit;
 }
 
-#alertInput{
+/* formato de la área para ingresar texto */
+.alertInput{
     width: 100%;
     height: 100%;
     min-height: 75px;
@@ -87,19 +223,20 @@ body{
     resize: none;
     border: none;
 }
-
-#alertInput::placeholder {
+.alertInput::placeholder {
   color: rgba(206, 39, 250, 0.5); /* Change the color to your desired color */
 }
 
-#alertFooter{
+/* contenedor del botón de envío de post */
+.alertFooter{
     display: inherit; 
     flex-direction: column; 
     align-items: center;
     width: 100%; 
 }
 
-#alertFooterSaveButton{
+/* botón de envío de post */
+/* #alertFooterSaveButton{
     padding: 5px; 
     color: #11035A ;
     font-size: medium;
@@ -110,7 +247,7 @@ body{
     max-width: 50%;
     display: flex;
     justify-content: center;
-}
+} */
 
 /* .registryContainer {
     display: flex;
@@ -134,102 +271,8 @@ body{
     background-color: #ff0000;
 } */
 
-#showPassword{
-    border-radius: 2rem;
-    transition: transform 0.2s, box-shadow 0.2s;
-    border: 0px solid rgb(28, 28, 28);
-}
-
-#showPassword:active{
-    transform: scale(1.1); 
-      box-shadow: 0 6px 8px rgba(0, 0, 0, 0.2);
-}
-
-.formLogin{
-   text-align: center;
-   color: #F4F4FC;
-   display: flex;
-   flex-direction: column;
-   width: 40%;
-   padding: 30px;
-   gap: 1rem;
-   position: relative;
-   align-items: center;
-}
-
-.logo{
-    width: 300px;
-}
-
-/* .password-container{
-    display: flex;
-    width: auto;
-} */
-
-#inputEmail,#inputNickname {
-    border-radius: 2rem;
-    border: 1px solid rgb(28, 28, 28);
-    text-align: center;
-    padding: var(--element-rl-padding);
-    display: flex;
-    box-sizing: content-box;
-    width: 300px;
-    height: 30px;
-}
-
-.passwordContainer {
-    border-radius: 2rem;
-    border: 1px solid rgb(28, 28, 28);
-    text-align: center;
-    padding: var(--element-rl-padding);
-    box-sizing: content-box;
-    width: 300px;
-    height: 30px;
-    background-color: #F4F4FC;
-    display: grid;
-    grid-template-columns: 8fr 1fr;
-}
-
-.inputPassword {
-    border-radius: 2rem;
-    text-align: center;
-    border: 0px solid rgb(28, 28, 28);
-    background-color: #F4F4FC;
-}
-
-.ingresar, .cerrar, .crear {
-    gap: 2rem;
-    border-radius: 2rem;
-    border: 1px solid rgb(28, 28, 28);
-    text-align: center;
-    padding: var(--element-rl-padding);
-    box-sizing: content-box;
-    width: 200px;
-    height: 30px;
-    background-color: #FDB803;
-}
-
-.ingresar, .cerrar, .crear, .google {
-    transition: transform 0.2s, box-shadow 0.2s;
-}
-
-.ingresar:hover, .cerrar:hover, .crear:hover, .google:hover {
-      transform: scale(1.1); /* Increase the size on hover */
-      box-shadow: 0 6px 8px rgba(0, 0, 0, 0.2); /* Change the shadow on hover */
-    }
-
-
-.google{
-    border-radius: 2rem;
-    border: 1px solid rgb(28, 28, 28);
-    text-align: center;
-    padding: var(--element-rl-padding);
-    box-sizing: content-box;
-    width: 200px;
-    height: 30px;
-    background-color: #FDB803;
-}
-.pupUp{
+/* --------------------------- */
+/* .pupUp{
     background-color: #000000ce;
     height: 100%;
     width: 100%;
@@ -241,8 +284,8 @@ body{
     justify-content: center;
     align-items:center;
 
-}
-.delete-popUp{
+} */
+/* .delete-popUp{
     background-color:#F4F4FC;
     border-radius: 2rem;
     height: 200px;
@@ -259,40 +302,13 @@ body{
     padding: 0.5rem 2rem;
     border:none;
     box-shadow: -2px 9px 16px -2px rgba(0,0,0,0.42);
-}
+} */
 /* 
 .delete-text{
 
 } */
 
-.errorMessage{
-    color: red;
-}
-
-@media (min-width: 768px) {
-  /*.ingresar, .google, .crear, #inputEmail, #inputPassword, #inputNickname {
-    width: 300px;
-  }*/
-
-  .logo {
-    width: 400px;
-  }
-}
-
 /* --------- Formatos del muro --------- */
-
-/* #bodyPublications{
-    border: 3px solid blue;
-    width: 100vh;
-    height: 100vh; 
-    display: grid;
-    justify-content:space-between; 
-    align-items:center;
-    justify-self: center;
-    background:#000000 url('./img/fondoVector.svg') no-repeat;
-    background-size: cover;
-    padding: 0vh 0vh 0vh 0vh;
-} */
 
 #postArticle{
     display: flex;
@@ -404,3 +420,15 @@ li {
     position: fixed;
     bottom: 0;
 }
+
+
+@media (min-width: 768px) {
+    /*.ingresar, .google, .crear, #inputEmail, #inputPassword, #inputNickname {
+      width: 300px;
+    }*/
+  
+    .logo {
+      width: 400px;
+    }
+  }
+  
