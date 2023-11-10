@@ -3,7 +3,7 @@ import { logout, auth } from '../firebase/auth';
 import { queryOnRealTime, queryNameUsers, updateLikes } from '../firebase/firestore';
 import { newPost } from './newPost';
 import { pupUpDelete } from './deletePost.js';
-import { editPost } from './editPost.js';
+import { editPostModalRender } from './editPost.js';
 
 // const pupUpDelete = document.getElementById('popUp');
 // const deleteButton = document.getElementById('deleteButton');
@@ -17,6 +17,7 @@ import { editPost } from './editPost.js';
 function renderPost(container, userID, idPostDB, isLoggedUser, userNameDB, textPostDB, likesDB) {
   // Id del post
   const idPost = idPostDB;
+  const initialContent = textPostDB;
 
   const post = document.createElement('article');
   post.id = 'postArticle';
@@ -56,7 +57,8 @@ function renderPost(container, userID, idPostDB, isLoggedUser, userNameDB, textP
     penIcon.src = '../img/pen.svg';
     penIcon.className = 'editor';
     headPost.appendChild(penIcon);
-    const editContainer = editPost();
+    const editContainer = editPostModalRender(idPost, initialContent);
+
     penIcon.addEventListener('click', () => {
       container.appendChild(editContainer);
       editContainer.style.display = 'flex';
