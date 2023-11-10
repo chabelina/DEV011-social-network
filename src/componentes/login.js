@@ -2,6 +2,7 @@
 import logo from '../img/logo.png';
 import mostrar from '../img/mostrar.svg';
 import noMostrar from '../img/no-mostrar.svg';
+import { inputsFormats } from '../validations/validLogin';
 import { loginEmail, loginGoogle } from '../firebase/auth.js';
 // import { emailFormat } from '../validations/validLogin'; //passwordFormat
 // import { allPosts, guardarPost } from '../firebase/firestore.js';
@@ -54,7 +55,8 @@ export const loginView = (navigateTo) => {
   showPassword.type = 'button';
   showPassword.id = 'showPassword';
 
-  passwordContainer.append(inputPassword, showPassword);
+  passwordContainer.appendChild(inputPassword);
+  passwordContainer.appendChild(showPassword);
 
   /* showPassword.addEventListener('click', () => {
     // cuando da click cambia su tipo a text para que se muestre
@@ -93,15 +95,16 @@ export const loginView = (navigateTo) => {
   buttonLogin.setAttribute('type', 'button');
   buttonLogin.setAttribute('value', 'buttonInfoLogin');
   buttonLogin.innerText = 'Iniciar sesión';
-  buttonLogin.classList.add('ingresar');
+  buttonLogin.classList.add('standarButton');
   // Mensaje de error al ingresar con email
   const errorMessage = document.createElement('p');
-  errorMessage.class = 'errorMessage';
+  errorMessage.id = 'errorMessage';
   formInputLogin.append(buttonLogin, errorMessage);
   // Definimos la funcionalidad al hacer click con una función asincrona
   // porque usamos funciones asincronas adentro
   buttonLogin.addEventListener('click', async () => {
     try {
+      inputsFormats(inputEmail, passwordContainer); // valida que las entradas sean correctas...
       currentUser = await loginEmail(inputEmail, inputPassword);
       // inicia sesión con la función asincrona loginEmail
       navigateTo('/publications'); // Se mueve a la vista de publicaciones
@@ -120,7 +123,7 @@ export const loginView = (navigateTo) => {
   buttonLoginGoogle.setAttribute('type', 'button');
   buttonLoginGoogle.setAttribute('value', 'buttonLoginGoogle');
   buttonLoginGoogle.innerText = 'Inicia sesión con Google';
-  buttonLoginGoogle.classList.add('google');
+  buttonLoginGoogle.classList.add('standarButton');
   formInputLogin.appendChild(buttonLoginGoogle);
   buttonLoginGoogle.addEventListener('click', async () => {
     // se declara una funcion asincrona porque loginGoogle es promesa
@@ -155,7 +158,7 @@ export const loginView = (navigateTo) => {
   buttonNewAccount.setAttribute('type', 'button');
   buttonNewAccount.setAttribute('value', 'buttonNewAccount');
   buttonNewAccount.innerText = 'Crear cuenta';
-  buttonNewAccount.classList.add('crear');
+  buttonNewAccount.classList.add('standarButton');
   formInputLogin.appendChild(buttonNewAccount);
   buttonNewAccount.addEventListener('click', () => {
     // al hacer click se renderea la vista del archivo NewAccount

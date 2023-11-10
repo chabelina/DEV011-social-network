@@ -57,7 +57,7 @@ export const newAccount = (navigateTo) => {
   passwordContainer.appendChild(inputPassword);
   // Mensaje de error al ingresar con email
   const errorInvalidPassword = document.createElement('p');
-  errorInvalidPassword.className = 'errorMessage';
+  errorInvalidPassword.id = 'errorMessage';
   formInputCreateAccount.append(errorInvalidPassword);
 
   // Check para mostrar contraseña
@@ -70,8 +70,8 @@ export const newAccount = (navigateTo) => {
   showPassword.type = 'button'; // Cambiado de 'checkbox' a 'button'
   showPassword.id = 'showPassword';
 
-  // inputPassword.append( showPassword);
-  passwordContainer.append(inputPassword, showPassword);
+  passwordContainer.appendChild(inputPassword);
+  passwordContainer.appendChild(showPassword);
 
   const hidePasswordIcon = document.createElement('img');
   hidePasswordIcon.src = noMostrar;
@@ -102,12 +102,12 @@ export const newAccount = (navigateTo) => {
   buttonCreateNewAccount.setAttribute('type', 'button');
   buttonCreateNewAccount.setAttribute('value', 'buttonCreateNewAccount');
   buttonCreateNewAccount.innerText = 'Crear cuenta';
-  buttonCreateNewAccount.classList.add('ingresar');
+  buttonCreateNewAccount.classList.add('standarButton');
   formInputCreateAccount.appendChild(buttonCreateNewAccount);
 
   buttonCreateNewAccount.addEventListener('click', async () => {
     try {
-      inputsFormats(inputEmail, inputPassword); // valida que las entradas sean correctas...
+      inputsFormats(inputEmail, passwordContainer); // valida que las entradas sean correctas...
       currentUser = await createUser(inputEmail.value, inputPassword.value);
       // console.log(currentUser);
       await insertNewUserDB(inputNickname.value, currentUser.uid, allUsers);

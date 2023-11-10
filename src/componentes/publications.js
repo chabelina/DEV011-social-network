@@ -14,7 +14,7 @@ import { editPostModalRender } from './editPost.js';
 
 // función que crea un articulo para cada post
 
-function renderPost(userID, idPostDB, isLoggedUser, userNameDB, textPostDB, likesDB) { // likeNumDB
+function renderPost(container, userID, idPostDB, isLoggedUser, userNameDB, textPostDB, likesDB) {
   // Id del post
   const idPost = idPostDB;
   const initialContent = textPostDB;
@@ -47,8 +47,8 @@ function renderPost(userID, idPostDB, isLoggedUser, userNameDB, textPostDB, like
     trashIcon.className = 'delete';
     headPost.appendChild(trashIcon);
     const deleteContainer = pupUpDelete();
-    document.body.appendChild(deleteContainer);
     trashIcon.addEventListener('click', () => {
+      container.appendChild(deleteContainer);
       deleteContainer.style.display = 'flex';
     });
 
@@ -60,7 +60,7 @@ function renderPost(userID, idPostDB, isLoggedUser, userNameDB, textPostDB, like
     const editContainer = editPostModalRender(idPost, initialContent);
 
     penIcon.addEventListener('click', () => {
-      document.body.appendChild(editContainer);
+      container.appendChild(editContainer);
       editContainer.style.display = 'flex';
     });
   }
@@ -162,6 +162,7 @@ export const publications = (navigateTo) => {
   queryNameUsers.then((docs) => {
     docs.forEach((us) => {
       if (us.data().id === userID) {
+        // localStorage.removeItem('nameUser')
         localStorage.setItem('nameUser', us.data().name);
         return 'nameUser return';
       }
@@ -183,9 +184,11 @@ export const publications = (navigateTo) => {
   // Botón para crear nuevo post
   const newPostIcon = document.createElement('img');
   newPostIcon.src = '../img/newPost.svg';
+  const newPostContainer = newPost(userID, nameUser);
   newPostIcon.addEventListener('click', async () => {
+    containerAll.appendChild(newPostContainer);
     // console.log('.....', currentUser);
-    containerAll.appendChild(newPost(userID, nameUser));
+    newPostContainer.style.display = 'flex';
   });
   newPostIcon.style = 'display: flex; position: relative; width: 40px; grid-column: 2; left: 40%;';
 
@@ -195,6 +198,7 @@ export const publications = (navigateTo) => {
   logoutIcon.addEventListener('click', async () => {
     const currentUser = await logout();
     navigateTo('/');
+    // localStorage.removeItem('nameUser');
     return currentUser;
   });
   // ----- style
@@ -207,6 +211,7 @@ export const publications = (navigateTo) => {
     containerAll.appendChild(footerPublications);
     posts.forEach((doc) => {
       containerAll.append(renderPost(
+        containerAll,
         userID,
         doc.id,
         userID === doc.data().user,
