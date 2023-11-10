@@ -28,14 +28,12 @@ export async function insertPostDB(userID, nameUser, inputLogin, datePost, allPo
   });
 }
 
-export async function editPostDB(postId, editedContent) {
+export async function updateEditedPostDB(postId, editedContent) {
   // Almacenamos la referencia de datos del post en cuestion
-  const postRef = collection('posts').doc(postId);
+  const postRef = doc(db, 'posts', postId);
 
   // Actualizamos el documento con el contenido editado (editedContent)
-  await postRef.update({
-    textPost: editedContent,
-  });
+  await updateDoc(postRef, { textPost: editedContent });
 }
 
 // export const querySnapshot = getDocs(collection(db, 'posts'));

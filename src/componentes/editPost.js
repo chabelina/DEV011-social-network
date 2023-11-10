@@ -1,10 +1,11 @@
-import { editPostDB } from '../firebase/firestore';
+import { updateEditedPostDB } from "../firebase/firestore";
 
-export const editPost = () => {
+export const editPostModalRender = (postId, initialContent) => {
   // Ventana que se sobrepone a la vista de publications
   const modalEditPost = document.createElement('div');
   modalEditPost.className = 'newPostPopup';
-  modalEditPost.style = 'position: fixed;  width: 100%;  height: 100%;  background-color: rgba(0, 0, 0, 0.7);  z-index: 1;';
+  modalEditPost.style =
+    'position: fixed;  width: 100%;  height: 100%;  background-color: rgba(0, 0, 0, 0.7);  z-index: 1;';
 
   // Alert donde se guardaran las publicaciones
   const alertEditPost = document.createElement('article');
@@ -30,6 +31,7 @@ export const editPost = () => {
 
   const inputTextPost = document.createElement('textarea');
   inputTextPost.id = 'alertInput';
+  inputTextPost.value = initialContent;
   bodyPost.appendChild(inputTextLabel);
   bodyPost.appendChild(inputTextPost);
   // ----- style
@@ -46,7 +48,10 @@ export const editPost = () => {
   const buttonSaveEditedPost = document.createElement('button');
   buttonSaveEditedPost.innerText = 'Actualizar';
   buttonSaveEditedPost.id = 'alertFooterSaveButton';
-  buttonSaveEditedPost.addEventListener('click', editPostDB());
+
+  buttonSaveEditedPost.addEventListener('click', () => {
+    updateEditedPostDB(postId, inputTextPost.value);
+  });
 
   const msjEmptyPost = document.createElement('p');
   msjEmptyPost.className = 'errorMessage';
