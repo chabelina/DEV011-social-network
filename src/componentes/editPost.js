@@ -3,13 +3,13 @@ import { updateEditedPostDB } from "../firebase/firestore";
 export const editPostModalRender = (postId, initialContent) => {
   // Ventana que se sobrepone a la vista de publications
   const modalEditPost = document.createElement('div');
-  modalEditPost.className = 'newPostPopup';
-  modalEditPost.style =
-    'position: fixed;  width: 100%;  height: 100%;  background-color: rgba(0, 0, 0, 0.7);  z-index: 1;';
+
+  modalEditPost.classList.add('pupUp');
+  // modalEditPost.style = 'position: fixed;  width: 100%;  height: 100%;  background-color: rgba(0, 0, 0, 0.7);  z-index: 1;';
 
   // Alert donde se guardaran las publicaciones
   const alertEditPost = document.createElement('article');
-  alertEditPost.id = 'alertNewPost';
+  alertEditPost.classList.add('alertPopUp');
   // ----- style
 
   // Eventos para el control de la viusalizacion o cierre del popup
@@ -22,16 +22,18 @@ export const editPostModalRender = (postId, initialContent) => {
 
   // ----- Cuerpo de la publicación ----- //
   const bodyPost = document.createElement('section');
-  bodyPost.id = 'alertMainSection';
+  bodyPost.className = 'alertMainSection';
 
-  const inputTextLabel = document.createElement('label');
-  inputTextLabel.setAttribute('for', 'textNewPost');
+  const inputTextLabel = document.createElement('p');
+  //inputTextLabel.setAttribute('for', 'alertInput2');
   inputTextLabel.textContent = 'Recomendacion';
-  inputTextLabel.id = 'alertInputLabel';
+  inputTextLabel.className = 'alertInputLabel';
 
   const inputTextPost = document.createElement('textarea');
-  inputTextPost.id = 'alertInput';
+
+  //inputTextPost.id = 'alertInput2';
   inputTextPost.value = initialContent;
+
   bodyPost.appendChild(inputTextLabel);
   bodyPost.appendChild(inputTextPost);
   // ----- style
@@ -40,18 +42,20 @@ export const editPostModalRender = (postId, initialContent) => {
   // ----- Pie de la publicación ----- //
   const footerPost = document.createElement('footer');
   // ----- style
-  footerPost.id = 'alertFooter';
+  footerPost.className = 'alertFooter';
 
   // Elementos del pie de página del post
 
   // Enviar post
   const buttonSaveEditedPost = document.createElement('button');
   buttonSaveEditedPost.innerText = 'Actualizar';
-  buttonSaveEditedPost.id = 'alertFooterSaveButton';
+
+  buttonSaveEditedPost.className = 'standarButton';
 
   buttonSaveEditedPost.addEventListener('click', () => {
     updateEditedPostDB(postId, inputTextPost.value);
   });
+
 
   const msjEmptyPost = document.createElement('p');
   msjEmptyPost.className = 'errorMessage';

@@ -6,14 +6,14 @@ export function pupUpDelete() {
   popUpContainer.id = 'popUp';
 
   const deletePopUp = document.createElement('div');
-  deletePopUp.classList.add('delete-popUp');
+  deletePopUp.classList.add('alertPopUp');
 
   const deleteText = document.createElement('span');
   deleteText.classList.add('delete-text');
   deleteText.textContent = 'Seguro que quieres eliminar la publicación';
 
   const deleteButton = document.createElement('button');
-  deleteButton.classList.add('delete-button');
+  deleteButton.classList.add('standarButton');
   deleteButton.id = 'deleteButton';
   deleteButton.textContent = 'Eliminar';
 
