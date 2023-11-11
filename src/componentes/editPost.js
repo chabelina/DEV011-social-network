@@ -22,12 +22,12 @@ export const editPostModalRender = (postId, initialContent) => {
 
   // ----- Cuerpo de la publicación ----- //
   const bodyPost = document.createElement('section');
-  bodyPost.className = 'alertMainSection';
+  bodyPost.classList.add('alertMainSection');
 
   const inputTextLabel = document.createElement('p');
   //inputTextLabel.setAttribute('for', 'alertInput2');
   inputTextLabel.textContent = 'Recomendacion';
-  inputTextLabel.className = 'alertInputLabel';
+  inputTextLabel.classList.add('alertInputLabel');
 
   const inputTextPost = document.createElement('textarea');
 
@@ -42,25 +42,23 @@ export const editPostModalRender = (postId, initialContent) => {
   // ----- Pie de la publicación ----- //
   const footerPost = document.createElement('footer');
   // ----- style
-  footerPost.className = 'alertFooter';
+  footerPost.classList.add('alertFooter');
 
   // Elementos del pie de página del post
 
   // Enviar post
   const buttonSaveEditedPost = document.createElement('button');
   buttonSaveEditedPost.innerText = 'Actualizar';
-
-  buttonSaveEditedPost.className = 'standarButton';
+  buttonSaveEditedPost.classList.add('standarButton');
 
   buttonSaveEditedPost.addEventListener('click', () => {
     updateEditedPostDB(postId, inputTextPost.value);
   });
 
-
-  const msjEmptyPost = document.createElement('p');
-  msjEmptyPost.className = 'errorMessage';
-  msjEmptyPost.style = 'text-align: center;';
-  footerPost.append(buttonSaveEditedPost, msjEmptyPost);
+  // const msjEmptyPost = document.createElement('p');
+  // msjEmptyPost.className = 'errorMessage';
+  // msjEmptyPost.style = 'text-align: center;';
+  // footerPost.append(buttonSaveEditedPost, msjEmptyPost);
   // console.log(inputTextPost.value);
   // buttonSaveNewPost.addEventListener('click', async () => {
   //   if (inputTextPost.value.replace(' ', '').length > 2) {
