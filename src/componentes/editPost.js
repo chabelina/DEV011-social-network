@@ -50,6 +50,7 @@ export const editPostModalRender = (postId, initialContent) => {
   const buttonSaveEditedPost = document.createElement('button');
   buttonSaveEditedPost.innerText = 'Actualizar';
   buttonSaveEditedPost.classList.add('standarButton');
+  footerPost.appendChild(buttonSaveEditedPost);
 
   buttonSaveEditedPost.addEventListener('click', () => {
     updateEditedPostDB(postId, inputTextPost.value);
