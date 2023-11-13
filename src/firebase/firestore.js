@@ -35,7 +35,6 @@ export async function updateEditedPostDB(postId, editedContent) {
 
   // Actualizamos el documento con el contenido editado (editedContent)
   await updateDoc(postRef, { textPost: editedContent });
-
 }
 
 // export const querySnapshot = getDocs(collection(db, 'posts'));

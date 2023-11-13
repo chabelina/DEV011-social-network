@@ -1,5 +1,6 @@
 import { onAuthStateChanged } from 'firebase/auth';
-import { logout, auth } from '../firebase/auth';
+import { logout } from '../firebase/auth';
+import { auth } from '../firebase/firebase.js';
 import { queryOnRealTime, queryNameUsers, updateLikes } from '../firebase/firestore';
 import { newPost } from './newPost';
 import { pupUpDelete } from './deletePost.js';

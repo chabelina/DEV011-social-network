@@ -1,20 +1,30 @@
 import {
-  getAuth,
-  GoogleAuthProvider,
+  provider,
+  auth,
   signInWithPopup,
-  signOut,
   signInWithEmailAndPassword,
   createUserWithEmailAndPassword,
-} from 'firebase/auth';
-import { app } from './firebase-config.js';
+  signOut,
+} from './firebase';
+
+// import {
+//   getAuth,
+//   GoogleAuthProvider,
+//   signInWithPopup,
+//   signOut,
+//   signInWithEmailAndPassword,
+//   createUserWithEmailAndPassword,
+// } from 'firebase/auth';
+// import { app } from './firebase-config.js';
 
 // Inicializamos la autenticación
-export const auth = getAuth(app);
+// export const auth = getAuth(app);
 
 export const user1 = auth.currentUser;
 
 // Declaramos el nuevo proveedor de Google
-const provider = new GoogleAuthProvider();
+// const provider = new GoogleAuthProvider();
+
 auth.languageCode = 'es'; // definimos el idioma
 
 // -------------------- Función para el logueo con Google --------------------//
