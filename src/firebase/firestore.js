@@ -18,10 +18,10 @@ export const db = getFirestore(app);
 export const allPosts = collection(db, 'posts');
 
 // función que guarda el post
-export async function insertPostDB(userID, nameUser, inputLogin, datePost, allPostsDB = allPosts) {
+export async function insertPostDB(userID, inputLogin, datePost, allPostsDB = allPosts) {
   await addDoc(allPostsDB, {
     user: userID,
-    name: nameUser,
+    name: localStorage.getItem('nameUser'),
     textPost: inputLogin,
     likes: [],
     date: datePost,

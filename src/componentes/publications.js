@@ -5,6 +5,13 @@ import { queryOnRealTime, queryNameUsers, updateLikes } from '../firebase/firest
 import { newPost } from './newPost';
 import { pupUpDelete } from './deletePost.js';
 import { editPostModalRender } from './editPost.js';
+import unfillStart from '../img/unfillStart.svg';
+import fillStart from '../img/fillStart.svg';
+import pen from '../img/pen.svg';
+import trash from '../img/trash.svg';
+import newPostImg from '../img/newPostImg.svg';
+import logOutImg from '../img/logOutImg.svg';
+import seven from '../img/perfil/7.svg';
 
 // const pupUpDelete = document.getElementById('popUp');
 // const deleteButton = document.getElementById('deleteButton');
@@ -31,7 +38,8 @@ function renderPost(container, userID, idPostDB, isLoggedUser, userNameDB, textP
 
   // Imagen de perfil
   const profilePicture = document.createElement('img');
-  profilePicture.src = `../img/perfil/${(Math.round(Math.random() * 20)).toString()}.svg`;
+  // profilePicture.src = `../img/perfil/${(Math.round(Math.random() * 20)).toString()}.svg`;
+  profilePicture.src = seven;
   profilePicture.id = 'profilePicture';
   headPost.appendChild(profilePicture);
 
@@ -44,7 +52,7 @@ function renderPost(container, userID, idPostDB, isLoggedUser, userNameDB, textP
   if (isLoggedUser) {
     // Boton eliminar
     const trashIcon = document.createElement('img');
-    trashIcon.src = '../img/litter.svg';
+    trashIcon.src = trash;
     trashIcon.className = 'delete';
     headPost.appendChild(trashIcon);
     const deleteContainer = pupUpDelete();
@@ -55,7 +63,7 @@ function renderPost(container, userID, idPostDB, isLoggedUser, userNameDB, textP
 
     // Boton editar
     const penIcon = document.createElement('img');
-    penIcon.src = '../img/pen.svg';
+    penIcon.src = pen;
     penIcon.className = 'editor';
     headPost.appendChild(penIcon);
     const editContainer = editPostModalRender(idPost, initialContent);
@@ -99,11 +107,11 @@ function renderPost(container, userID, idPostDB, isLoggedUser, userNameDB, textP
   // Imagen del like rellena
   const filledLikeImg = document.createElement('img');
   filledLikeImg.className = 'likeImg';
-  filledLikeImg.src = '../img/fillStart.svg';
+  filledLikeImg.src = fillStart;
   // Imagen del like sin rellenar
   const unfilledLikeImg = document.createElement('img');
   unfilledLikeImg.className = 'likeImg';
-  unfilledLikeImg.src = '../img/unfillStart.svg';
+  unfilledLikeImg.src = unfillStart;
 
   if (likesDB.includes(userID)) {
     filledLikeImg.style.display = 'flex';
@@ -184,8 +192,8 @@ export const publications = (navigateTo) => {
 
   // Botón para crear nuevo post
   const newPostIcon = document.createElement('img');
-  newPostIcon.src = '../img/newPost.svg';
-  const newPostContainer = newPost(userID, nameUser);
+  newPostIcon.src = newPostImg;
+  const newPostContainer = newPost(userID);
   newPostIcon.addEventListener('click', async () => {
     containerAll.appendChild(newPostContainer);
     // console.log('.....', currentUser);
@@ -195,9 +203,10 @@ export const publications = (navigateTo) => {
 
   // Boton de cerrar sesión  const buttonLogOut = document.createElement('button');
   const logoutIcon = document.createElement('img');
-  logoutIcon.src = '../img/logout.svg';
+  logoutIcon.src = logOutImg;
   logoutIcon.addEventListener('click', async () => {
     const currentUser = await logout();
+    localStorage.clear();
     navigateTo('/');
     // localStorage.removeItem('nameUser');
     return currentUser;

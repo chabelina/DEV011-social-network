@@ -62,7 +62,7 @@ export function newPost(userID, nameUser) {
   buttonSaveNewPost.addEventListener('click', async () => {
     if (inputTextPost.value.replace(' ', '').length > 2) {
       msjEmptyPost.innerText = '';
-      await insertPostDB(userID, nameUser, inputTextPost.value, new Date(), allPosts);
+      await insertPostDB(userID, inputTextPost.value, new Date(), allPosts);
       modalNewPost.style.display = 'none';
     } else {
       msjEmptyPost.innerText = 'Necesitas insertar texto en tu recomendación';
