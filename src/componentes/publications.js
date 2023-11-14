@@ -50,17 +50,22 @@ function renderPost(container, userID, idPostDB, isLoggedUser, userNameDB, textP
   headPost.appendChild(nameUser);
 
   if (isLoggedUser) {
-    // Boton eliminar
+    // Boton eliminar y de descartar publicacion
     const trashIcon = document.createElement('img');
     trashIcon.src = trash;
     trashIcon.className = 'delete';
     headPost.appendChild(trashIcon);
-    const deleteContainer = pupUpDelete();
+
+    const deleteContainer = pupUpDelete(idPostDB);
+    const descartarButton = deleteContainer.querySelector('#descartarButton');
+
     trashIcon.addEventListener('click', () => {
       container.appendChild(deleteContainer);
       deleteContainer.style.display = 'flex';
     });
-
+    descartarButton.addEventListener('click', () => {
+      deleteContainer.style.display = 'none';
+    });
     // Boton editar
     const penIcon = document.createElement('img');
     penIcon.src = pen;
@@ -180,7 +185,7 @@ export const publications = (navigateTo) => {
   });
 
   // Nombre del usuario:
-  const nameUser = localStorage.getItem('nameUser');
+  // const nameUser = localStorage.getItem('nameUser');
 
   // Contenedor de todas las publicaciones
   const containerAll = document.createElement('div');

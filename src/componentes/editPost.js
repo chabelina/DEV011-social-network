@@ -1,11 +1,12 @@
-import { updateEditedPostDB } from "../firebase/firestore";
+import { updateEditedPostDB } from '../firebase/firestore';
 
 export const editPostModalRender = (postId, initialContent) => {
   // Ventana que se sobrepone a la vista de publications
   const modalEditPost = document.createElement('div');
 
   modalEditPost.classList.add('pupUp');
-  // modalEditPost.style = 'position: fixed;  width: 100%;  height: 100%;  background-color: rgba(0, 0, 0, 0.7);  z-index: 1;';
+  // modalEditPost.style = 'position: fixed;  width: 100%;  height: 100%;
+  //  background-color: rgba(0, 0, 0, 0.7);  z-index: 1;';
 
   // Alert donde se guardaran las publicaciones
   const alertEditPost = document.createElement('article');
@@ -25,13 +26,13 @@ export const editPostModalRender = (postId, initialContent) => {
   bodyPost.classList.add('alertMainSection');
 
   const inputTextLabel = document.createElement('p');
-  //inputTextLabel.setAttribute('for', 'alertInput2');
+  // inputTextLabel.setAttribute('for', 'alertInput2');
   inputTextLabel.textContent = 'Recomendacion';
   inputTextLabel.classList.add('alertInputLabel');
 
   const inputTextPost = document.createElement('textarea');
 
-  //inputTextPost.id = 'alertInput2';
+  // inputTextPost.id = 'alertInput2';
   inputTextPost.value = initialContent;
 
   bodyPost.appendChild(inputTextLabel);
