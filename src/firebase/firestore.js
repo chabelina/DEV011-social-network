@@ -8,8 +8,10 @@ import {
   orderBy,
   doc,
   updateDoc,
+  deleteDoc,
 } from 'firebase/firestore';
 import { app } from './firebase-config.js';
+import { async } from 'regenerator-runtime';
 // import { addDoc, doc, setDoc } from "firebase/firestore";
 
 export const db = getFirestore(app);
@@ -43,6 +45,12 @@ const allPostsSorted = query(allPosts, orderBy('date', 'desc'));
 export function queryOnRealTime(render) {
   // console.log(allPostsSorted);
   onSnapshot(allPostsSorted, render);
+}
+
+// ------ creacion de funcion asincrona
+export async function deleteDocDB(postId) {
+  const postRef = doc(db, 'posts', postId);
+  await deleteDoc(postRef);
 }
 
 // ------ Información de los usuarios
