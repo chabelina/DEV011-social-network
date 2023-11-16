@@ -99,6 +99,7 @@ export const newAccount = (navigateTo) => {
 
   // Botón para crear cuenta
   const buttonCreateNewAccount = document.createElement('button');
+  buttonCreateNewAccount.id = 'newAccountButton';
   buttonCreateNewAccount.setAttribute('type', 'button');
   buttonCreateNewAccount.setAttribute('value', 'buttonCreateNewAccount');
   buttonCreateNewAccount.innerText = 'Crear cuenta';
