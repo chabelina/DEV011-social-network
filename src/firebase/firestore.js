@@ -57,11 +57,27 @@ export async function deleteDocDB(postId) {
 export const allUsers = collection(db, 'users');
 
 export async function insertNewUserDB(nickname, uid, allUsersDB = allUsers) {
-  await addDoc(allUsersDB, {
-    name: nickname,
-    id: uid,
-  });
+  try {
+    addDoc(allUsersDB, {
+      name: nickname,
+      id: uid,
+    });
+    return true;
+  } catch (error) {
+    return new Error(error);
+  }
 }
+
+/* export function insertNewUserDB(nickname, uid, allUsersDB = allUsers) {
+  return new Promise((resolve, reject) => {
+    addDoc(allUsersDB, {
+      name: nickname,
+      id: uid,
+    })
+      .then(() => resolve(true))
+      .catch((error) => reject(new Error(error)));
+  });
+} */
 
 export const queryNameUsers = getDocs(collection(db, 'users'));
 
