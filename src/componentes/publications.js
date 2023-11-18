@@ -163,6 +163,17 @@ export const publications = (navigateTo) => {
     if (user) {
       // El usuario está autenticado
       localStorage.setItem('userID', user.uid);
+      // ------ Name
+      queryNameUsers.then((docs) => {
+        docs.forEach((us) => {
+          if (us.data().id === user.uid) {
+            // localStorage.removeItem('nameUser')
+            localStorage.setItem('nameUser', us.data().name);
+            return 'nameUser return';
+          }
+          return 'not user';
+        });
+      });
       return 'userID return';
     }
     // El usuario no está autenticado
@@ -171,18 +182,6 @@ export const publications = (navigateTo) => {
 
   // ID del usuario:
   const userID = localStorage.getItem('userID');
-
-  // ------ Name
-  queryNameUsers.then((docs) => {
-    docs.forEach((us) => {
-      if (us.data().id === userID) {
-        // localStorage.removeItem('nameUser')
-        localStorage.setItem('nameUser', us.data().name);
-        return 'nameUser return';
-      }
-      return 'not user';
-    });
-  });
 
   // Nombre del usuario:
   // const nameUser = localStorage.getItem('nameUser');

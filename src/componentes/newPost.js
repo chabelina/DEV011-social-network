@@ -30,12 +30,13 @@ export function newPost(userID) {
   bodyPost.className = 'alertMainSection';
 
   const inputTextLabel = document.createElement('label');
-  inputTextLabel.setAttribute('for', 'textNewPost');
+  inputTextLabel.setAttribute('for', 'alertInput');
   inputTextLabel.textContent = 'Recomendacion';
   inputTextLabel.className = 'alertInputLabel';
 
   const inputTextPost = document.createElement('textarea');
   inputTextPost.id = 'alertInput';
+  inputTextPost.classList.add('alertInput');
   inputTextPost.placeholder = 'Ingresa tu increible recomendación aquí!';
   bodyPost.appendChild(inputTextLabel);
   bodyPost.appendChild(inputTextPost);
@@ -64,6 +65,7 @@ export function newPost(userID) {
       msjEmptyPost.innerText = '';
       await insertPostDB(userID, inputTextPost.value, new Date(), allPosts);
       modalNewPost.style.display = 'none';
+      inputTextPost.value = '';
     } else {
       msjEmptyPost.innerText = 'Necesitas insertar texto en tu recomendación';
     }
