@@ -58,7 +58,7 @@ export const allUsers = collection(db, 'users');
 
 export async function insertNewUserDB(nickname, uid, allUsersDB = allUsers) {
   try {
-    addDoc(allUsersDB, {
+    await addDoc(allUsersDB, {
       name: nickname,
       id: uid,
     });

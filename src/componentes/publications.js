@@ -22,7 +22,15 @@ import seven from '../img/perfil/7.svg';
 
 // función que crea un articulo para cada post
 
-function renderPost(container, userID, idPostDB, isLoggedUser, userNameDB, textPostDB, likesDB) {
+export function renderPost(
+  container,
+  userID,
+  idPostDB,
+  isLoggedUser,
+  userNameDB,
+  textPostDB,
+  likesDB,
+) {
   // Id del post
   const idPost = idPostDB;
   const initialContent = textPostDB;
@@ -112,10 +120,12 @@ function renderPost(container, userID, idPostDB, isLoggedUser, userNameDB, textP
   // Imagen del like rellena
   const filledLikeImg = document.createElement('img');
   filledLikeImg.className = 'likeImg';
+  filledLikeImg.id = 'likeImg';
   filledLikeImg.src = fillStart;
   // Imagen del like sin rellenar
   const unfilledLikeImg = document.createElement('img');
   unfilledLikeImg.className = 'likeImg';
+  unfilledLikeImg.id = 'unlikeImg';
   unfilledLikeImg.src = unfillStart;
 
   if (likesDB.includes(userID)) {
@@ -197,8 +207,9 @@ export const publications = (navigateTo) => {
   // Botón para crear nuevo post
   const newPostIcon = document.createElement('img');
   newPostIcon.src = newPostImg;
+  newPostIcon.id = 'newPostIcon';
   const newPostContainer = newPost(userID);
-  newPostIcon.addEventListener('click', async () => {
+  newPostIcon.addEventListener('click', () => {
     containerAll.appendChild(newPostContainer);
     // console.log('.....', currentUser);
     newPostContainer.style.display = 'flex';
@@ -208,6 +219,7 @@ export const publications = (navigateTo) => {
   // Boton de cerrar sesión  const buttonLogOut = document.createElement('button');
   const logoutIcon = document.createElement('img');
   logoutIcon.src = logOutImg;
+  logoutIcon.id = 'logOutIcon';
   logoutIcon.addEventListener('click', async () => {
     const currentUser = await logout();
     localStorage.clear();
