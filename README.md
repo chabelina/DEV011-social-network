@@ -35,6 +35,74 @@ Personas encargadas de planificar eventos, fiestas o reuniones sociales que busc
 
 Esta aplicación proporciona una plataforma interactiva y personalizada para que los usuarios descubran, compartan y disfruten de la música que resuene con sus preferencias individuales. ¡Únete a nuestra comunidad musical y déjanos ser tu guía en el vibrante mundo de la música! 
 
-### Los objetivos generales de este proyecto son los siguientes
+### 2.1 Historia de usuario
+
+Como resultado del proceso de investigación se obtuvieron las siguientes Historias de Usuario:
+
+:musical_note:  1: Como aficionada de la música poco conocida/indie quiero tener la capacidad de poder registrar una cuenta de usuario e iniciar sesión para formar parte de la comunidad virtual que ofrece B-Music, en la búsqueda y descubrimiento de canciones underground
+
+criterios de aceptacion: 
+Crear un usuario nuevo con correo
+Poder crear un usuario nuevo mediante Google
+Al recargar la aplicación, se debe verificar si el usuario está logueado antes de mostrar contenido.
+
+Definición de terminado:
+
+
+
+:musical_note:  2:  Como usuaria de B-Music quiero visualizar un Muro interactivo para poder ver las publicaciones de los usuarios 
+
+
+criterios de aceptacion:
+El usario puede visualizar un muro de reccomendaciones recientes de ususarios del social network.
+Se puede dar y quitar like a una publicación. Máximo uno por usuario.
+Cada publicación lleva un conteo de los likes.
+
+Definición de terminado:
+
+
+
+:musical_note:  3: Como usuaria de B-Music quiero poder compartir y/o eliminar recomendaciones para poder compartir información sobre algún género músical o banda que me interesa
+
+criterios de aceptacion:
+Poder publicar un post.
+Al publicar, se debe validar que exista contenido en el input.
+Poder eliminar un post específico.
+Pedir confirmación antes de eliminar un post.
+
+Definición de terminado:
+
+
+
+:musical_note:  4: Como usuaria de B-Music quiero poder editar mis recomendaciones para poder corregir lo que ya he publicado
+
+criterios de aceptacion:
+
+Al dar click para editar un post, debe cambiar el texto por un input que permita editar el texto y luego guardar los cambios.
+Al guardar los cambios debe cambiar de vuelta a un texto normal pero con la información editada.
+Al recargar la página debo de poder ver los textos editados.
+
+Definición de terminado:
+
+
+### 2.2. Diseño de la Interfaz de Usuario
+
+Prototipo de baja fidelidad
+Una vez definidas las Historias de Usuario, y como primer paso en el diseño de la interfaz, se elaboraron los prototipos de baja fidelidad para vista móvil mediante la herramienta de diseño visual Figma.
+
+Prototipo de alta fidelidad
+Seguidamente se diseñó la Interfaz de Usuario también mediante la herramienta de Figma. Se presenta a continuación el diseño final de la red social propuesta, la cual busca cumplir con los fundamentos de visual design:
+
+
+
+##3. Consideraciones generales
+La lógica de este proyecto está implementada completamente en JavaScript (ES6+), HTML y CSS; en ningun momento se utilizaron frameworks o librerías de CSS y JS.
+
+Para la creación de la cuenta del usuario e inicio de sesión se utilizó Firebase como servicio externo para la persistencia de datos; esta plataforma facilita la creación de las cuentas de acceso y autenticación con correo y contraseña, así como también con cuentas de Google. En esta fase, se permite solamente el acceso a usuarios con cuentas y correos electrónicos válidos; no se permiten usuarios repetidos y no permite la legibilidad en el campo de la contraseña. Si hay errores, se muestran mensajes descriptivos para ayudar al usuario a corregirlos.
+
+En el Muro/timeline de la red social se valida el contenido en el input para poder realizar una publicación. En esta fase también se hace uso de firebase para que sea posible publicar un post, dar y quitar like a una publicación (máximo uno por usuario), para llevar el conteo de los likes y para poder eliminar un post específico; se pide confirmación antes de eliminar un post. Al dar click para editar un post, se cambia el texto por un input que permite editar el texto y luego guardar los cambios; al guardar los cambios cambia de vuelta a un texto normal pero con la información editada y al recargar la página se logran evidenciar los textos editados.
+
+
+
 
 
