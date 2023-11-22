@@ -5,8 +5,8 @@
 * [1. Preámbulo](#1-preámbulo)
 * [2. Resumen del proyecto](#2-resumen-del-proyecto)
 * [2.1 Historia de usuario ](#2.1-Histroia-de-usurario)
-* [2.2 Diseño de interfaz de usuario](#2.2-diseño-de-interfaz-de-usuario)
-* [3. consideraciones generales](#3-consideraciones-generales)
+  - [2.2 Diseño de interfaz de usuario](#2.2-diseño-de-interfaz-de-usuario)
+  - [3. consideraciones generales](#3-consideraciones-generales)
 * [4. conclusiones](#4-conclusiones)
 
 ## 1. Preámbulo
@@ -100,6 +100,13 @@ La lógica de este proyecto está implementada completamente en JavaScript (ES6+
 Para la creación de la cuenta del usuario e inicio de sesión se utilizó Firebase como servicio externo para la persistencia de datos; esta plataforma facilita la creación de las cuentas de acceso y autenticación con correo y contraseña, así como también con cuentas de Google. En esta fase, se permite solamente el acceso a usuarios con cuentas y correos electrónicos válidos; no se permiten usuarios repetidos y no permite la legibilidad en el campo de la contraseña. Si hay errores, se muestran mensajes descriptivos para ayudar al usuario a corregirlos.
 
 En el Muro/timeline de la red social se valida el contenido en el input para poder realizar una publicación. En esta fase también se hace uso de firebase para que sea posible publicar un post, dar y quitar like a una publicación (máximo uno por usuario), para llevar el conteo de los likes y para poder eliminar un post específico; se pide confirmación antes de eliminar un post. Al dar click para editar un post, se cambia el texto por un input que permite editar el texto y luego guardar los cambios; al guardar los cambios cambia de vuelta a un texto normal pero con la información editada y al recargar la página se logran evidenciar los textos editados.
+
+## 4. Conclusiones
+ - Se desarrolló una SPA con temática de red social.
+ - Se empleó un servicio externo para la persistencia de datos de la aplicación
+ - Se aplicaron los conceptos de responsividad en el desarrollo de las vistas (templates); las diferentes vistas de la red social logran visualizarse adecuadamente en dispositivos de pantallas grandes (computadoras/es, laptops, etc.) y pequeñas (tablets, celulares, etc.).
+ - El código se expuso en GitHub (commit/push) y la interfaz fue desplegada usando el servicio de hosting de Firebase
+Este proyecto fue desarrollado en triada bajo la metodología de Scrum implementando Trello para la planeación y consecución de los objetivos
 
 
 
