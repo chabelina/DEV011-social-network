@@ -96,7 +96,6 @@ export const loginView = (navigateTo) => {
   buttonLogin.setAttribute('value', 'buttonInfoLogin');
   buttonLogin.innerText = 'Iniciar sesión';
   buttonLogin.classList.add('standarButton');
-  buttonLogin.id = 'loginButton';
   // Mensaje de error al ingresar con email
   const errorMessage = document.createElement('p');
   errorMessage.id = 'errorMessage';

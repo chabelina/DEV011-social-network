@@ -11,7 +11,7 @@ import {
   deleteDoc,
 } from 'firebase/firestore';
 import { app } from './firebase-config.js';
-// import { async } from 'regenerator-runtime';
+import { async } from 'regenerator-runtime';
 // import { addDoc, doc, setDoc } from "firebase/firestore";
 
 export const db = getFirestore(app);

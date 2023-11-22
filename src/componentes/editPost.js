@@ -32,7 +32,7 @@ export const editPostModalRender = (postId, initialContent) => {
 
   const inputTextPost = document.createElement('textarea');
 
-  inputTextPost.id = 'alertInput';
+  // inputTextPost.id = 'alertInput2';
   inputTextPost.value = initialContent;
 
   bodyPost.appendChild(inputTextLabel);
