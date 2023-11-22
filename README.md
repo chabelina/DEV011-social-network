@@ -89,10 +89,10 @@ Definición de terminado:
 #### Prototipo de baja fidelidad
 Una vez definidas las Historias de Usuario, y como primer paso en el diseño de la interfaz, se elaboraron los prototipos de baja fidelidad para vista móvil mediante la herramienta de diseño visual Figma.
 
+<img width="791" alt="image" src="https://github.com/chabelina/DEV011-social-network/assets/123765828/29bebed8-f0a2-4517-8600-dc16b52c8ce6">
+
 #### Prototipo de alta fidelidad
 Seguidamente se diseñó la Interfaz de Usuario también mediante la herramienta de Figma. Se presenta a continuación el diseño final de la red social propuesta, la cual busca cumplir con los fundamentos de visual design:
-
-
 
 ## 3. Consideraciones generales
 La lógica de este proyecto está implementada completamente en JavaScript (ES6+), HTML y CSS; en ningun momento se utilizaron frameworks o librerías de CSS y JS.
