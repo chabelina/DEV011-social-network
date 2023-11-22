@@ -5,7 +5,6 @@ import noMostrar from '../img/no-mostrar.svg';
 import { createUser } from '../firebase/auth.js';
 import { inputsFormats } from '../validations/validLogin';
 import { allUsers, insertNewUserDB } from '../firebase/firestore';
-// import { async } from 'regenerator-runtime';
 
 // Función que renderea la vista de inicio de sesión
 export const newAccount = (navigateTo) => {
@@ -116,6 +115,7 @@ export const newAccount = (navigateTo) => {
       navigateTo('/publications'); // Se mueve a la vista de publicaciones
       return currentUser;
     } catch (e) {
+      // console.log('error');
       errorInvalidPassword.innerText = e.message;
       return errorInvalidPassword;
       // si las entradas son malas, muestra el msj de error en pantalla
