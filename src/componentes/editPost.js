@@ -25,14 +25,14 @@ export const editPostModalRender = (postId, initialContent) => {
   const bodyPost = document.createElement('section');
   bodyPost.classList.add('alertMainSection');
 
-  const inputTextLabel = document.createElement('p');
-  // inputTextLabel.setAttribute('for', 'alertInput2');
+  const inputTextLabel = document.createElement('label');
+  inputTextLabel.setAttribute('for', `alertInputEdit${postId}`);
   inputTextLabel.textContent = 'Recomendacion';
   inputTextLabel.classList.add('alertInputLabel');
 
   const inputTextPost = document.createElement('textarea');
-
-  inputTextPost.id = 'alertInput';
+  inputTextPost.classList.add('alertInput');
+  inputTextPost.id = `alertInputEdit${postId}`;
   inputTextPost.value = initialContent;
 
   bodyPost.appendChild(inputTextLabel);
