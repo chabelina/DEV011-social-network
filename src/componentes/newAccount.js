@@ -115,6 +115,7 @@ export const newAccount = (navigateTo) => {
       navigateTo('/publications'); // Se mueve a la vista de publicaciones
       return currentUser;
     } catch (e) {
+      // console.log('error');
       errorInvalidPassword.innerText = e.message;
       return errorInvalidPassword;
       // si las entradas son malas, muestra el msj de error en pantalla

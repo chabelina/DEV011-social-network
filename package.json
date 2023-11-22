@@ -21,7 +21,8 @@
     "build": "vite build",
     "preview": "vite preview",
     "test:pb": "jest --coverage --verbose test/publications.spec.js",
-    "test:np": "jest --coverage --verbose test/newpost.spec.js"
+    "test:np": "jest --coverage --verbose test/newpost.spec.js",
+    "test:fs": "jest --coverage --verbose test/firestore.spec.js"
   },
   "devDependencies": {
     "@babel/preset-env": "^7.19.4",

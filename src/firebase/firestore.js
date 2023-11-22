@@ -9,7 +9,7 @@ import {
   doc,
   updateDoc,
   deleteDoc,
-} from 'firebase/firestore';
+} from './firebase';
 import { app } from './firebase-config.js';
 // import { async } from 'regenerator-runtime';
 // import { addDoc, doc, setDoc } from "firebase/firestore";

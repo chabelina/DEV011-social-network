@@ -20,7 +20,7 @@ describe('Test para el modal de newPost:', () => {
     const inputTextPost = document.getElementById('alertInput');
     inputTextPost.value = emptyStrTest;
     const msjEmptyPost = document.getElementById('errorMessage');
-    console.log(msjEmptyPost);
+    // console.log(msjEmptyPost);
     await buttonSaveNewPost.click();
     expect(msjEmptyPost.innerText).toEqual('Necesitas insertar texto en tu recomendación');
   });

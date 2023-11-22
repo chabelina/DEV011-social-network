@@ -35,14 +35,14 @@ describe('Test para el botón de like', () => {
     const unfilledLikeImg = document.getElementById('unlikeImg');
 
     // Check initial styles
-    console.log(unfilledLikeImg);
+    // console.log(unfilledLikeImg);
     expect(unfilledLikeImg.style.display).toBe('flex');
     expect(filledLikeImg.style.display).toBe('none');
 
     // Simulate a click on the like button
-    console.log(likesDB);
+    // console.log(likesDB);
     await likeButton.click();
-    console.log(likesDB);
+    // console.log(likesDB);
 
     // Check styles after the click
     expect(filledLikeImg.style.display).toBe('flex');
