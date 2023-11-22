@@ -11,6 +11,8 @@
 
 ## 1. Preámbulo
 
+![vista_principal_bmusic](image.png)
+
 Las redes sociales son plataformas digitales diseñadas para permitir la interacción entre usuarios a través de internet. Estas redes proporcionan un entorno virtual donde las personas pueden crear perfiles, establecer conexiones con otros usuarios y participar en actividades sociales en línea; a traves de ella interactuar mediante comentarios, mensajes y reacciones. Estas plataformas ofrecen diversas funcionalidades como la creación de comunidades, la organización de eventos, la promoción de productos o servicios, la difusión de noticias y el desarrollo de relaciones personales o profesionales.
 
 Hay redes sociales de todo tipo y para todo tipo de intereses. Estas plataformas digitales han tenido un impacto significativo en la forma en que nos comunicamos, nos informamos y nos relacionamos, pues han transformado la manera en que interactuamos tanto a nivel individual como colectivo.
@@ -84,6 +86,12 @@ criterios de aceptacion:
 Definición de terminado:
 
 
+
+
+De esta manera nos organizamos en figma para realizar la historias de usuario:
+
+![Alt text](image-1.png)
+
 ### 2.2. Diseño de la Interfaz de Usuario
 
 #### Prototipo de baja fidelidad
@@ -93,6 +101,10 @@ Una vez definidas las Historias de Usuario, y como primer paso en el diseño de 
 
 #### Prototipo de alta fidelidad
 Seguidamente se diseñó la Interfaz de Usuario también mediante la herramienta de Figma. Se presenta a continuación el diseño final de la red social propuesta, la cual busca cumplir con los fundamentos de visual design:
+
+<p align="center" width="100%">
+    <img width="33%" src="src\img\vidprototipo.gif">
+</p>
 
 ## 3. Consideraciones generales
 La lógica de este proyecto está implementada completamente en JavaScript (ES6+), HTML y CSS; en ningun momento se utilizaron frameworks o librerías de CSS y JS.
