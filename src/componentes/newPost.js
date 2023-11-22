@@ -5,7 +5,7 @@ import {
 } from '../firebase/firestore';
 
 // función para crear un nevo post
-export function newPost(userID, nameUser) {
+export function newPost(userID) {
   // console.log(currentUser);
 
   // Ventana que se sobrepone a la vista de publications
