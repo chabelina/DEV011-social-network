@@ -11,11 +11,11 @@
 
 ## 1. Preámbulo
 
-Las redes sociales son plataformas digitales diseñadas para permitir la interacción entre usuarios a través de internet. Estas redes proporcionan un entorno virtual donde las personas pueden crear perfiles, establecer conexiones con otros usuarios y participar en actividades sociales en línea; a través de ellas, los usuarios pueden compartir publicaciones, fotos, videos y enlaces, así como interactuar mediante comentarios, mensajes privados y reacciones. Estas plataformas ofrecen diversas funcionalidades como la creación de comunidades, la organización de eventos, la promoción de productos o servicios, la difusión de noticias y el desarrollo de relaciones personales o profesionales.
+Las redes sociales son plataformas digitales diseñadas para permitir la interacción entre usuarios a través de internet. Estas redes proporcionan un entorno virtual donde las personas pueden crear perfiles, establecer conexiones con otros usuarios y participar en actividades sociales en línea; a traves de ella interactuar mediante comentarios, mensajes y reacciones. Estas plataformas ofrecen diversas funcionalidades como la creación de comunidades, la organización de eventos, la promoción de productos o servicios, la difusión de noticias y el desarrollo de relaciones personales o profesionales.
 
 Hay redes sociales de todo tipo y para todo tipo de intereses. Estas plataformas digitales han tenido un impacto significativo en la forma en que nos comunicamos, nos informamos y nos relacionamos, pues han transformado la manera en que interactuamos tanto a nivel individual como colectivo.
 
-
+Este repositorio contiene el proyecto B-Music, una red social diseñada para los amantes de la música que buscan descubrir, compartir y conectar a través de sus experiencias musicales. B-Music está aquí para transformar la manera en que exploramos y disfrutamos de la música, brindando una plataforma única para descubrimientos personalizados y conexiones auténticas.
 
 ## 2. Resumen del proyecto
 
@@ -103,10 +103,18 @@ En el Muro/timeline de la red social se valida el contenido en el input para pod
 
 ## 4. Conclusiones
  - Se desarrolló una SPA con temática de red social.
- - Se empleó un servicio externo para la persistencia de datos de la aplicación
+ - Se empleó un servicio externo para la persistencia de datos de la aplicación.
  - Se aplicaron los conceptos de responsividad en el desarrollo de las vistas (templates); las diferentes vistas de la red social logran visualizarse adecuadamente en dispositivos de pantallas grandes (computadoras/es, laptops, etc.) y pequeñas (tablets, celulares, etc.).
- - El código se expuso en GitHub (commit/push) y la interfaz fue desplegada usando el servicio de hosting de Firebase
- - Este proyecto fue desarrollado en triada bajo la metodología de Scrum implementando Trello para la planeación y consecución de los objetivos
+ - El código se expuso en GitHub (commit/push) y la interfaz fue desplegada usando el servicio de hosting de Firebase.
+ - Este proyecto fue desarrollado en triada bajo la metodología de Scrum implementando Trello para la planeación y consecución de los objetivos.
+
+ 🎵🚀 Creemos que la música tiene el poder de unir a las personas y enriquecer sus vidas, y B-Music está aquí para facilitar esa conexión. Únete a nosotros en este emocionante viaje musical y descubre un mundo de posibilidades auditivas. ¡Que la música nunca pare! 🎵🚀
+
+
+
+
+
+
 
 
 
