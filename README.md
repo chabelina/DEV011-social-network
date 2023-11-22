@@ -106,7 +106,7 @@ En el Muro/timeline de la red social se valida el contenido en el input para pod
  - Se empleó un servicio externo para la persistencia de datos de la aplicación
  - Se aplicaron los conceptos de responsividad en el desarrollo de las vistas (templates); las diferentes vistas de la red social logran visualizarse adecuadamente en dispositivos de pantallas grandes (computadoras/es, laptops, etc.) y pequeñas (tablets, celulares, etc.).
  - El código se expuso en GitHub (commit/push) y la interfaz fue desplegada usando el servicio de hosting de Firebase
-Este proyecto fue desarrollado en triada bajo la metodología de Scrum implementando Trello para la planeación y consecución de los objetivos
+ - Este proyecto fue desarrollado en triada bajo la metodología de Scrum implementando Trello para la planeación y consecución de los objetivos
 
 
 
