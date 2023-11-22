@@ -4,9 +4,9 @@
 
 * [1. Preámbulo](#1-preámbulo)
 * [2. Resumen del proyecto](#2-resumen-del-proyecto)
-* [2.1 Historia de usuario ](#2.1-Histroia-de-usurario)
+  - [2.1 Historia de usuario ](#2.1-Histroia-de-usurario)
   - [2.2 Diseño de interfaz de usuario](#2.2-diseño-de-interfaz-de-usuario)
-  - [3. consideraciones generales](#3-consideraciones-generales)
+* [3. consideraciones generales](#3-consideraciones-generales)
 * [4. conclusiones](#4-conclusiones)
 
 ## 1. Preámbulo
