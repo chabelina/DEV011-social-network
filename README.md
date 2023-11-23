@@ -42,51 +42,67 @@ Como resultado del proceso de investigación se obtuvieron las siguientes Histor
 
 :musical_note:  1: Como aficionada de la música poco conocida/indie quiero tener la capacidad de poder registrar una cuenta de usuario e iniciar sesión para formar parte de la comunidad virtual que ofrece B-Music, en la búsqueda y descubrimiento de canciones underground
 
-criterios de aceptacion: 
-- Crear un usuario nuevo con correo
-- Poder crear un usuario nuevo mediante Google
-- Al recargar la aplicación, se debe verificar si el usuario está logueado antes de mostrar contenido.
+* Criterios de aceptacion: 
 
-Definición de terminado:
+  - Crear un usuario nuevo con correo
+  - Poder crear un usuario nuevo mediante Google
+  - Al recargar la aplicación, se debe verificar si el usuario está logueado antes de mostrar contenido.
 
+* Definición de terminado:
 
+  - Crear un usuario en firebase y guardar el `userID` y nombre en una colección `users`.
+  - Crear un usuario nuevo mediante `loginGoogle()`, editando el `prompt: 'select_account'`
+  - Verificar que el usuario está logueado antes renderear la función `publications()`.
 
 :musical_note:  2:  Como usuaria de B-Music quiero visualizar un Muro interactivo para poder ver las publicaciones de los usuarios 
 
 
-criterios de aceptacion:
-- El usario puede visualizar un muro de reccomendaciones recientes de ususarios del social network.
-- Se puede dar y quitar like a una publicación. Máximo uno por usuario.
-- Cada publicación lleva un conteo de los likes.
+* Criterios de aceptacion:
 
-Definición de terminado:
+  - El usario puede visualizar un muro de reccomendaciones recientes de ususarios del social network.
+  - Se puede dar y quitar like a una publicación. Máximo uno por usuario.
+  - Cada publicación lleva un conteo de los likes.
 
+* Definición de terminado:
 
+  - Ordenar por fecha la colección `posts` antes de usar `renderPost()`.
+  - Revisar si el `userID` del usuario actual se encuentra en el array de likes de cada post y agregarlo o eliminarlo al dar like, según sea el caso.
+  - Cambiar el `display = 'none'/'flex'` display de la imagen al momento de dar like o quitarlo.
+  - Al unsar `renderPost()` se tiene que validar si el usuario logueado le dio like al post.
+  - Agregar al lado de la imagen el valor de `likesDB.length`.
 
 :musical_note:  3: Como usuaria de B-Music quiero poder compartir y/o eliminar recomendaciones para poder compartir información sobre algún género músical o banda que me interesa
 
-criterios de aceptacion:
-- Poder publicar un post.
-- Al publicar, se debe validar que exista contenido en el input.
-- Poder eliminar un post específico.
-- Pedir confirmación antes de eliminar un post.
+* Criterios de aceptacion:
 
-Definición de terminado:
+  - Poder publicar un post.
+  - Al publicar, se debe validar que exista contenido en el input.
+  - Poder eliminar un post específico.
+  - Pedir confirmación antes de eliminar un post.
 
+* Definición de terminado:
 
+  - Agregar un botón `newPostIcon` que muestre un modal `newPost` al darle click.
+  - El modal contiene un `inputTextPost` y un `buttonSaveNewPost` para guardar el post en la colección `posts`.
+  - Antes de guardar el post, se debe validar el contenido en el `inputTextPost` que no sea vacío o espacios en blanco.
+  - Agregar un botón `trashIcon` que abre un modal `deletePost`.
+  - `trashIcon` sólo aparece en los post publicados por el usuario logueado.
+  - El modal `deletePost` pide confirmación antes de eliminar un post.
 
 :musical_note:  4: Como usuaria de B-Music quiero poder editar mis recomendaciones para poder corregir lo que ya he publicado
 
-criterios de aceptacion:
+* Criterios de aceptacion:
 
-- Al dar click para editar un post, debe cambiar el texto por un input que permita editar el texto y luego guardar los cambios.
-- Al guardar los cambios debe cambiar de vuelta a un texto normal pero con la información editada.
-- Al recargar la página debo de poder ver los textos editados.
+  - Al dar click para editar un post, debe cambiar el texto por un input que permita editar el texto y luego guardar los cambios.
+  - Al guardar los cambios debe cambiar de vuelta a un texto normal pero con la información editada.
+  - Al recargar la página debo de poder ver los textos editados.
 
-Definición de terminado:
+* Definición de terminado:
 
-
-
+  - Agregar un botón `penIcon` que muestre un modal `editPost` al darle click.
+  - El modal `editePost` muestra el texto de la colección `posts` en un input editable 
+  - Agregar el botón `buttonSaveEditedPost` que permite guardar los cambios.
+  - Asegurar que los cambios se rendereen en tiempo real al momento de guardar los cambios.
 
 De esta manera nos organizamos en figma para realizar la historias de usuario:
 
