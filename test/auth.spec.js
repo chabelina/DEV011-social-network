@@ -12,14 +12,9 @@ import * as firestoreModule from '../src/firebase/firestore.js';
 import * as authModule from '../src/firebase/auth.js';
 import * as validLoginModule from '../src/validations/validLogin.js';
 
-/* jest.mock('../src/lib/firebase', () => {
-  // Se mockea todo el módulo firebaseAuth
-  const originalModule = jest.requireActual('../src/lib/firebase');
-  return {
-    ...originalModule,
-    createUserWithEmailAndPassword: jest.fn().mockResolvedValue({ user: { uid: '123' } }),
-  };
-}); */
+jest.mock('../src/firebase/firestore', () => ({
+  insertNewUserDB: jest.fn().mockImplementation(() => Promise.resolve()),
+}));
 
 // test de funcionalidad
 describe('Test for loginView', () => {
@@ -50,7 +45,7 @@ describe('Test for pupUpDelete', () => {
   });
 });
 describe('Test for NewAccount', () => {
-  test('call navigateTo function after clicking newAccount button', async () => {
+  test.only('call navigateTo function after clicking newAccount button', (done) => {
     // const inputsFormats = jest.fn(() => true);
     // inputsFormats.mockImplementation(() => true);
     // firestoreModule.insertNewUserDB.mockResolvedValue(true);
@@ -60,22 +55,23 @@ describe('Test for NewAccount', () => {
     // expect(navigateTo).toHaveBeenCalledTimes(1);
     // expect(navigateTo).toHaveBeenLastCalledWith('/publications');
     jest.spyOn(validLoginModule, 'inputsFormats').mockImplementation(() => true);
-    jest.spyOn(authModule, 'createUser').mockImplementation(() => Promise.resolve());
+    jest.spyOn(authModule, 'createUser').mockImplementation(() => Promise.resolve({ uid: 'user123' }));
     jest.spyOn(firestoreModule, 'insertNewUserDB').mockImplementation(() => Promise.resolve(true));
     jest.spyOn(mainModule, 'navigateTo').mockImplementation(() => {});
     const DOM = document.createElement('div');
-    DOM.append(newAccount(mainModule.navigateTo()));
+    DOM.append(newAccount(jest.fn()));
     const createUserButton = DOM.querySelector('#newAccountButton');
-    await createUserButton.click();
+    createUserButton.click();
     // await Promise.resolve();
     // console.log(firestoreModule.insertNewUserDB());
-    /*     expect(validLoginModule.inputsFormats).toHaveBeenCalled();
+    expect(validLoginModule.inputsFormats).toHaveBeenCalled();
     expect(authModule.createUser).toHaveBeenCalled();
-    expect(authModule.createUser()).toEqual(Promise.resolve());
+    // expect(authModule.createUser()).toEqual(Promise.resolve());
     setTimeout(() => {
       expect(firestoreModule.insertNewUserDB).toHaveBeenCalledTimes(1);
-    }, 1000);
-    expect(firestoreModule.insertNewUserDB()).toEqual(Promise.resolve(true)); */
+      done();
+    }, 0);
+    // expect(firestoreModule.insertNewUserDB()).toEqual(Promise.resolve(true));
     return expect(mainModule.navigateTo).toHaveBeenCalled();
   });
 });

@@ -106,20 +106,20 @@ export const newAccount = (navigateTo) => {
   formInputCreateAccount.appendChild(buttonCreateNewAccount);
 
   buttonCreateNewAccount.addEventListener('click', async () => {
-    try {
-      inputsFormats(inputEmail, passwordContainer); // valida que las entradas sean correctas...
-      currentUser = await createUser(inputEmail.value, inputPassword.value);
-      // console.log(currentUser);
-      await insertNewUserDB(inputNickname.value, currentUser.uid, allUsers);
-      // Crea el usuario e ingresa
-      navigateTo('/publications'); // Se mueve a la vista de publicaciones
-      return currentUser;
-    } catch (e) {
-      // console.log('error');
-      errorInvalidPassword.innerText = e.message;
-      return errorInvalidPassword;
-      // si las entradas son malas, muestra el msj de error en pantalla
-    }
+    // try {
+    inputsFormats(inputEmail, passwordContainer); // valida que las entradas sean correctas...
+    currentUser = await createUser(inputEmail.value, inputPassword.value);
+    // console.log(currentUser);
+    await insertNewUserDB(inputNickname.value, currentUser.uid, allUsers);
+    // Crea el usuario e ingresa
+    navigateTo('/publications'); // Se mueve a la vista de publicaciones
+    return currentUser;
+    // } catch (e) {
+    //   // console.log('error');
+    //   errorInvalidPassword.innerText = e.message;
+    //   return errorInvalidPassword;
+    //   // si las entradas son malas, muestra el msj de error en pantalla
+    // }
   });
 
   containerAll.appendChild(formInputCreateAccount);
