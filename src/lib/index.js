@@ -2,10 +2,11 @@
 
 export const myFunction = () => {
   // aqui tu codigo
-  //console.log('Hola mundillo! Soy un test de Daniela gg.');
-  console.log(window.location.pathname);
+  // console.log('Hola mundillo! Soy un test de Daniela gg.');
+  // console.log(window.location.pathname);
 
   const title = document.createElement('h2');
-  title.textContent = "Hola mundillo! Soy un test de index.js."
-  return title
+  title.textContent = 'Hola mundillo! Soy un test de index.js.';
+  return title;
 };
+// Crear carpeta de validaciones

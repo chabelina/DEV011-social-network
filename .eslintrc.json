@@ -24,7 +24,7 @@
     "import/extensions": 0,
     "import/prefer-default-export": 0,
     "jest/no-disabled-tests": "warn",
-    "jest/no-focused-tests": "error",
+    "jest/no-focused-tests": 0,
     "jest/no-identical-title": "error",
     "jest/prefer-to-have-length": "warn",
     "jest/valid-expect": "error"

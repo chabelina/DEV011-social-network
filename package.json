@@ -15,11 +15,14 @@
     "eslint": "eslint --ext .js src/ test/",
     "stylelint": "stylelint --aei src/**/*.css",
     "pretest": "npm run htmlhint && npm run eslint && npm run stylelint",
-    "test": "jest --coverage",
+    "test": "jest --coverage --verbose",
     "dev": "vite dev src --port 3000",
     "start": "npm run dev",
     "build": "vite build",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "test:pb": "jest --coverage --verbose test/publications.spec.js",
+    "test:np": "jest --coverage --verbose test/newpost.spec.js",
+    "test:fs": "jest --coverage --verbose test/firestore.spec.js"
   },
   "devDependencies": {
     "@babel/preset-env": "^7.19.4",
@@ -44,5 +47,10 @@
   },
   "dependencies": {
     "firebase": "^10.5.0"
+  },
+  "jest": {
+    "moduleNameMapper":{
+      "\\.(svg|png)$": "<rootDir>/src/fileMocks.js"
+    }
   }
 }

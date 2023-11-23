@@ -1,10 +1,387 @@
+:root{
+    --padding-button: 0.3rem 1rem;
+}
+
+*{
+    box-sizing: border-box;
+}
+
+/* --------- Formatos generales (algunos reusados) --------- */
+
 body{
-    background-color: antiquewhite;
+    background-color: rgb(0, 0, 0);
+    margin: 0%;
+    justify-content: center;
+    color: #11035A;
 }
-.LoginContainer{
-   background-color: aquamarine;
+
+.containerAll{ 
+    color: #F4F4FC;
+    display: flex;
+    flex-direction: column;
+    padding: 3rem;
+    gap: 3rem;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100vh;
+    min-height: 100vh;
+    background:#000000 url('./img/fondoVector.svg') no-repeat;
+    background-size: cover;
+    position: relative; 
+}
+
+.containerAllPublications {
+    color: #F4F4FC;
+    display: flex;
+    flex-direction: column;
+    padding: 3rem;
+    padding-bottom: 6rem;
+    gap: 3rem;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    background:#000000 url('./img/fondoVector.svg') no-repeat center center fixed;
+    background-size: cover;
+    position: relative;
+}
+
+/* icono para mostrar password */
+#showPassword{
+    border-radius: 2rem;
+    transition: transform 0.2s, box-shadow 0.2s;
+    border: 0px solid rgb(28, 28, 28);
+}
+
+#showPassword:active{
+    transform: scale(1.1); 
+      box-shadow: 0 6px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* form para ingresar o crear cuenta */
+.formLogin{
+   text-align: center;
+   color: #F4F4FC;
    display: flex;
-   flex-direction: column; 
-   width: 200px;
-   padding: 20px;
+   flex-direction: column;
+   width: 100%;
+   padding: 30px;
+   gap: 1rem;
+   position: relative;
+   align-items: center;
 }
+
+.logo{
+    width: 300px;
+}
+
+/* .password-container{
+    display: flex;
+    width: auto;
+} */
+
+
+#inputEmail,#inputNickname {
+    border-radius: 2rem;
+    border: 1px solid rgb(28, 28, 28);
+    text-align: center;
+    padding: var(--padding-button);
+    display: flex;
+    box-sizing: content-box;
+    width: 300px;
+    height: 30px;
+}
+
+.passwordContainer {
+    border-radius: 2rem;
+    border: 1px solid rgb(28, 28, 28);
+    text-align: center;
+    padding: var(--padding-button);
+    box-sizing: content-box;
+    width: 300px;
+    height: 30px;
+    background-color: #F4F4FC;
+    display: grid;
+    grid-template-columns: 8fr 1fr;
+}
+
+.inputPassword {
+    border-radius: 2rem;
+    text-align: center;
+    border: 0px solid rgb(28, 28, 28);
+    background-color: #F4F4FC;
+}
+
+#errorMessage{
+    color: #CE27FA;
+}
+
+/* formato general para todos los botones */
+/* .google{
+    border-radius: 2rem;
+    border: 1px solid rgb(28, 28, 28);
+    background-color: #FDB803;
+} */
+
+.standarButton{
+    background-color: #FDB803;
+    border:none;
+    text-align: center;
+    border-radius: 2rem;
+    box-sizing: content-box;
+    box-shadow: -2px 9px 16px -2px rgba(0,0,0,0.42);
+    padding: var(--padding-button);
+    width: 100%;
+    height: 30px;
+    max-width: 200px;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+.standarButton:hover {
+    transform: scale(1.1); /* Increase the size on hover */
+    box-shadow: 0 6px 8px rgba(0, 0, 0, 0.2); /* Change the shadow on hover */
+}
+
+/* .ingresar, .cerrar, .crear {
+    gap: 2rem;
+    border-radius: 2rem;
+    border: 1px solid rgb(28, 28, 28);
+    text-align: center;
+    padding: var(--padding-button);
+    box-sizing: content-box;
+    width: 200px;
+    height: 30px;
+    background-color: #FDB803;
+} */
+
+/* .ingresar, .cerrar, .crear, .google {
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.ingresar:hover, .cerrar:hover, .crear:hover, .google:hover {
+      transform: scale(1.1); /* Increase the size on hover 
+      box-shadow: 0 6px 8px rgba(0, 0, 0, 0.2); /* Change the shadow on hover 
+    } */
+
+
+
+
+
+/* --------- Formatos de los modales --------- */
+
+/* div que cubre el fondo */
+.pupUp {
+    background-color: rgba(0, 0, 0, 0.7);  
+    z-index: 1;
+    color: #11035A;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: none;
+}
+
+/* Recuadro que contiene todos los elementos de post nuevo */
+.alertPopUp {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+    max-width: 40%;
+    width: 50%;
+    border-radius: 1rem;
+    position: absolute;  
+    top: 50%;  
+    left: 50%;  
+    transform: translate(-50%, -50%);  background-color: #F4F4FC;  padding: 20px;  z-index: 2;
+}
+
+/* Cuerpo de la publicación */
+.alertMainSection{
+    display: inherit;
+    flex-direction: column;
+    justify-content: center;
+    gap: 0.5rem;
+    width: 100%;
+}
+
+/* Formato del texto 'Recomendación' */
+.alertInputLabel{
+    display: inherit;
+}
+
+/* formato de la área para ingresar texto */
+.alertInput{
+    width: 100%;
+    height: 100%;
+    min-height: 75px;
+    /* height: auto; */
+    resize: none;
+    border: none;
+}
+.alertInput::placeholder {
+  color: rgba(206, 39, 250, 0.5); /* Change the color to your desired color */
+}
+
+/* contenedor del botón de envío de post */
+.alertFooter{
+    display: inherit; 
+    flex-direction: column; 
+    align-items: center;
+    width: 100%; 
+}
+
+/* botón de envío de post */
+/* #alertFooterSaveButton{
+    padding: 5px; 
+    color: #11035A ;
+    font-size: medium;
+    background: #FDB803; 
+    border: none; 
+    border-radius: 8px; 
+    width: 100%;
+    max-width: 50%;
+    display: flex;
+    justify-content: center;
+} */
+
+/* .registryContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 3rem;
+} */
+
+/* #registerForm{
+    display: inherit;
+    flex-direction: inherit;
+    align-items: inherit;
+    gap: 1rem;
+} */
+
+/* --------- Formatos del muro --------- */
+
+#postArticle{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 80%;
+    max-width: 800px;
+    background-color: #ffffff;
+    color: #11035A;
+    border-radius: 1rem;
+    /* border: 3px solid rgb(135, 238, 130); */
+    padding: 5px;
+}
+
+#postHeader{
+    display: grid;
+    width: 100%;
+    height: 40px;
+    grid-template-columns: 1fr 14fr 1fr 1fr;
+    /* align-items: center;
+    justify-content: center; */
+    /* border: 3px solid red; */
+}
+
+#profilePicture{
+    height: 40px;
+    width: 40px;
+    border-radius: 20px;
+    background-color: #BDB5FD;
+    /* border: 3px solid #FDB803; */
+    padding: 5px;
+}
+
+#nameUser{
+    margin: 1%;
+    padding: 1vh;
+    height: 35px;
+   /*  border: 3px solid pink; */
+}
+
+.editor{
+    height: 30px;
+    margin: 1px 4px 1px 4px;
+}
+.delete{
+    height: 30px;
+    margin: 1px 4px 1px 4px;
+}
+#bodyPost{
+    background-color: #F4F4FC;
+    border-radius: 1rem;
+    width: 95%;
+    align-items: center;
+    padding: 10px;
+    margin: 5px 0px;
+}
+
+#footerPost{
+    width: 100%;
+    display: flex;
+    justify-content: right;
+    /* border:3px solid black; */
+}
+
+/* ul{
+    padding: 0%;
+    margin: 0%;
+    border:3px solid red;
+    display: inherit;
+    flex-wrap: wrap;
+} */
+
+/* li {
+    display: flexbox; 
+    list-style-type: none; 
+    background-color: #BDB5FD;
+    border-radius: 1rem;
+    color:#11035A; 
+    display: inline-block;
+    margin: 5px 10px 5px 10px;
+    padding: 5px;
+} */
+
+#likeButton{
+    border:0px; 
+    background-color:#FFFFFF; 
+    align-self: center; 
+    /* margin-left: 50%; */
+}
+
+#likeButton .likeImg{
+    width: 30px;
+}
+
+#likesCounter{
+    padding: 0 10px 0;
+    margin-right: 5px;
+}
+
+#footerPublications {
+    background: rgb(28, 28, 28);
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: 10px;
+    justify-content :space-around;
+    width:100%;
+    padding: 1rem;
+    position: fixed;
+    bottom: 0;
+}
+
+
+@media (min-width: 768px) {
+    /*.ingresar, .google, .crear, #inputEmail, #inputPassword, #inputNickname {
+      width: 300px;
+    }*/
+  
+    .logo {
+      width: 400px;
+    }
+  }
+  
